@@ -4,11 +4,9 @@ import matter from 'gray-matter';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
-
-import Layout from '../../../components/ui/Layout';
-import { ProjectMetadata, projectMetadataSchema } from '../../../types/projectMetadata';
-
-import markdownToHTML from '../../../util/markdownToHTML';
+import Layout from '../../components/ui/Layout';
+import { ProjectMetadata, projectMetadataSchema } from '../../types/projectMetadata';
+import markdownToHTML from '../../util/markdownToHTML';
 
 const PostPage: NextPage<{
   projectMetadata: ProjectMetadata;

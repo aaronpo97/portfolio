@@ -18,7 +18,10 @@ const Navbar = () => {
     setCurrentURL(router.asPath);
   }, [router.asPath]);
 
-  const pages: Page[] = [{ slug: '/', name: 'Home' }];
+  const pages: Page[] = [
+    { slug: '/', name: 'Home' },
+    { slug: '/about', name: 'About' },
+  ];
 
   return (
     <nav className="navbar bg-primary">
