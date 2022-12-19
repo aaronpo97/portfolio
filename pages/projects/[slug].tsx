@@ -21,7 +21,7 @@ const PostPage: NextPage<{
         <meta name="description" content={metaDesc} />
       </Head>
       <Layout>
-        <div className="items-center mt-20 mb-20 flex flex-col justify-center">
+        <div className="mt-20 mb-20 flex flex-col items-center justify-center">
           <Link href={githubURL}>Repo</Link>
           <Link href={liveURL}>Live</Link>
           <div className="w-7/12">
