@@ -19,17 +19,16 @@ const Navbar = () => {
   }, [router.asPath]);
 
   const pages: Page[] = [
-    { slug: '/', name: 'Home' },
     { slug: '/about', name: 'About' },
+    { slug: '/projects', name: 'Projects' },
+    { slug: '/contact', name: 'Contact' },
   ];
 
   return (
-    <nav className="navbar bg-primary">
+    <nav className="navbar bg-base-300">
       <div className="flex-1">
         <Link className="btn-ghost btn text-3xl normal-case" href="/">
-          <span className="cursor-pointer text-xl font-bold text-primary-content">
-            Aaron William Po
-          </span>
+          <span className="cursor-pointer text-xl font-bold">Aaron William Po</span>
         </Link>
       </div>
       <div className="hidden flex-none lg:block">
@@ -39,9 +38,9 @@ const Navbar = () => {
               <li key={page.slug}>
                 <Link tabIndex={0} href={page.slug}>
                   <span
-                    className={`text-lg font-bold uppercase lg:hover:bg-primary-focus ${
-                      currentURL === page.slug ? 'bg-primary-focus' : 'bg-primary'
-                    } text-primary-content`}
+                    className={`text-lg uppercase ${
+                      currentURL === page.slug ? 'font-extrabold' : 'font-semibold'
+                    } text-base-content`}
                   >
                     {page.name}
                   </span>

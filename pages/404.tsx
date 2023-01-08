@@ -10,8 +10,8 @@ const Page404: NextPage = () => {
         <title>404 Not Found</title>
         <meta name="description" content="That page doesn't exist." />
       </Head>
-      <div className="flex h-full flex-col items-center justify-center bg-primary">
-        <h1 className="text-4xl font-bold text-primary-content">404 Not Found</h1>
+      <div className="flex h-full flex-col items-center justify-center">
+        <h1 className="text-4xl font-bold text-base-content">404 Not Found</h1>
         <p className="text-primary-content">That page doesn&apos;t exist.</p>
       </div>
     </Layout>
