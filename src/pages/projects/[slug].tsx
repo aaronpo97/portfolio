@@ -1,4 +1,3 @@
-// fs promises
 import fs from 'fs/promises';
 import matter from 'gray-matter';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
@@ -6,10 +5,10 @@ import Head from 'next/head';
 import { FC } from 'react';
 
 import { FaGithub, FaLink } from 'react-icons/fa';
-import SocialIcon from '../../components/homepage/SocialIcon';
-import Layout from '../../components/ui/Layout';
-import { ProjectMetadata, projectMetadataSchema } from '../../types/projectMetadata';
-import markdownToHTML from '../../util/markdownToHTML';
+import markdownToHTML from '@/util/markdownToHTML';
+import { ProjectMetadata, projectMetadataSchema } from '@/schema/projectMetadata';
+
+import SocialIcon from '@/components/homepage/SocialIcon';
 
 const ProjectHeader: FC<Omit<ProjectMetadata, 'metaTitle' | 'metaDesc'>> = ({
   title,
@@ -54,28 +53,27 @@ const PostPage: NextPage<{
         <title>{title}</title>
         <meta name="description" content={metaDesc} />
       </Head>
-      <Layout>
-        <div className="mt-20 mb-20 flex flex-col items-center justify-center">
-          <div className="w-7/12">
-            <ProjectHeader
-              title={title}
-              githubURL={githubURL}
-              liveURL={liveURL}
-              stack={stack}
-            />
-            <div
-              className="prose mx-auto max-w-none"
-              dangerouslySetInnerHTML={{ __html: content }}
-            />
-          </div>
+
+      <div className="mb-20 mt-20 flex flex-col items-center justify-center">
+        <div className="w-6/12">
+          <ProjectHeader
+            title={title}
+            githubURL={githubURL}
+            liveURL={liveURL}
+            stack={stack}
+          />
+          <div
+            className="prose mx-auto max-w-none"
+            dangerouslySetInnerHTML={{ __html: content }}
+          />
         </div>
-      </Layout>
+      </div>
     </>
   );
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const files = await fs.readdir('content/projects');
+  const files = await fs.readdir('src/content/projects');
   const paths = files.map((fileName) => ({
     params: { slug: fileName.replace('.md', '') },
   }));
@@ -84,7 +82,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug } = params!;
-  const fileName = await fs.readFile(`content/projects/${slug}.md`, 'utf-8');
+  const fileName = await fs.readFile(`src/content/projects/${slug}.md`, 'utf-8');
   const { data, content: markdownContent } = matter(fileName);
   const content = await markdownToHTML(markdownContent);
   const projectMetadata = projectMetadataSchema.parse(data);
