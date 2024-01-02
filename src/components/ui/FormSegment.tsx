@@ -32,12 +32,12 @@ const FormSegment: FC<FormSegmentProps> = ({
           type="text"
           placeholder={placeholder}
           id={id}
-          className={`input-bordered input w-full ${errorMessage ? 'input-error' : ''}`}
+          className={`input input-bordered w-full ${errorMessage ? 'input-error' : ''}`}
           {...formRegister}
         />
       ) : (
         <textarea
-          className={`textarea-bordered textarea h-64 w-full resize-none ${
+          className={`textarea textarea-bordered h-64 w-full resize-none ${
             errorMessage ? 'textarea-error' : ''
           }`}
           placeholder={placeholder}

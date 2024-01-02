@@ -1,10 +1,8 @@
 import { NextApiHandler } from 'next';
-
 import { z } from 'zod';
-import SparkPost from 'sparkpost';
-import ServerError from '../../ServerError';
-import emailDataSchema from '../../types/emailDataSchema';
-import emailResponseSchema from '../../types/emailResponseSchema';
+import ServerError from '@/ServerError';
+import emailDataSchema from '@/schema/emailDataSchema';
+import emailResponseSchema from '@/schema/emailResponseSchema';
 
 const token = process.env.SPARKPOST_API_KEY;
 const sender = process.env.HOST_EMAIL_ADDRESS;
@@ -14,26 +12,37 @@ if (!(recipient && token && sender)) {
   throw new Error('recipient and token required');
 }
 
-const client = new SparkPost(token);
-
-const sendEmail = async (emailParams: z.infer<typeof emailDataSchema>) => {
-  await client.transmissions.send({
-    content: {
-      from: sender,
-      subject: emailParams.subject,
-      text: emailParams.message,
-    },
-    recipients: [{ address: recipient }],
-  });
-
-  await client.transmissions.send({
-    content: {
-      from: sender,
-      subject: 'Email successfully sent.',
-    },
-  });
+type EmailParams = {
+  address: string;
+  text: string;
+  html: string;
+  subject: string;
 };
 
+const sendEmail = async ({ text, html, subject }: EmailParams) => {
+  const from = sender;
+
+  const data = {
+    recipients: [{ address: recipient }],
+    content: { from, subject, text, html },
+  };
+
+  const transmissionsEndpoint = 'https://api.sparkpost.com/api/v1/transmissions';
+
+  const response = await fetch(transmissionsEndpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: token,
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (response.status !== 200) {
+    throw new Error(`Sparkpost API returned status code ${response.status}`);
+  }
+};
 const handler: NextApiHandler = async (req, res) => {
   try {
     if (req.method !== 'POST') {
@@ -52,7 +61,12 @@ const handler: NextApiHandler = async (req, res) => {
 
     const { email, message, name, subject } = parsed.data;
 
-    await sendEmail({ email, message, name, subject });
+    await sendEmail({
+      address: recipient,
+      text: `${message}\n\n${name}\n${email}`,
+      html: `<p>${message}</p><p>${name}</p><p>${email}</p>`,
+      subject: `Contact form submission: ${subject}`,
+    });
 
     const successResponse: z.infer<typeof emailResponseSchema> = {
       message: 'Email successfully sent',

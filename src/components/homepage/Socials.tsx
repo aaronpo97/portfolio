@@ -1,4 +1,4 @@
-import { FaLinkedin, FaGithub, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { FaLinkedin, FaGithub, FaInstagram } from 'react-icons/fa';
 import SocialIcon from './SocialIcon';
 
 const Socials = () => {
@@ -16,12 +16,7 @@ const Socials = () => {
         icon={FaGithub}
         tooltipPosition="bottom"
       />
-      <SocialIcon
-        socialName="Twitter"
-        href="https://twitter.com/aaronpo97"
-        icon={FaTwitter}
-        tooltipPosition="bottom"
-      />
+
       <SocialIcon
         socialName="Instagram"
         href="https://www.instagram.com/aaronpo97"

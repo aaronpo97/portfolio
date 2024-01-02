@@ -25,9 +25,9 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="navbar bg-base-300">
+    <nav className="navbar bg-primary">
       <div className="flex-1">
-        <Link className="btn-ghost btn text-3xl normal-case" href="/">
+        <Link className="btn btn-ghost text-3xl normal-case" href="/">
           <span className="cursor-pointer text-xl font-bold">Aaron William Po</span>
         </Link>
       </div>
@@ -51,8 +51,8 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="flex-none lg:hidden">
-        <div className="dropdown-end dropdown">
-          <label tabIndex={0} className="btn-ghost btn-circle btn">
+        <div className="dropdown dropdown-end">
+          <label tabIndex={0} className="btn btn-circle btn-ghost">
             <div className="w-10 rounded-full">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +71,7 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="dropdown-content menu rounded-box menu-compact mt-3 w-48 bg-base-100 p-2 shadow"
+            className="menu-compact menu dropdown-content mt-3 w-48 rounded-box bg-base-100 p-2 shadow"
           >
             {pages.map((page) => (
               <li key={page.slug}>
