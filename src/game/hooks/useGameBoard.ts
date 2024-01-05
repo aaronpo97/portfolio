@@ -1,0 +1,117 @@
+import { useState, useCallback, useRef, useEffect } from 'react';
+import Card from '../types/Card';
+import { cardContent, funFacts } from '../data';
+
+interface IChoices {
+  choiceOne: Card | null;
+  choiceTwo: Card | null;
+}
+const useGameBoard = () => {
+  const [cards, setCards] = useState<Card[]>([]);
+  const [turns, setTurns] = useState(0);
+  const [disabled, setDisabled] = useState(false);
+  const [gameOver, setGameOver] = useState(false);
+  const [choices, setChoices] = useState<IChoices>({ choiceOne: null, choiceTwo: null });
+  const [funFact, setFunFact] = useState('');
+
+  const mismatchRef = useRef<HTMLDialogElement>(null);
+  const instructionsRef = useRef<HTMLDialogElement>(null);
+
+  const shuffleCards = useCallback((): void => {
+    const shuffledCards = [...cardContent, ...cardContent]
+      .sort(() => Math.random() - 0.5)
+      .map((card, index) => ({
+        ...card,
+        id: index,
+      }));
+
+    setChoices({
+      choiceOne: null,
+      choiceTwo: null,
+    });
+    setCards(shuffledCards);
+    setTurns(0);
+  }, []);
+
+  const handleChoice = useCallback(
+    (card: Card) => {
+      return choices.choiceOne
+        ? setChoices({ ...choices, choiceTwo: card })
+        : setChoices({ ...choices, choiceOne: card });
+    },
+    [choices],
+  );
+
+  const resetTurn = useCallback(() => {
+    setFunFact(funFacts[Math.floor(Math.random() * funFacts.length)]);
+    setChoices({ choiceOne: null, choiceTwo: null });
+    setTurns((prevTurns) => prevTurns + 1);
+    setDisabled(false);
+  }, []);
+
+  const handleNoMatch = useCallback(async () => {
+    mismatchRef.current?.showModal();
+    await new Promise<void>((resolve) => {
+      setTimeout(() => {
+        mismatchRef.current?.close();
+        resolve();
+      }, 2000);
+    });
+    resetTurn();
+  }, [resetTurn]);
+
+  useEffect(() => {
+    const handleChoices = async () => {
+      const { choiceOne, choiceTwo } = choices;
+      const noMatch = choiceOne?.emoji !== choiceTwo?.emoji;
+      const isInvalid = !choiceOne || !choiceTwo || choiceOne === choiceTwo;
+
+      if (isInvalid) {
+        return;
+      }
+
+      setDisabled(true);
+      if (noMatch) {
+        await handleNoMatch();
+        return;
+      }
+
+      setCards((prevCards) =>
+        prevCards.map((card) =>
+          card.emoji === choiceOne.emoji ? { ...card, matched: true } : card,
+        ),
+      );
+
+      resetTurn();
+    };
+
+    handleChoices();
+  }, [choices, resetTurn, handleNoMatch]);
+
+  useEffect(() => {
+    shuffleCards();
+    setFunFact(funFacts[Math.floor(Math.random() * funFacts.length)]);
+  }, [shuffleCards]);
+
+  useEffect(() => {
+    const unmatchedCards = cards?.filter((card) => card.matched === false);
+    if (!unmatchedCards) {
+      setGameOver(true);
+    }
+  }, [turns, cards]);
+
+  return {
+    cards,
+    choices,
+    disabled,
+    funFact,
+    gameOver,
+    handleChoice,
+    mismatchRef,
+    shuffleCards,
+    turns,
+    instructionsRef,
+  };
+};
+
+export default useGameBoard;

@@ -17,7 +17,7 @@ const PostPage: NextPage<{
       </Head>
       <div className="mb-20 mt-20 flex items-center justify-center">
         <div className="w-6/12">
-          <div className="prose mx-auto max-w-none prose-h1:mb-6 prose-h1:text-6xl prose-h2:mt-0">
+          <div className="prose- prose mx-auto max-w-none prose-h1:mb-6 prose-h1:text-6xl prose-h2:mt-0 prose-p:text-xl">
             <h1>{pageMetadata.title}</h1>
             <div dangerouslySetInnerHTML={{ __html: content }} />
           </div>

@@ -13,7 +13,7 @@ const ProjectCard: FunctionComponent<{ projectInfo: ProjectInfo }> = ({
       <div className="card-body">
         <div className="mb-3">
           <h1 className="text-6xl font-bold">
-            <Link href={`${slug}`} className="link link-hover">
+            <Link href={`${slug}`} className="link-hover link">
               {title}
             </Link>
           </h1>

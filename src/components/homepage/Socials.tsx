@@ -16,7 +16,6 @@ const Socials = () => {
         icon={FaGithub}
         tooltipPosition="bottom"
       />
-
       <SocialIcon
         socialName="Instagram"
         href="https://www.instagram.com/aaronpo97"

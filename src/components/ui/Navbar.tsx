@@ -10,7 +10,8 @@ interface Page {
   slug: string;
   name: string;
 }
-const Navbar = () => {
+
+const useNavbar = () => {
   const router = useRouter();
   const [currentURL, setCurrentURL] = useState('/');
 
@@ -22,13 +23,20 @@ const Navbar = () => {
     { slug: '/about', name: 'About' },
     { slug: '/projects', name: 'Projects' },
     { slug: '/contact', name: 'Contact' },
+    { slug: '/resume.pdf', name: 'Resume' },
   ];
 
+  return { pages, currentURL };
+};
+
+const Navbar = () => {
+  const { pages, currentURL } = useNavbar();
+
   return (
-    <nav className="navbar bg-primary">
+    <nav className="navbar h-12 min-h-0 bg-primary">
       <div className="flex-1">
-        <Link className="btn btn-ghost text-3xl normal-case" href="/">
-          <span className="cursor-pointer text-xl font-bold">Aaron William Po</span>
+        <Link className="btn btn-ghost btn-sm text-3xl normal-case" href="/">
+          <span className="cursor-pointer text-xl font-bold">Aaron Po</span>
         </Link>
       </div>
       <div className="hidden flex-none lg:block">
@@ -36,7 +44,12 @@ const Navbar = () => {
           {pages.map((page) => {
             return (
               <li key={page.slug}>
-                <Link tabIndex={0} href={page.slug}>
+                <Link
+                  tabIndex={0}
+                  href={page.slug}
+                  rel={page.slug === '/resume.pdf' ? 'noopener noreferrer' : ''}
+                  target={page.slug === '/resume.pdf' ? '_blank' : ''}
+                >
                   <span
                     className={`text-lg uppercase ${
                       currentURL === page.slug ? 'font-extrabold' : 'font-semibold'
