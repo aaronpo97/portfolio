@@ -1,7 +1,8 @@
 import useGameBoard from '../hooks/useGameBoard';
 import InstructionsDialog from './InstructionsDialog';
-import MismatchDialog from './MismstchDialog';
+import MismatchDialog from './MismatchDialog';
 import SingleCard from './SingleCard';
+import GameOverDialog from './GameOverDialog';
 
 const GameBoard = (): JSX.Element => {
   const {
@@ -15,12 +16,18 @@ const GameBoard = (): JSX.Element => {
     shuffleCards,
     turns,
     instructionsRef,
+    gameOverRef,
   } = useGameBoard();
 
   return (
     <>
       <MismatchDialog mismatchRef={mismatchRef} funFact={funFact} />
       <InstructionsDialog instructionsRef={instructionsRef} />
+      <GameOverDialog
+        gameOverRef={gameOverRef}
+        turnCount={turns}
+        shuffleCards={shuffleCards}
+      />
       <section className="flex flex-col items-center">
         <div className="flex flex-col items-center justify-center">
           <div className="my-5">
