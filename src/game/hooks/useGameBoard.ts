@@ -7,7 +7,7 @@ interface IChoices {
   choiceTwo: Card | null;
 }
 const useGameBoard = () => {
-  const [cards, setCards] = useState<Card[]>([]);
+  const [cards, setCards] = useState<Card[]>();
   const [turns, setTurns] = useState(0);
   const [disabled, setDisabled] = useState(false);
   const [gameOver, setGameOver] = useState(false);
@@ -16,6 +16,7 @@ const useGameBoard = () => {
 
   const mismatchRef = useRef<HTMLDialogElement>(null);
   const instructionsRef = useRef<HTMLDialogElement>(null);
+  const gameOverRef = useRef<HTMLDialogElement>(null);
 
   const shuffleCards = useCallback((): void => {
     const shuffledCards = [...cardContent, ...cardContent]
@@ -60,9 +61,18 @@ const useGameBoard = () => {
     resetTurn();
   }, [resetTurn]);
 
-  useEffect(() => {
-    const handleChoices = async () => {
-      const { choiceOne, choiceTwo } = choices;
+  const handleCorrectMatch = useCallback(() => {
+    setCards(
+      (prevCards) =>
+        prevCards?.map((card) =>
+          card.emoji === choices.choiceOne?.emoji ? { ...card, matched: true } : card,
+        ),
+    );
+    resetTurn();
+  }, [setCards, choices.choiceOne?.emoji, resetTurn]);
+
+  const handleChoices = useCallback(
+    async (choiceOne: Card | null, choiceTwo: Card | null) => {
       const noMatch = choiceOne?.emoji !== choiceTwo?.emoji;
       const isInvalid = !choiceOne || !choiceTwo || choiceOne === choiceTwo;
 
@@ -76,17 +86,14 @@ const useGameBoard = () => {
         return;
       }
 
-      setCards((prevCards) =>
-        prevCards.map((card) =>
-          card.emoji === choiceOne.emoji ? { ...card, matched: true } : card,
-        ),
-      );
+      handleCorrectMatch();
+    },
+    [handleNoMatch, handleCorrectMatch],
+  );
 
-      resetTurn();
-    };
-
-    handleChoices();
-  }, [choices, resetTurn, handleNoMatch]);
+  useEffect(() => {
+    handleChoices(choices.choiceOne, choices.choiceTwo);
+  }, [choices, handleChoices]);
 
   useEffect(() => {
     shuffleCards();
@@ -94,11 +101,16 @@ const useGameBoard = () => {
   }, [shuffleCards]);
 
   useEffect(() => {
-    const unmatchedCards = cards?.filter((card) => card.matched === false);
-    if (!unmatchedCards) {
-      setGameOver(true);
+    if (!cards) {
+      return;
     }
-  }, [turns, cards]);
+    const unmatchedCards = cards.filter((card) => card.matched === false);
+
+    if (!unmatchedCards.length) {
+      setGameOver(true);
+      gameOverRef.current!.showModal();
+    }
+  }, [turns, cards, setGameOver, gameOverRef]);
 
   return {
     cards,
@@ -111,6 +123,7 @@ const useGameBoard = () => {
     shuffleCards,
     turns,
     instructionsRef,
+    gameOverRef,
   };
 };
 

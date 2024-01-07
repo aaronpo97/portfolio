@@ -21,11 +21,15 @@ const SingleCard = ({
 
   return (
     <div
-      className="card card-bordered h-16 w-16 cursor-pointer border-white bg-primary shadow-2xl lg:h-24 lg:w-24"
-      onClick={handleClick}
+      className={`card card-bordered h-16 w-16 ${
+        !flipped ? 'cursor-pointer' : ''
+      } border-white bg-primary shadow-2xl lg:h-24 lg:w-24`}
+      onClick={!flipped ? handleClick : undefined}
     >
       <div className="card-body h-full items-center justify-center">
-        {!flipped ? null : (
+        {!flipped ? (
+          card.emoji
+        ) : (
           <div className="select-none text-4xl fade-in lg:text-6xl">{card.emoji}</div>
         )}
       </div>
