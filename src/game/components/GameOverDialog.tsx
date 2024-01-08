@@ -1,12 +1,13 @@
 import FormSegment from '@/components/ui/FormSegment';
-import { FC, useEffect, useState } from 'react';
+import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 const GameOverDialog: FC<{
   gameOverRef: React.RefObject<HTMLDialogElement>;
   turnCount: number;
   shuffleCards: () => void;
-}> = ({ gameOverRef, turnCount, shuffleCards }) => {
+  setDisabled: Dispatch<SetStateAction<boolean>>;
+}> = ({ gameOverRef, turnCount, shuffleCards, setDisabled }) => {
   const [showForm, setShowForm] = useState(false);
 
   const { register, handleSubmit, formState, reset, setValue } = useForm<{
@@ -18,8 +19,17 @@ const GameOverDialog: FC<{
     setValue('turns', turnCount);
   }, [turnCount, setValue]);
   return (
-    <dialog ref={gameOverRef} className="modal">
-      <div className="modal-box">
+    <dialog
+      ref={gameOverRef}
+      className="modal"
+      onClick={() => {
+        gameOverRef.current!.close();
+        setShowForm(false);
+        setDisabled(false);
+        shuffleCards();
+      }}
+    >
+      <div className="modal-box" onClick={(e) => e.stopPropagation()}>
         <h2 className="text-2xl">Game Over!</h2>
 
         <div className="modal-body">
@@ -29,7 +39,8 @@ const GameOverDialog: FC<{
           <div className="modal-action grid grid-cols-2 justify-center gap-1">
             <button
               className="btn btn-primary btn-sm"
-              onClick={() => {
+              onClick={(e) => {
+                e.stopPropagation();
                 setShowForm(true);
               }}
             >
@@ -39,6 +50,7 @@ const GameOverDialog: FC<{
               type="button"
               onClick={() => {
                 gameOverRef.current!.close();
+                setDisabled(false);
                 shuffleCards();
               }}
               className="btn btn-primary btn-sm"
@@ -52,7 +64,6 @@ const GameOverDialog: FC<{
           <form
             className="my-3"
             onSubmit={handleSubmit(async (data) => {
-              console.log(data);
               const response = await fetch('/api/game/leaderboard', {
                 method: 'POST',
                 body: JSON.stringify(data),
@@ -65,6 +76,8 @@ const GameOverDialog: FC<{
 
               gameOverRef.current!.close();
               shuffleCards();
+              setDisabled(false);
+              setShowForm(false);
               reset();
             })}
           >
