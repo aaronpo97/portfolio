@@ -28,7 +28,7 @@ const Home: NextPage = () => {
             <Socials />
           </div>
         </div>
-        <div className="absolute bottom-5 right-5">
+        <div className="absolute bottom-0 right-5 flex h-full flex-col justify-end">
           <div
             className="tooltip tooltip-left"
             data-tip="Oh hey, what's up. I have a game here. Click me!"

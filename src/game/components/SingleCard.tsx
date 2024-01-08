@@ -1,36 +1,28 @@
 import ICard from '../types/Card';
 
-type PropTypes = {
+interface PropTypes {
   card: ICard;
   disabled: boolean;
   flipped: boolean;
-  handleChoice: (card: ICard) => void;
-};
+  selectChoice(card: ICard): void;
+}
 
 const SingleCard = ({
   card,
   disabled,
   flipped,
-  handleChoice,
+  selectChoice,
 }: PropTypes): JSX.Element => {
-  const handleClick = (): void => {
-    if (!disabled) {
-      handleChoice(card);
-    }
-  };
-
   return (
     <div
       className={`card card-bordered h-16 w-16 ${
-        !flipped ? 'cursor-pointer' : ''
-      } border-white bg-primary shadow-2xl lg:h-24 lg:w-24`}
-      onClick={!flipped ? handleClick : undefined}
+        !flipped ? 'cursor-pointer hover:bg-base-300' : ''
+      } border-base-300 bg-primary shadow-2xl lg:h-24 lg:w-24`}
+      onClick={!flipped ? () => (!disabled ? selectChoice(card) : undefined) : undefined}
     >
       <div className="card-body h-full items-center justify-center">
-        {!flipped ? (
-          card.emoji
-        ) : (
-          <div className="select-none text-4xl fade-in lg:text-6xl">{card.emoji}</div>
+        {!flipped ? null : (
+          <div className="fade-in select-none text-4xl lg:text-6xl">{card.emoji}</div>
         )}
       </div>
     </div>

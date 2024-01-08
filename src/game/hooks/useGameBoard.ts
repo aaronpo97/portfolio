@@ -17,6 +17,7 @@ const useGameBoard = () => {
   const mismatchRef = useRef<HTMLDialogElement>(null);
   const instructionsRef = useRef<HTMLDialogElement>(null);
   const gameOverRef = useRef<HTMLDialogElement>(null);
+  const leaderboardRef = useRef<HTMLDialogElement>(null);
 
   const shuffleCards = useCallback((): void => {
     const shuffledCards = [...cardContent, ...cardContent]
@@ -32,9 +33,10 @@ const useGameBoard = () => {
     });
     setCards(shuffledCards);
     setTurns(0);
+    setGameOver(false);
   }, []);
 
-  const handleChoice = useCallback(
+  const selectChoice = useCallback(
     (card: Card) => {
       return choices.choiceOne
         ? setChoices({ ...choices, choiceTwo: card })
@@ -76,16 +78,12 @@ const useGameBoard = () => {
       const noMatch = choiceOne?.emoji !== choiceTwo?.emoji;
       const isInvalid = !choiceOne || !choiceTwo || choiceOne === choiceTwo;
 
-      if (isInvalid) {
-        return;
-      }
-
+      if (isInvalid) return;
       setDisabled(true);
       if (noMatch) {
         await handleNoMatch();
         return;
       }
-
       handleCorrectMatch();
     },
     [handleNoMatch, handleCorrectMatch],
@@ -101,29 +99,19 @@ const useGameBoard = () => {
   }, [shuffleCards]);
 
   useEffect(() => {
-    if (!cards) {
-      return;
-    }
+    if (!cards) return;
     const unmatchedCards = cards.filter((card) => card.matched === false);
-
-    if (!unmatchedCards.length) {
-      setGameOver(true);
-      gameOverRef.current!.showModal();
-    }
+    if (unmatchedCards.length) return;
+    setDisabled(true);
+    setGameOver(true);
+    gameOverRef.current!.showModal();
   }, [turns, cards, setGameOver, gameOverRef]);
 
   return {
-    cards,
-    choices,
-    disabled,
     funFact,
-    gameOver,
-    handleChoice,
-    mismatchRef,
-    shuffleCards,
-    turns,
-    instructionsRef,
-    gameOverRef,
+    functions: { selectChoice, shuffleCards, setDisabled },
+    gameState: { cards, choices, turns, gameOver, disabled },
+    dialogRefs: { instructionsRef, gameOverRef, leaderboardRef, mismatchRef },
   };
 };
 
