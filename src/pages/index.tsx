@@ -11,8 +11,8 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Yerb</title>
-        <meta name="description" content="Aaron William Po's personal website" />
+        <title>{process.env.NEXT_PUBLIC_SITE_NAME}</title>
+        <meta name="description" content="Aaron Po's personal website" />
       </Head>
       <div className="relative flex h-full w-full flex-col items-center justify-center bg-[radial-gradient(eclipse,_var(--tw-gradient-stops))] from-slate-900 via-slate-600 to-slate-500">
         <Image
@@ -22,18 +22,18 @@ const Home: NextPage = () => {
           width={6035}
           className="pointer-events-none absolute h-full w-full object-cover mix-blend-overlay"
         />
-        <div className="relative flex h-full w-9/12 flex-col justify-center text-white">
+        <div className="relative flex w-9/12 flex-col justify-center text-white">
           <div className="flex flex-col space-y-10">
             <Headings />
             <Socials />
           </div>
         </div>
-        <div className="absolute bottom-0 right-5 flex h-full flex-col justify-end">
+        <div className="absolute bottom-1 right-5 flex flex-col justify-end">
           <div
             className="tooltip tooltip-left"
             data-tip="Oh hey, what's up. I have a game here. Click me!"
           >
-            <Link href="/game" className="btn-ghost text-sm">
+            <Link href="/game" className="btn btn-circle btn-ghost btn-xs text-xs">
               <FaGamepad />
             </Link>
           </div>
