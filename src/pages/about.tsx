@@ -32,11 +32,11 @@ const AboutPage: NextPage<AboutPageProps> = ({ content }) => {
   return (
     <>
       <Head>
-        <title>{`${'About Me'} | ${process.env.NEXT_PUBLIC_SITE_NAME}"}`}</title>
+        <title>{`About Me | ${process.env.NEXT_PUBLIC_SITE_NAME}`}</title>
         <meta name="description" content={aboutInfo.preamble} />
       </Head>
       <article className="my-16 flex flex-col items-center">
-        <header className="w-11/12 lg:w-8/12">
+        <header className="w-10/12 lg:w-7/12">
           <h1 className="my-7 text-6xl font-extrabold md:my-10 md:text-8xl">About Me</h1>
           <div className="space-y-4">
             {aboutInfo.preamble.split('\n').map((line, index) => (
@@ -47,7 +47,7 @@ const AboutPage: NextPage<AboutPageProps> = ({ content }) => {
           </div>
         </header>
         {content.map((item) => (
-          <section key={item.id} className="my-3 w-11/12 text-xl lg:w-8/12">
+          <section key={item.id} className="my-3 w-10/12 text-xl lg:w-7/12">
             <div>
               <h2 className="my-4 text-3xl font-extrabold md:text-5xl">{item.heading}</h2>
 
