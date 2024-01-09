@@ -33,7 +33,11 @@ const Navbar = () => {
   const { pages, currentURL } = useNavbar();
 
   return (
-    <nav className="navbar h-12 min-h-0 bg-primary">
+    <nav
+      className={`navbar fixed top-0 z-20 h-[6vh] min-h-0 ${
+        currentURL === '/' || currentURL === '/game' ? 'bg-transparent' : 'bg-base-100'
+      }`}
+    >
       <div className="flex-1">
         <Link className="btn btn-ghost btn-sm text-3xl normal-case" href="/">
           <span className="cursor-pointer text-xl font-bold">Aaron Po</span>

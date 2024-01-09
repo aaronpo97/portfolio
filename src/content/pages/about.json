@@ -1,0 +1,179 @@
+{
+  "title": "About",
+  "preamble": "I am a highly driven, self-taught developer located in London, ON.\nMy coding journey ignited at the onset of the COVID-19 pandemic. Following my graduation with a Bachelor of Music from the University of Western Ontario, I took the initiative to acquire new skills and independently learn the art of software development.",
+  "content": [
+    {
+      "heading": "Goals",
+      "text": "My ultimate goal is to become a Full Stack Developer, proficient in both front-end and back-end technologies.\nI am actively seeking opportunities that will allow me to apply my knowledge in a real-world setting and contribute to meaningful projects.\nI am open to collaborations, internships, or entry-level positions where I can further develop my skills and learn from experienced professionals."
+    },
+    {
+      "heading": "Technologies",
+      "text": "I have hands-on experience with a range of technologies, including but not limited to:",
+      "tech": [
+        {
+          "category": "Front-end",
+          "stack": [
+            {
+              "text": "HTML",
+              "icon": "./icons/frontend/html.svg",
+              "link": "https://developer.mozilla.org/en-US/docs/Web/HTML"
+            },
+            {
+              "text": "Javascript",
+              "icon": "./icons/frontend/javascript.svg",
+              "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+            },
+            {
+              "text": "CSS",
+              "icon": "./icons/frontend/css.svg",
+              "link": "https://developer.mozilla.org/en-US/docs/Web/CSS"
+            },
+            {
+              "text": "Sass",
+              "icon": "./icons/frontend/sass.svg",
+              "link": "https://sass-lang.com/"
+            },
+            {
+              "text": "Typescript",
+              "icon": "./icons/frontend/typescript.svg",
+              "link": "https://www.typescriptlang.org/"
+            },
+            {
+              "text": "React",
+              "icon": "./icons/frontend/react.svg",
+              "link": "https://reactjs.org/"
+            },
+            {
+              "text": "Next.js",
+              "icon": "./icons/frontend/nextjs.svg",
+              "link": "https://nextjs.org/"
+            },
+            {
+              "text": "Tailwind",
+              "icon": "./icons/frontend/tailwind.svg",
+              "link": "https://tailwindcss.com/"
+            }
+          ]
+        },
+        {
+          "category": "Back-end",
+          "stack": [
+            {
+              "text": "Node.js",
+              "icon": "./icons/backend/nodejs.svg",
+              "link": "https://nodejs.org/en/"
+            },
+            {
+              "text": "Express.js",
+              "icon": "./icons/backend/expressjs.svg",
+              "link": "https://expressjs.com/"
+            },
+            {
+              "text": "Prisma",
+              "icon": "./icons/backend/prisma.svg",
+              "link": "https://www.prisma.io/"
+            }
+          ]
+        },
+        {
+          "category": "Databases",
+          "stack": [
+            {
+              "text": "MongoDB",
+              "icon": "./icons/databases/mongodb.svg",
+              "link": "https://www.mongodb.com/"
+            },
+            {
+              "text": "Postgres",
+              "icon": "./icons/databases/postgres.svg",
+              "link": "https://www.postgresql.org/"
+            },
+            {
+              "text": "Redis",
+              "icon": "./icons/databases/redis.svg",
+              "link": "https://redis.io/"
+            }
+          ]
+        },
+        {
+          "category": "Other",
+          "stack": [
+            {
+              "text": "Git",
+              "icon": "./icons/other/git.svg",
+              "link": "https://git-scm.com/"
+            },
+            {
+              "text": "GitHub",
+              "icon": "./icons/other/github.svg",
+              "link": "https://github.com/"
+            },
+            {
+              "text": "Heroku",
+              "icon": "./icons/other/heroku.svg",
+              "link": "https://www.heroku.com/"
+            },
+            {
+              "text": "Vercel",
+              "icon": "./icons/other/vercel.svg",
+              "link": "https://vercel.com/"
+            },
+            {
+              "text": "Netlify",
+              "icon": "./icons/other/netlify.svg",
+              "link": "https://www.netlify.com/"
+            }
+          ]
+        },
+        {
+          "category": "Currently Learning",
+          "stack": [
+            {
+              "text": "AWS",
+              "icon": "./icons/currently-learning/aws.svg",
+              "link": "https://aws.amazon.com/"
+            },
+            {
+              "text": ".NET",
+              "icon": "./icons/currently-learning/dotnet.svg",
+              "link": "https://dotnet.microsoft.com/"
+            },
+            {
+              "text": "C#",
+              "icon": "./icons/currently-learning/csharp.svg",
+              "link": "https://docs.microsoft.com/en-us/dotnet/csharp/"
+            },
+            {
+              "text": "Nest.js",
+              "icon": "./icons/currently-learning/nestjs.svg",
+              "link": "https://nestjs.com/"
+            },
+            {
+              "text": "Three.js",
+              "icon": "./icons/currently-learning/threejs.svg",
+              "link": "https://threejs.org/"
+            },
+            {
+              "text": "Docker",
+              "icon": "./icons/currently-learning/docker.svg",
+              "link": "https://www.docker.com/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Projects",
+      "text": "Throughout my coding journey, I've dedicated time and effort to engaging in various personal projects that not only allowed me to apply and refine my skills but also served as a testament to my capabilities. \nThese projects span a diverse range, including web applications, APIs, and more, showcasing my versatility in different aspects of software development. \nNurturing my passion for innovation, these endeavors are a testament to my commitment to staying at the forefront of technology trends and continuously expanding my skill set. \nIf you're curious and eager to explore the fruits of my labor, you can find a detailed portfolio of these projects right here."
+    },
+
+    {
+      "heading": "Interests",
+      "text": "I have a strong enthusiasm for staying ahead of industry trends and emerging technologies.\nMy passion lies in crafting user-friendly and visually captivating applications. I seamlessly integrate my arts background into problem-solving, relishing the creative process of transforming ideas into functional software.\nBeyond software development, my interests extend to gardening, biking, indulging in professional wrestling, binge-watching King of the Hill, and immersing myself in a diverse range of music."
+    },
+    {
+      "heading": "Contact",
+      "text": "I am always open to connecting with fellow developers, industry professionals, and potential collaborators.\nFeel free to reach out to me through email or connect with me on LinkedIn. I look forward to engaging in discussions, sharing insights, and exploring potential opportunities in the vast world of software development."
+    }
+  ]
+}

@@ -70,7 +70,7 @@ const GameBoard = (): JSX.Element => {
                 mutate();
               }}
             >
-              View Leaderboard
+              Leaderboard
             </button>
             <button
               className="btn btn-primary btn-sm uppercase"

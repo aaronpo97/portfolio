@@ -16,7 +16,7 @@ const SingleCard = ({
   return (
     <div
       className={`card card-bordered h-16 w-16 ${
-        !flipped ? 'cursor-pointer hover:bg-base-300' : ''
+        !flipped ? 'cursor-pointer md:hover:bg-base-300' : ''
       } border-base-300 bg-primary shadow-2xl lg:h-24 lg:w-24`}
       onClick={!flipped ? () => (!disabled ? selectChoice(card) : undefined) : undefined}
     >
