@@ -12,14 +12,12 @@ const InstructionsDialog: FC<{
       setDisabled(false);
     }}
   >
-    <div
-      className="modal-box justify-start bg-primary"
-      onClick={(e) => e.stopPropagation()}
-    >
+    <div className="modal-box bg-primary" onClick={(e) => e.stopPropagation()}>
       <h1 className="my-3 text-3xl font-bold">Instructions</h1>
 
-      <ul className="list-none space-y-2 text-sm lg:text-base">
-        <li>Click on a card to flip it over and find a match.</li>
+      <ul className="list-none space-y-2 text-sm font-extrabold lg:text-base">
+        <li>Click on a card to flip it over.</li>
+        <li>Click on another card to look for a match.</li>
         <li>If two cards match, they will stay flipped over.</li>
         <li>If they don&apos;t match, they will flip back over.</li>
         <li>Find all the matches in as few turns as possible!</li>

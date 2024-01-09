@@ -89,7 +89,6 @@ const GameOverDialog: FC<{
               formRegister={register('name', { required: 'Please provide your name.' })}
               id="name"
               label="Name"
-              small
               placeholder="Your name"
             />
 

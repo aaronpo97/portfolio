@@ -17,7 +17,9 @@ const SingleCard = ({
     <div
       className={`card card-bordered h-16 w-16 ${
         !flipped ? 'cursor-pointer md:hover:bg-base-300' : ''
-      } border-base-300 bg-primary shadow-2xl lg:h-24 lg:w-24`}
+      } ${!flipped && disabled ? 'bg-transparent' : 'bg-primary'}
+      
+      border-base-300 bg-primary shadow-2xl lg:h-28 lg:w-28`}
       onClick={!flipped ? () => (!disabled ? selectChoice(card) : undefined) : undefined}
     >
       <div className="card-body h-full items-center justify-center">
