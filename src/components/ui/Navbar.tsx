@@ -39,9 +39,11 @@ const Navbar = () => {
       }`}
     >
       <div className="flex-1">
-        <Link className="btn btn-ghost btn-sm text-3xl normal-case" href="/">
-          <span className="cursor-pointer text-xl font-bold">Aaron Po</span>
-        </Link>
+        {currentURL !== '/' && (
+          <Link className="btn btn-ghost btn-sm text-3xl normal-case" href="/">
+            <span className="cursor-pointer text-xl font-bold">Aaron Po</span>
+          </Link>
+        )}
       </div>
       <div className="hidden flex-none lg:block">
         <ul className="menu menu-horizontal p-0">
@@ -56,7 +58,7 @@ const Navbar = () => {
                 >
                   <span
                     className={`text-lg uppercase ${
-                      currentURL === page.slug ? 'font-extrabold' : 'font-semibold'
+                      currentURL === page.slug ? 'font-extrabold' : 'font-bold'
                     } text-base-content`}
                   >
                     {page.name}
