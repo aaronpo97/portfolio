@@ -3,6 +3,7 @@ import type { GetStaticProps, NextPage } from 'next';
 import aboutInfo from '@/content/pages/about.json';
 import Image from 'next/image';
 import Head from 'next/head';
+import { FC } from 'react';
 
 export interface AboutPageProps {
   title: string;
@@ -28,6 +29,32 @@ export interface Stack {
   link: string;
 }
 
+const TechCard: FC<{
+  stack: Stack;
+}> = ({ stack }) => {
+  return (
+    <a
+      className={`btn btn-primary btn-sm h-full`}
+      href={stack.link}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <div className="flex flex-col space-y-3 p-3 pt-6">
+        <div className="pointer-events-none flex h-24 w-24 items-center justify-center rounded-lg">
+          <Image
+            src={stack.icon}
+            alt={stack.text}
+            width={96}
+            height={96}
+            className="h-full w-full"
+          />
+        </div>
+        <h4 className="text-xl font-semibold">{stack.text}</h4>
+      </div>
+    </a>
+  );
+};
+
 const AboutPage: NextPage<AboutPageProps> = ({ content }) => {
   return (
     <>
@@ -35,9 +62,9 @@ const AboutPage: NextPage<AboutPageProps> = ({ content }) => {
         <title>{`About Me | ${process.env.NEXT_PUBLIC_SITE_NAME}`}</title>
         <meta name="description" content={aboutInfo.preamble} />
       </Head>
-      <article className="my-16 flex flex-col items-center">
+      <article className="my-20 flex flex-col items-center md:my-16">
         <header className="w-10/12 lg:w-7/12">
-          <h1 className="my-7 text-6xl font-extrabold md:my-10 md:text-8xl">About Me</h1>
+          <h1 className="my-7 text-5xl font-extrabold md:my-10 md:text-8xl">About Me</h1>
           <div className="space-y-4">
             {aboutInfo.preamble.split('\n').map((line, index) => (
               <p className="text-xl" key={index}>
@@ -66,27 +93,8 @@ const AboutPage: NextPage<AboutPageProps> = ({ content }) => {
                           {tech.category}
                         </h3>
                         <div className="grid grid-cols-2 gap-2 md:grid-cols-6">
-                          {tech.stack.map((stack, index) => (
-                            <a
-                              className={`btn btn-primary btn-sm h-full`}
-                              key={index}
-                              href={stack.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <div className="flex flex-col space-y-3 p-3 pt-6">
-                                <div className="pointer-events-none flex h-24 w-24 items-center justify-center rounded-lg">
-                                  <Image
-                                    src={stack.icon}
-                                    alt={stack.text}
-                                    width={96}
-                                    height={96}
-                                    className="h-full w-full"
-                                  />
-                                </div>
-                                <h4 className="text-xl font-semibold">{stack.text}</h4>
-                              </div>
-                            </a>
+                          {tech.stack.map((stack) => (
+                            <TechCard stack={stack} key={stack.link} />
                           ))}
                         </div>
                       </div>

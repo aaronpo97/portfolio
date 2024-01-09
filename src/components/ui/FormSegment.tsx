@@ -8,7 +8,6 @@ interface FormSegmentProps {
   label: string;
   placeholder: string;
   type?: 'textInput' | 'textArea';
-  small?: boolean;
 }
 
 const FormSegment: FC<FormSegmentProps> = ({
@@ -18,20 +17,14 @@ const FormSegment: FC<FormSegmentProps> = ({
   label,
   placeholder,
   type = 'textInput',
-  small = false,
 }) => {
   return (
     <div className="w-full">
       <div className="flex justify-between">
-        <label
-          htmlFor={id}
-          className={`${small ? 'text-sm' : 'text-base'} font-bold uppercase`}
-        >
+        <label htmlFor={id} className={`text-base font-bold uppercase`}>
           {label}
         </label>
-        <span className={`text-error-contents italic ${small ? 'text-sm' : 'text-base'}`}>
-          {errorMessage}
-        </span>
+        <span className={`text-error-contents text-base italic`}>{errorMessage}</span>
       </div>
 
       {type === 'textInput' ? (
@@ -39,9 +32,7 @@ const FormSegment: FC<FormSegmentProps> = ({
           type="text"
           placeholder={placeholder}
           id={id}
-          className={`input input-bordered w-full ${errorMessage ? 'input-error' : ''} ${
-            small ? 'input-sm' : ''
-          }`}
+          className={`input input-bordered w-full ${errorMessage ? 'input-error' : ''}`}
           {...formRegister}
         />
       ) : (

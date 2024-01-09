@@ -33,7 +33,7 @@ const Contact: NextPage = () => {
   });
 
   return (
-    <div className="flex h-full items-center justify-center animate-in fade-in">
+    <div className="animate-in fade-in flex h-screen items-center justify-center">
       <div className="w-8/12 space-y-8">
         <div className="space-y-1">
           <h1 className="text-7xl font-bold">Contact Me</h1>

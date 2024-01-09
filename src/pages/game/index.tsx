@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const Game = () => {
   return (
-    <div className="relative flex h-full w-full flex-col items-center justify-center bg-[radial-gradient(eclipse,_var(--tw-gradient-stops))] from-slate-900 via-slate-600 to-slate-500">
+    <div className="relative flex h-screen w-full flex-col items-center justify-center bg-[radial-gradient(eclipse,_var(--tw-gradient-stops))] from-slate-900 via-slate-600 to-slate-500">
       <Image
         alt=""
         src="/background.jpg"
