@@ -37,7 +37,7 @@ const getLeaderboard = async (req: NextApiRequest, res: NextApiResponse) => {
     }),
   );
   await client.disconnect();
-  const sortedData = data.sort((a, b) => a.turns - b.turns).slice(0, 10);
+  const sortedData = data.sort((a, b) => a.turns - b.turns);
 
   res.status(200).json(sortedData);
 };
