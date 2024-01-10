@@ -1,6 +1,8 @@
 import FormSegment from '@/components/ui/FormSegment';
 import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import GameLeaderboardValidationSchema from '@/schema/GameLeaderboardValidationSchema';
 
 const GameOverDialog: FC<{
   gameOverRef: React.RefObject<HTMLDialogElement>;
@@ -13,7 +15,9 @@ const GameOverDialog: FC<{
   const { register, handleSubmit, formState, reset, setValue } = useForm<{
     name: string;
     turns: number;
-  }>();
+  }>({
+    resolver: zodResolver(GameLeaderboardValidationSchema),
+  });
 
   useEffect(() => {
     setValue('turns', turnCount);
@@ -86,7 +90,7 @@ const GameOverDialog: FC<{
             </h2>
             <FormSegment
               errorMessage={formState.errors.name?.message}
-              formRegister={register('name', { required: 'Please provide your name.' })}
+              formRegister={register('name')}
               id="name"
               label="Name"
               placeholder="Your name"

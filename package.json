@@ -9,9 +9,11 @@
     "format": "npx prettier --write ."
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.3.1",
     "gray-matter": "^4.0.3",
     "next": "^14.0.4",
     "next-connect": "^1.0.0",
+    "obscenity": "^0.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.2",

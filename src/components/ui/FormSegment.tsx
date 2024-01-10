@@ -20,11 +20,11 @@ const FormSegment: FC<FormSegmentProps> = ({
 }) => {
   return (
     <div className="w-full">
-      <div className="flex justify-between">
+      <div className="flex items-center justify-between py-1">
         <label htmlFor={id} className={`text-base font-bold uppercase`}>
           {label}
         </label>
-        <span className={`text-error-contents text-base italic`}>{errorMessage}</span>
+        <span className={`text-xs italic md:text-base`}>{errorMessage}</span>
       </div>
 
       {type === 'textInput' ? (
