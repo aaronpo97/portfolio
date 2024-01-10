@@ -1,10 +1,13 @@
 import useGameBoard from '../hooks/useGameBoard';
 import InstructionsDialog from './InstructionsDialog';
 import MismatchDialog from './MismatchDialog';
-import SingleCard from './SingleCard';
+
 import GameOverDialog from './GameOverDialog';
 import LeaderboardDialog from './LeaderboardDialog';
 import useLeaderboard from '../hooks/useLeaderBoard';
+import CardsSection from './CardsSection';
+import GameHeader from './GameHeader';
+import GameActions from './GameActions';
 
 const GameBoard = (): JSX.Element => {
   const {
@@ -20,7 +23,8 @@ const GameBoard = (): JSX.Element => {
     dialogRefs: { instructionsRef, gameOverRef, leaderboardRef, mismatchRef },
   } = useGameBoard();
 
-  const { error, leaderboard, mutate } = useLeaderboard();
+  const { error, leaderboard, mutate: mutateLeaderboard } = useLeaderboard();
+
   return (
     <>
       <MismatchDialog mismatchRef={mismatchRef} funFact={funFact} />
@@ -37,67 +41,24 @@ const GameBoard = (): JSX.Element => {
         error={error}
         setDisabled={setDisabled}
       />
-      <section className="flex flex-col items-center">
-        <div className="flex flex-col items-center justify-center">
-          <div className="my-5">
-            <h2 className="text-2xl">Turns: {turns}</h2>
-          </div>
-        </div>
-        <div className="flex items-center justify-center">
-          {cards && (
-            <div className="card-grid mt-4 grid grid-cols-4 gap-3">
-              {cards.map((card) => (
-                <SingleCard
-                  card={card}
-                  key={card.id}
-                  selectChoice={selectChoice}
-                  flipped={card === choiceOne || card === choiceTwo || card.matched}
-                  disabled={disabled}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-
-        <div className="my-11 h-10 space-y-2">
-          <div className="grid grid-cols-2 gap-2">
-            <button
-              className="btn btn-primary btn-sm uppercase"
-              disabled={disabled}
-              onClick={() => {
-                setDisabled(true);
-                leaderboardRef.current?.showModal();
-                mutate();
-              }}
-            >
-              Leaderboard
-            </button>
-            <button
-              className="btn btn-primary btn-sm uppercase"
-              onClick={() => {
-                setDisabled(true);
-                instructionsRef.current!.showModal();
-              }}
-              disabled={disabled}
-            >
-              Instructions
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1">
-            {!gameOver && (
-              <button
-                disabled={disabled}
-                onClick={() => {
-                  shuffleCards();
-                }}
-                className="btn btn-primary btn-sm uppercase"
-              >
-                Restart
-              </button>
-            )}
-          </div>
-        </div>
+      <section className="flex flex-col items-center space-y-7">
+        <GameHeader turns={turns} />
+        <CardsSection
+          cards={cards}
+          selectChoice={selectChoice}
+          choiceOne={choiceOne}
+          choiceTwo={choiceTwo}
+          disabled={disabled}
+        />
+        <GameActions
+          setDisabled={setDisabled}
+          shuffleCards={shuffleCards}
+          disabled={disabled}
+          mutateLeaderboard={mutateLeaderboard}
+          gameOver={gameOver}
+          leaderboardRef={leaderboardRef}
+          instructionsRef={instructionsRef}
+        />
       </section>
     </>
   );
