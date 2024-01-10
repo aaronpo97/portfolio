@@ -1,9 +1,9 @@
 import ServerError from '@/ServerError';
 import validateRequest from '@/middleware/validateRequest';
+import GameLeaderboardValidationSchema from '@/schema/GameLeaderboardValidationSchema';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { createRouter } from 'next-connect';
 import { createClient } from 'redis';
-import { z } from 'zod';
 
 const client = createClient({ url: process.env.REDIS_URL });
 
@@ -44,12 +44,7 @@ const getLeaderboard = async (req: NextApiRequest, res: NextApiResponse) => {
 
 router.get(getLeaderboard);
 router.post(
-  validateRequest({
-    bodySchema: z.object({
-      name: z.string().min(3).max(10),
-      turns: z.number().min(1).max(100),
-    }),
-  }),
+  validateRequest({ bodySchema: GameLeaderboardValidationSchema }),
   postNewScore,
 );
 
