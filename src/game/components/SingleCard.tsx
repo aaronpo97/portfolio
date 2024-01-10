@@ -15,11 +15,9 @@ const SingleCard = ({
 }: PropTypes): JSX.Element => {
   return (
     <div
-      className={`card card-bordered h-16 w-16 ${
+      className={`card card-bordered h-16 w-16 border-base-300 bg-primary shadow-2xl md:h-24 md:w-24 lg:h-28 lg:w-28 ${
         !flipped ? 'cursor-pointer md:hover:bg-base-300' : ''
-      } ${!flipped && disabled ? 'bg-transparent' : 'bg-primary'}
-      
-      border-base-300 bg-primary shadow-2xl lg:h-28 lg:w-28`}
+      } ${!flipped && disabled ? 'bg-transparent' : 'bg-primary'}`}
       onClick={!flipped ? () => (!disabled ? selectChoice(card) : undefined) : undefined}
     >
       <div className="card-body h-full items-center justify-center">

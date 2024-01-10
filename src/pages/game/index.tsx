@@ -11,8 +11,7 @@ const Game = () => {
         width={6035}
         className="pointer-events-none absolute h-full w-full object-cover mix-blend-overlay"
       />
-      <div className="relative mt-24 flex h-full w-9/12 flex-col justify-center text-center text-white">
-        <h1 className="text-3xl font-bold lg:text-6xl">Fruit Memory Match</h1>
+      <div className="relative mb-24 mt-12 flex h-full w-10/12 select-none flex-col justify-center text-center text-white md:mt-24">
         <GameBoard />
       </div>
     </div>
