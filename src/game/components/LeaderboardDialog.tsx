@@ -20,9 +20,9 @@ const LeaderboardDialog: FC<{
       <div className="modal-box bg-primary p-0" onClick={(e) => e.stopPropagation()}>
         {leaderboard && !error && (
           <>
-            <h2 className="my-4 px-5 text-center text-5xl font-bold">Leaderboard</h2>
+            <h2 className="my-6 px-5 text-center text-5xl font-bold">Leaderboard</h2>
 
-            <div className="my-3 max-h-[30rem] w-full space-y-2 overflow-y-scroll px-5">
+            <div className="my-3 max-h-[20rem] w-full space-y-2 overflow-y-scroll px-5 lg:max-h-[30rem]">
               {leaderboard.length === 0 && (
                 <p className="text-center text-lg">
                   No entries yet. You could be the first!
