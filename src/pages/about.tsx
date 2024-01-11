@@ -62,7 +62,7 @@ const AboutPage: NextPage<AboutPageProps> = ({ content }) => {
         <title>{`About Me | ${process.env.NEXT_PUBLIC_SITE_NAME}`}</title>
         <meta name="description" content={aboutInfo.preamble} />
       </Head>
-      <article className="my-20 flex flex-col items-center md:my-16">
+      <article className="my-20 flex min-h-dvh flex-col items-center md:my-16">
         <header className="w-10/12 lg:w-7/12">
           <h1 className="my-7 text-5xl font-extrabold md:my-10 md:text-8xl">About Me</h1>
           <div className="space-y-4">
