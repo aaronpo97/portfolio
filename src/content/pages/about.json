@@ -122,6 +122,11 @@
               "text": "Netlify",
               "icon": "./icons/other/netlify.svg",
               "link": "https://www.netlify.com/"
+            },
+            {
+              "text": "LaTeX",
+              "icon": "./icons/other/latex.svg",
+              "link": "https://www.latex-project.org/"
             }
           ]
         },
