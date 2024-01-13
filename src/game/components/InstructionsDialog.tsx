@@ -7,6 +7,9 @@ const InstructionsDialog: FC<{
   <dialog
     className="modal"
     ref={instructionsRef}
+    onClose={() => {
+      setDisabled(false);
+    }}
     onClick={() => {
       instructionsRef.current!.close();
       setDisabled(false);

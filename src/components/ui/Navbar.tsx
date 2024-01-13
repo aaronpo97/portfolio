@@ -34,7 +34,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`navbar fixed top-0 z-20 ${
+      className={`navbar fixed top-0 z-20 h-10 min-h-10 ${
         currentURL === '/' || currentURL === '/game' ? 'bg-transparent' : 'bg-base-100'
       }`}
     >
