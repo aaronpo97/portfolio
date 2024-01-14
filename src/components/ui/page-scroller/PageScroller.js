@@ -140,6 +140,7 @@ const PageScroller = ({
       containersRef.current[i] = true;
       if (children[i].type.name === SectionContainer.name) {
         newComponentsToRender.push(
+          // eslint-disable-next-line react/jsx-filename-extension
           <React.Fragment key={i}>{children[i]}</React.Fragment>,
         );
       } else {
@@ -302,7 +303,7 @@ const PageScroller = ({
             isNil(containersRef.current[customPageNumber]) &&
             !isNil(children[customPageNumber])
           ) {
-            newComponentsToRenderLength++;
+            newComponentsToRenderLength += 1;
           }
 
           setTimeout(() => {
@@ -310,12 +311,12 @@ const PageScroller = ({
             setComponentsToRenderLength(newComponentsToRenderLength);
           }, animationTimer + animationTimerBuffer);
         } else if (!isScrolling && !isNil(children[customPageNumber])) {
-          for (let i = componentsToRenderLength; i <= customPageNumber; i++) {
-            newComponentsToRenderLength++;
+          for (let i = componentsToRenderLength; i <= customPageNumber; i += 1) {
+            newComponentsToRenderLength += 1;
           }
 
           if (!isNil(children[customPageNumber])) {
-            newComponentsToRenderLength++;
+            newComponentsToRenderLength += 1;
           }
 
           isScrolling = true;

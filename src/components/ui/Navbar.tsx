@@ -33,15 +33,11 @@ const Navbar = () => {
   const { pages, currentURL } = useNavbar();
 
   return (
-    <nav
-      className={`navbar fixed top-0 z-20 h-10 min-h-10 ${
-        currentURL === '/' || currentURL === '/game' ? 'bg-transparent' : 'bg-base-100'
-      }`}
-    >
+    <nav className={`navbar fixed top-0 z-20 h-10 min-h-10 bg-transparent`}>
       <div className="flex-1">
         {currentURL !== '/' && (
           <Link className="btn btn-ghost btn-xs text-3xl" href="/">
-            <span className="cursor-pointer text-xl font-bold">Aaron Po</span>
+            <span className="cursor-pointer text-xl font-bold">Yerb</span>
           </Link>
         )}
       </div>

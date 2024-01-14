@@ -4,7 +4,10 @@ import aboutInfo from '@/content/pages/about.json';
 import Image from 'next/image';
 import Head from 'next/head';
 import { FC } from 'react';
-import PageScroller from 'react-page-scroller/PageScroller';
+import PageScroller from '@/components/ui/page-scroller/PageScroller';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Slider from 'react-slick';
 
 export interface AboutPageProps {
   title: string;
@@ -12,10 +15,16 @@ export interface AboutPageProps {
   content: Content[];
 }
 
+export interface Course {
+  instructor: string;
+  title: string;
+  link: string;
+}
 export interface Content {
   heading: string;
   text: string;
   tech?: Tech[];
+  courses?: Course[];
   id: string;
 }
 
@@ -32,16 +41,17 @@ export interface Stack {
 
 const TechCard: FC<{
   stack: Stack;
+  index: number;
 }> = ({ stack }) => {
   return (
-    <a
-      className={`btn btn-primary btn-sm h-full`}
-      href={stack.link}
-      target="_blank"
-      rel="noopener noreferrer"
+    <div // button
+      className={`card card-compact bg-primary`}
+      // href={stack.link}
+      // target="_blank"
+      // rel="noopener noreferrer"
     >
-      <div className="flex flex-col items-center justify-center space-y-3 p-3 pt-6">
-        <div className="pointer-events-none flex h-10 w-10 items-center justify-center rounded-lg">
+      <div className="card-body h-full items-center justify-center">
+        <div className="pointer-events-none flex h-12 w-12 items-center justify-center rounded-lg md:h-28 md:w-28">
           <Image
             src={stack.icon}
             alt={stack.text}
@@ -50,9 +60,106 @@ const TechCard: FC<{
             className="h-full w-full"
           />
         </div>
-        <h4 className="text-xl font-semibold">{stack.text}</h4>
+        <h4 className="font-semibold md:text-xl">{stack.text}</h4>
       </div>
-    </a>
+    </div>
+  );
+};
+
+const AboutPageHeader: FC = () => {
+  return (
+    <header className="flex h-dvh flex-col items-center justify-center">
+      <div className="w-10/12 md:w-7/12">
+        <h1 className="my-7 text-2xl font-extrabold md:my-10 md:text-8xl">About Me</h1>
+
+        <div className="space-y-4">
+          {aboutInfo.preamble.split('\n').map((line, index) => (
+            <p className="md:text-2xl" key={index}>
+              {line}
+            </p>
+          ))}
+        </div>
+      </div>
+    </header>
+  );
+};
+
+const AboutPageTechSection: FC<{ item: Content }> = ({ item }) => (
+  <Slider
+    autoplay
+    swipe
+    autoplaySpeed={2000}
+    arrows={false}
+    slidesToShow={1}
+    slidesToScroll={1}
+    fade
+  >
+    {item.tech!.map((tech) => {
+      return (
+        <div key={tech.category}>
+          <h3 className="my-3 text-lg font-bold uppercase md:text-2xl">
+            {tech.category}
+          </h3>
+          <div className="grid grid-cols-3 gap-2 md:grid-cols-7">
+            {tech.stack.map((stack, i) => (
+              <TechCard stack={stack} key={stack.link} index={i} />
+            ))}
+          </div>
+        </div>
+      );
+    })}
+  </Slider>
+);
+
+const CoursesSection: FC<{ item: Content }> = ({ item }) => {
+  return (
+    <>
+      <ul className="list-inside list-disc space-y-1 text-sm md:text-xl">
+        {item.courses!.map((course) => (
+          <li key={course.link}>
+            <a
+              className="link-hover text-base-content"
+              href={course.link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              &quot;{course.title}&quot;
+            </a>
+            <span className="text-base-content"> by </span>
+            <span className="text-base-content">{course.instructor}</span>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+};
+
+const AboutPageSection: FC<{
+  item: Content;
+  index: number;
+}> = ({ item, index }) => {
+  return (
+    <section
+      key={item.id}
+      className={`flex h-dvh flex-col items-center justify-center ${
+        index % 2 === 0 ? 'bg-base-200' : 'bg-base-100'
+      }`}
+    >
+      <div className="mt-16 w-10/12 space-y-3 md:mt-0 md:w-7/12">
+        <h2 className="my-10 text-2xl font-extrabold md:text-8xl">{item.heading}</h2>
+        <div className="space-y-4">
+          {item.text.split('\n').map((line, i) => (
+            <p key={i} className="md:text-2xl">
+              {line}
+            </p>
+          ))}
+        </div>
+
+        {item.tech && <AboutPageTechSection item={item} />}
+
+        {item.courses && <CoursesSection item={item} />}
+      </div>
+    </section>
   );
 };
 
@@ -64,60 +171,11 @@ const AboutPage: NextPage<AboutPageProps> = ({ content }) => {
         <meta name="description" content={aboutInfo.preamble} />
       </Head>
       <article>
-        <PageScroller animationTimer={700} renderAllPagesOnFirstRender>
-          <section>
-            <h1 className="my-7 text-5xl font-extrabold md:my-10 md:text-8xl">
-              About Me
-            </h1>
-            <section className="h-screen pt-20">
-              <div className="space-y-4">
-                {aboutInfo.preamble.split('\n').map((line, index) => (
-                  <p className="text-xl" key={index}>
-                    {line}
-                  </p>
-                ))}
-              </div>
-            </section>
-          </section>
-          {content.map((item, index) => {
-            return (
-              <section
-                key={item.id}
-                className="flex h-screen flex-col items-center justify-center"
-              >
-                <div className={`w-10/12`}>
-                  <h2 className="text-3xl font-extrabold md:text-5xl">{item.heading}</h2>
-
-                  <div className="space-y-4">
-                    {item.text.split('\n').map((line) => (
-                      <p key={index} className="text-xl">
-                        {line}
-                      </p>
-                    ))}
-                  </div>
-
-                  {item.tech && (
-                    <div className="grid grid-cols-3 gap-x-20">
-                      {item.tech.map((tech) => {
-                        return (
-                          <div key={tech.category}>
-                            <h3 className="my-3 text-2xl font-bold uppercase">
-                              {tech.category}
-                            </h3>
-                            <div className="grid grid-cols-5 gap-2 md:grid-cols-4">
-                              {tech.stack.map((stack) => (
-                                <TechCard stack={stack} key={stack.link} />
-                              ))}
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
-              </section>
-            );
-          })}
+        <PageScroller containerHeight="100dvh">
+          <AboutPageHeader />
+          {content.map((item, index) => (
+            <AboutPageSection item={item} key={item.id} index={index} />
+          ))}
         </PageScroller>
       </article>
     </>

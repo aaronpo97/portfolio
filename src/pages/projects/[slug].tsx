@@ -55,7 +55,7 @@ const PostPage: NextPage<{
       </Head>
 
       <div className="mb-20 mt-20 flex flex-col items-center justify-center">
-        <div className="w-6/12">
+        <div className="w-10/12 md:w-8/12 lg:w-6/12">
           <ProjectHeader
             title={title}
             githubURL={githubURL}
