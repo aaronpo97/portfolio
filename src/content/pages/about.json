@@ -7,6 +7,18 @@
       "text": "My ultimate goal is to gain experience as a Full Stack Developer. I am actively seeking opportunities that will allow me to apply my knowledge in a real-world setting and contribute to meaningful projects.\nI am open to collaborations, internships, or entry-level positions where I can further develop my skills and learn from experienced professionals."
     },
     {
+      "heading": "Skills",
+      "text": "Some of my key skills include:",
+      "skills": [
+        "Quickly learns and applies new technologies and methodologies.",
+        "Efficiently manages time, prioritizes tasks, and meets deadlines.",
+        "Applies critical thinking skills to evaluate situations and make informed decisions.",
+        "Self-motivated and takes initiative for personal and professional growth.",
+        "Committed to continuous learning and staying updated with industry trends.",
+        "Adapts to changing project requirements and embraces new methodologies."
+      ]
+    },
+    {
       "heading": "Technologies",
       "text": "I have hands-on experience with a range of technologies, including but not limited to:",
       "tech": [
@@ -195,7 +207,7 @@
     },
     {
       "heading": "Interests",
-      "text": "I have a strong enthusiasm for staying ahead of industry trends and emerging technologies.\nMy passion lies in crafting user-friendly and visually captivating applications. I seamlessly integrate my arts background into problem-solving, relishing the creative process of transforming ideas into functional software.\nBeyond software development, my interests extend to gardening, biking, indulging in professional wrestling, binge-watching King of the Hill, and immersing myself in a diverse range of music."
+      "text": "I have a strong enthusiasm for staying ahead of industry trends and emerging technologies.\nMy passion lies in crafting user-friendly and visually captivating applications. I seamlessly integrate my arts background into problem-solving, relishing the creative process of transforming ideas into functional software.\nBeyond software development, my interests extend to cooking, eating, gardening, biking, indulging in professional wrestling, binge-watching King of the Hill, and immersing myself in a diverse range of music."
     }
   ]
 }
