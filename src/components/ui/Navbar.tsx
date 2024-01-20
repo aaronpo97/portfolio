@@ -21,7 +21,7 @@ const useNavbar = () => {
 
   const pages: Page[] = [
     { slug: '/about', name: 'About' },
-    { slug: '/projects', name: 'Projects' },
+    // { slug: '/projects', name: 'Projects' },
     { slug: '/contact', name: 'Contact' },
     { slug: '/resume.pdf', name: 'Resume' },
   ];
