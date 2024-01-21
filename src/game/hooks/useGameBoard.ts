@@ -109,7 +109,7 @@ const useGameBoard = () => {
 
   return {
     funFact,
-    functions: { selectChoice, shuffleCards, setDisabled },
+    functions: { selectChoice, shuffleCards, setDisabled, resetTurn },
     gameState: { cards, choices, turns, gameOver, disabled },
     dialogRefs: { instructionsRef, gameOverRef, leaderboardRef, mismatchRef },
   };

@@ -38,6 +38,7 @@ const config: Config = {
     require('daisyui'),
     require('@tailwindcss/typography'),
     require('tailwindcss-animated'),
+    require('@headlessui/tailwindcss'),
   ],
   daisyui: { logs: false, themes: [customThemes] },
 };

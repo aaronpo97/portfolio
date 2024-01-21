@@ -4,11 +4,14 @@ import { z } from 'zod';
 import FormSegment from '@/components/ui/FormSegment';
 
 import emailDataSchema from '@/schema/emailDataSchema';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 type FormInputs = z.infer<typeof emailDataSchema>;
 
 const Contact: NextPage = () => {
-  const { register, handleSubmit, formState, reset } = useForm<FormInputs>();
+  const { register, handleSubmit, formState, reset } = useForm<FormInputs>({
+    resolver: zodResolver(emailDataSchema),
+  });
 
   const onSubmit: SubmitHandler<FormInputs> = async (data) => {
     await fetch('/api/email', {
@@ -20,21 +23,10 @@ const Contact: NextPage = () => {
   };
 
   const { errors } = formState;
-  const emailFormRegister = register('email', {
-    pattern: /^\S+@\S+\.\S+$/ || 'Please use a valid email address.',
-    required: 'Please provide your email address.',
-  });
-  const subjectFormRegister = register('subject', {
-    required: 'An email subject is required.',
-  });
-  const nameFormRegister = register('name', { required: 'Please provide your name.' });
-  const messageFormRegister = register('message', {
-    required: 'Cannot send a blank message.',
-  });
 
   return (
-    <div className="animate-in fade-in mb-10 mt-20 flex min-h-dvh items-center justify-center">
-      <div className="w-10/12 space-y-8 lg:w-8/12">
+    <div className="flex min-h-dvh items-center justify-center">
+      <div className="w-10/12 animate-fade space-y-8 lg:w-8/12">
         <div className="space-y-1">
           <h1 className="text-4xl font-bold md:text-6xl lg:text-7xl">Contact Me</h1>
           <h2 className="font-semibold italic">
@@ -47,14 +39,14 @@ const Contact: NextPage = () => {
               <div className="flex flex-col space-y-3 lg:flex-row lg:space-x-3 lg:space-y-0">
                 <FormSegment
                   errorMessage={errors.email?.message}
-                  formRegister={emailFormRegister}
+                  formRegister={register('email')}
                   id="email"
                   label="Email"
                   placeholder="Your email address"
                 />
                 <FormSegment
                   errorMessage={errors.name?.message}
-                  formRegister={nameFormRegister}
+                  formRegister={register('name')}
                   id="name"
                   label="Name"
                   placeholder="Your name"
@@ -62,14 +54,14 @@ const Contact: NextPage = () => {
               </div>
               <FormSegment
                 errorMessage={errors.subject?.message}
-                formRegister={subjectFormRegister}
+                formRegister={register('subject')}
                 id="subject"
                 label="subject"
                 placeholder="Email subject"
               />
               <FormSegment
                 errorMessage={errors.message?.message}
-                formRegister={messageFormRegister}
+                formRegister={register('message')}
                 id="message"
                 label="message"
                 placeholder="Your message"
