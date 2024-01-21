@@ -1,15 +1,31 @@
 import aboutInfo from '@/content/pages/about.json';
 import useIsMobile from '@/hooks/useIsMobile';
+import classNames from 'classnames';
 import { FC } from 'react';
 
-const AboutPageHeader: FC = () => {
+const AboutPageHeader: FC<{
+  currentSlide: number;
+}> = ({ currentSlide }) => {
+  const doAnimation = currentSlide === 0;
   const isMobile = useIsMobile();
   return (
     <header className="flex h-dvh flex-col items-center justify-center">
       <div className="w-9/12">
-        <h1 className="my-7 text-2xl font-extrabold md:my-10 md:text-8xl">About Me</h1>
+        <h1
+          className={classNames('my-7 text-2xl font-extrabold md:my-10 md:text-8xl', {
+            'animate-fade-left': doAnimation,
+            'opacity-0': !doAnimation,
+          })}
+        >
+          About Me
+        </h1>
 
-        <div className="space-y-4">
+        <div
+          className={classNames('space-y-4', {
+            'animate-fade-right': doAnimation,
+            'opacity-0': !doAnimation,
+          })}
+        >
           {aboutInfo.preamble.split('\n').map((line, index) => (
             <p className="md:text-2xl" key={index}>
               {line}
