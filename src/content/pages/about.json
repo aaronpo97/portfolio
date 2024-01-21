@@ -1,10 +1,22 @@
 {
   "title": "About",
-  "preamble": "I am a highly driven, self-taught developer located in London, ON.\nMy coding journey began at the onset of the COVID-19 pandemic. Following my graduation with a Bachelor of Music from Western University, I took the initiative to acquire new skills and independently learn the art of software development.",
+  "preamble": "I am a highly driven, self-taught developer located in London, ON.\nMy coding journey began at the onset of the COVID-19 pandemic following my graduation with a Bachelor of Music from Western University. During the pandemic I took the initiative to acquire new skills and independently learn the art of software development.",
   "content": [
     {
       "heading": "Goals",
-      "text": "My ultimate goal is to become a Full Stack Developer, proficient in both front-end and back-end technologies.\nI am actively seeking opportunities that will allow me to apply my knowledge in a real-world setting and contribute to meaningful projects.\nI am open to collaborations, internships, or entry-level positions where I can further develop my skills and learn from experienced professionals."
+      "text": "My ultimate goal is to gain experience as a Full Stack Developer. I am actively seeking opportunities that will allow me to apply my knowledge in a real-world setting and contribute to meaningful projects.\nI am open to collaborations, internships, or entry-level positions where I can further develop my skills and learn from experienced professionals."
+    },
+    {
+      "heading": "Skills",
+      "text": "Some of my key skills include:",
+      "skills": [
+        "Quickly learns and applies new technologies and methodologies.",
+        "Efficiently manages time, prioritizes tasks, and meets deadlines.",
+        "Applies critical thinking skills to evaluate situations and make informed decisions.",
+        "Self-motivated and takes initiative for personal and professional growth.",
+        "Committed to continuous learning and staying updated with industry trends.",
+        "Adapts to changing project requirements and embraces new methodologies."
+      ]
     },
     {
       "heading": "Technologies",
@@ -122,6 +134,11 @@
               "text": "Netlify",
               "icon": "./icons/other/netlify.svg",
               "link": "https://www.netlify.com/"
+            },
+            {
+              "text": "LaTeX",
+              "icon": "./icons/other/latex.svg",
+              "link": "https://www.latex-project.org/"
             }
           ]
         },
@@ -163,17 +180,34 @@
       ]
     },
     {
-      "heading": "Projects",
-      "text": "Throughout my coding journey, I've dedicated time and effort to engaging in various personal projects that not only allowed me to apply and refine my skills but also served as a testament to my capabilities. \nThese projects span a diverse range, including web applications, APIs, and more, showcasing my versatility in different aspects of software development. \nNurturing my passion for innovation, these endeavors are a testament to my commitment to staying at the forefront of technology trends and continuously expanding my skill set. \nIf you're curious and eager to explore the fruits of my labor, you can find a detailed portfolio of these projects right here."
+      "heading": "Education",
+      "text": "I graduated from Western University in 2020 with Bachelor of Music, specializing in Music Theory and Composition, minoring in Philosophy.\n After graduation, I decided to pursue a career in software development and began my journey as a self-taught developer. I have since completed a number of online courses and continue to expand my knowledge through self-study and personal projects. \n Some of the courses I have completed include:",
+      "courses": [
+        {
+          "instructor": "Colt Steele",
+          "title": "The Web Developer Bootcamp",
+          "link": "https://www.udemy.com/course/the-web-developer-bootcamp/"
+        },
+        {
+          "instructor": "Stephen Grider",
+          "title": "Modern React with Redux",
+          "link": "https://www.udemy.com/course/react-redux/"
+        },
+        {
+          "instructor": "Stephen Grider",
+          "title": "SQL and PostgreSQL: The Complete Developer's Guide",
+          "link": "https://www.udemy.com/course/sql-and-postgresql/"
+        },
+        {
+          "instructor": "Bruno Simon",
+          "title": "Three.js Journey",
+          "link": "https://threejs-journey.com/"
+        }
+      ]
     },
-
     {
       "heading": "Interests",
-      "text": "I have a strong enthusiasm for staying ahead of industry trends and emerging technologies.\nMy passion lies in crafting user-friendly and visually captivating applications. I seamlessly integrate my arts background into problem-solving, relishing the creative process of transforming ideas into functional software.\nBeyond software development, my interests extend to gardening, biking, indulging in professional wrestling, binge-watching King of the Hill, and immersing myself in a diverse range of music."
-    },
-    {
-      "heading": "Contact",
-      "text": "I am always open to connecting with fellow developers, industry professionals, and potential collaborators.\nFeel free to reach out to me through email or connect with me on LinkedIn. I look forward to engaging in discussions, sharing insights, and exploring potential opportunities in the vast world of software development."
+      "text": "I have a strong enthusiasm for staying ahead of industry trends and emerging technologies.\nMy passion lies in crafting user-friendly and visually captivating applications. I seamlessly integrate my arts background into problem-solving, relishing the creative process of transforming ideas into functional software.\nBeyond software development, my interests extend to cooking, eating, gardening, biking, indulging in professional wrestling, binge-watching King of the Hill, and immersing myself in a diverse range of music."
     }
   ]
 }

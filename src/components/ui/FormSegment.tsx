@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
+import classNames from 'classnames';
 
 interface FormSegmentProps {
   id: string;
@@ -21,25 +22,29 @@ const FormSegment: FC<FormSegmentProps> = ({
   return (
     <div className="w-full">
       <div className="flex items-center justify-between py-1">
-        <label htmlFor={id} className={`text-base font-bold uppercase`}>
+        <label htmlFor={id} className="text-base font-bold uppercase">
           {label}
         </label>
-        <span className={`text-xs italic md:text-base`}>{errorMessage}</span>
+        <span className="text-xs italic md:text-base">{errorMessage}</span>
       </div>
 
-      {type === 'textInput' ? (
+      {type === 'textInput' && (
         <input
           type="text"
           placeholder={placeholder}
           id={id}
-          className={`input input-bordered w-full ${errorMessage ? 'input-error' : ''}`}
+          className={classNames('input input-bordered w-full', {
+            'input-error': !!errorMessage,
+          })}
           {...formRegister}
         />
-      ) : (
+      )}
+
+      {type === 'textArea' && (
         <textarea
-          className={`textarea textarea-bordered h-64 w-full resize-none ${
-            errorMessage ? 'textarea-error' : ''
-          }`}
+          className={classNames('textarea textarea-bordered h-64 w-full resize-none', {
+            'textarea-error': !!errorMessage,
+          })}
           placeholder={placeholder}
           id={id}
           {...formRegister}

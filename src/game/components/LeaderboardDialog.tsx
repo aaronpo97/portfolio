@@ -12,6 +12,9 @@ const LeaderboardDialog: FC<{
     <dialog
       ref={leaderboardRef}
       className="modal"
+      onClose={() => {
+        setDisabled(false);
+      }}
       onClick={() => {
         leaderboardRef.current!.close();
         setDisabled(false);

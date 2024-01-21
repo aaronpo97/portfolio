@@ -26,6 +26,9 @@ const GameOverDialog: FC<{
     <dialog
       ref={gameOverRef}
       className="modal"
+      onClose={() => {
+        setDisabled(false);
+      }}
       onClick={() => {
         gameOverRef.current!.close();
         setShowForm(false);
