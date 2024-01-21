@@ -14,10 +14,7 @@ import { useState } from 'react';
 
 const AboutPage: NextPage<AboutPageProps> = ({ content }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [goingBackwards, setGoingBackwards] = useState(false);
   const isMobile = useIsMobile();
-
-  console.log({ currentSlide });
 
   return (
     <>
@@ -30,18 +27,15 @@ const AboutPage: NextPage<AboutPageProps> = ({ content }) => {
           centerMode={false}
           containerClass="container"
           draggable
+          customTransition="transform 1000ms cubic-bezier(0.22, 0.61, 0.36, 1.0)"
           ssr
           focusOnSelect={false}
           itemClass="w-dvh"
           keyBoardControl
           rtl={false}
           shouldResetAutoplay
-          beforeChange={(nextSlide, state) => {
-            if (nextSlide < state.currentSlide) {
-              setCurrentSlide(state.currentSlide);
-            }
-            setGoingBackwards(false);
-            setCurrentSlide(state.currentSlide);
+          beforeChange={(nextSlide) => {
+            setCurrentSlide(nextSlide);
           }}
           sliderClass=""
           slidesToSlide={1}
@@ -52,16 +46,18 @@ const AboutPage: NextPage<AboutPageProps> = ({ content }) => {
             desktop: { items: 1, breakpoint: { max: 3000, min: 1024 } },
           }}
         >
-          <AboutPageHeader />
-          {content.map((item, index) => (
-            <AboutPageSection
-              goingBackwards={goingBackwards}
-              item={item}
-              key={item.id}
-              index={index}
-              currentSlide={currentSlide}
-            />
-          ))}
+          <AboutPageHeader currentSlide={currentSlide} />
+          {content.map((item, idx) => {
+            const index = idx + 1;
+            return (
+              <AboutPageSection
+                index={index}
+                item={item}
+                key={item.id}
+                currentSlide={currentSlide}
+              />
+            );
+          })}
         </Carousel>
       </article>
     </>

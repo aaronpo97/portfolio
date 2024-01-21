@@ -5,7 +5,7 @@ import { Content } from './types';
 import TechCard from './TechCard';
 import 'react-multi-carousel/lib/styles.css';
 
-const AboutPageTechSection: FC<{ item: Content; doAnimation: boolean }> = ({ item }) => {
+const AboutPageTechSection: FC<{ item: Content }> = ({ item }) => {
   const { tech } = item;
 
   return !tech ? null : (
@@ -44,7 +44,7 @@ const AboutPageTechSection: FC<{ item: Content; doAnimation: boolean }> = ({ ite
       {tech.map((t, index) => {
         return (
           <div key={t.category}>
-            <h3 className="my-3 text-lg font-bold uppercase md:my-8 md:text-2xl">
+            <h3 className="my-3 text-lg font-bold uppercase md:my-4 md:text-2xl">
               {t.category}
             </h3>
             <div className="grid grid-cols-3 gap-2 xl:grid-cols-7">
