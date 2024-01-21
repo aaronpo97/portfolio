@@ -26,7 +26,7 @@ const Contact: NextPage = () => {
 
   return (
     <div className="flex min-h-dvh items-center justify-center">
-      <div className="w-10/12 space-y-8 lg:w-8/12">
+      <div className="w-10/12 animate-fade space-y-8 lg:w-8/12">
         <div className="space-y-1">
           <h1 className="text-4xl font-bold md:text-6xl lg:text-7xl">Contact Me</h1>
           <h2 className="font-semibold italic">
