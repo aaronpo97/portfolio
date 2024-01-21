@@ -23,6 +23,7 @@ const SocialIcon: FunctionComponent<SocialIconProps> = ({
       ref={ref}
       className={classNames(`tooltip tooltip-${tooltipPosition} h-full`, {
         'animate-fade-up': inView,
+        'opacity-0': !inView,
       })}
       data-tip={socialName}
     >
