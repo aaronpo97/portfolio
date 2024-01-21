@@ -2,6 +2,7 @@ import type { GetStaticProps, NextPage } from 'next';
 
 import aboutInfo from '@/content/pages/about.json';
 import Head from 'next/head';
+import { ArrowProps } from 'react-multi-carousel/lib/types';
 
 import AboutPageHeader from '@/components/about-page/AboutPageHeader';
 
@@ -11,6 +12,31 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import useIsMobile from '@/hooks/useIsMobile';
 import { useState } from 'react';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+
+const CustomLeftArrow = ({ onClick }: ArrowProps) => {
+  return (
+    <button
+      aria-label="Previous slide"
+      className="absolute left-0 top-1/2 -translate-y-1/2 transform"
+      onClick={onClick}
+    >
+      <FaChevronLeft className="text-5xl" />
+    </button>
+  );
+};
+
+const CustomRightArrow = ({ onClick }: ArrowProps) => {
+  return (
+    <button
+      aria-label="Next slide"
+      className="absolute right-0 top-1/2 -translate-y-1/2 transform"
+      onClick={onClick}
+    >
+      <FaChevronRight className="text-5xl" />
+    </button>
+  );
+};
 
 const AboutPage: NextPage<AboutPageProps> = ({ content, preamble, title }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -25,6 +51,8 @@ const AboutPage: NextPage<AboutPageProps> = ({ content, preamble, title }) => {
       <article className="relative flex h-full w-full items-center justify-center">
         <Carousel
           containerClass="container"
+          customLeftArrow={<CustomLeftArrow />}
+          customRightArrow={<CustomRightArrow />}
           customTransition="transform 1000ms cubic-bezier(0.22, 0.61, 0.36, 1.0)"
           beforeChange={(nextSlide) => {
             setCurrentSlide(nextSlide);
