@@ -1,11 +1,11 @@
-import aboutInfo from '@/content/pages/about.json';
 import useIsMobile from '@/hooks/useIsMobile';
 import classNames from 'classnames';
 import { FC } from 'react';
 
 const AboutPageHeader: FC<{
   currentSlide: number;
-}> = ({ currentSlide }) => {
+  preamble: string;
+}> = ({ currentSlide, preamble }) => {
   const doAnimation = currentSlide === 0;
   const isMobile = useIsMobile();
   return (
@@ -26,7 +26,7 @@ const AboutPageHeader: FC<{
             'opacity-0': !doAnimation,
           })}
         >
-          {aboutInfo.preamble.split('\n').map((line, index) => (
+          {preamble.split('\n').map((line, index) => (
             <p className="md:text-2xl" key={index}>
               {line}
             </p>

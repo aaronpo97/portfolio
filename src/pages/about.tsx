@@ -12,33 +12,23 @@ import 'react-multi-carousel/lib/styles.css';
 import useIsMobile from '@/hooks/useIsMobile';
 import { useState } from 'react';
 
-const AboutPage: NextPage<AboutPageProps> = ({ content }) => {
+const AboutPage: NextPage<AboutPageProps> = ({ content, preamble, title }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const isMobile = useIsMobile();
 
   return (
     <>
       <Head>
-        <title>{`About Me | ${process.env.NEXT_PUBLIC_SITE_NAME}`}</title>
-        <meta name="description" content={aboutInfo.preamble} />
+        <title>{`${title} | ${process.env.NEXT_PUBLIC_SITE_NAME}`}</title>
+        <meta name="description" content={preamble} />
       </Head>
       <article className="relative flex h-full w-full items-center justify-center">
         <Carousel
-          centerMode={false}
           containerClass="container"
-          draggable
           customTransition="transform 1000ms cubic-bezier(0.22, 0.61, 0.36, 1.0)"
-          ssr
-          focusOnSelect={false}
-          itemClass="w-dvh"
-          keyBoardControl
-          rtl={false}
-          shouldResetAutoplay
           beforeChange={(nextSlide) => {
             setCurrentSlide(nextSlide);
           }}
-          sliderClass=""
-          slidesToSlide={1}
           arrows={!isMobile}
           responsive={{
             mobile: { items: 1, breakpoint: { max: 464, min: 0 } },
@@ -46,7 +36,7 @@ const AboutPage: NextPage<AboutPageProps> = ({ content }) => {
             desktop: { items: 1, breakpoint: { max: 3000, min: 1024 } },
           }}
         >
-          <AboutPageHeader currentSlide={currentSlide} />
+          <AboutPageHeader preamble={preamble} currentSlide={currentSlide} />
           {content.map((item, idx) => {
             const index = idx + 1;
             return (
