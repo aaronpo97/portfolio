@@ -1,12 +1,16 @@
 import { useState, useRef, useEffect } from 'react';
-import Carousel from 'react-multi-carousel';
+import type Carousel from 'react-multi-carousel';
 
 const useSlideControls = ({ maxSlides }: { maxSlides: number }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [error, setError] = useState<unknown>(null);
   const ref = useRef<Carousel>(null);
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (!ref.current) {
+        setError(
+          "Cannot handle keydown: Carousel ref is null. You must pass the 'ref' prop to the Carousel component.",
+        );
         return;
       }
       const { key } = event;
@@ -29,7 +33,7 @@ const useSlideControls = ({ maxSlides }: { maxSlides: number }) => {
     };
   }, [maxSlides]);
 
-  return { currentSlide, setCurrentSlide, ref };
+  return { currentSlide, setCurrentSlide, ref, error };
 };
 
 export default useSlideControls;

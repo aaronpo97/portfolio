@@ -19,6 +19,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         `}
       </style>
       <Head>
+        <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+        <link rel="icon" type="image/png" href="/favicon/favicon.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Layout>
