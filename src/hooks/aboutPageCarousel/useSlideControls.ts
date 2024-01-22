@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Carousel from 'react-multi-carousel';
 
-const useSlideControls = () => {
+const useSlideControls = ({ maxSlides }: { maxSlides: number }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const ref = useRef<Carousel>(null);
   useEffect(() => {
@@ -10,37 +10,24 @@ const useSlideControls = () => {
         return;
       }
       const { key } = event;
+      const parsedKey = parseInt(key, 10);
+      const keyIsValidNumber = parsedKey > 0 && parsedKey <= maxSlides;
 
-      switch (key) {
-        case 'ArrowLeft': {
-          ref.current.previous(1);
-          break;
-        }
-        case 'ArrowRight': {
-          ref.current.next(1);
-          break;
-        }
-        case '1':
-        case '2':
-        case '3':
-        case '4':
-        case '5':
-        case '6': {
-          const slideNumber = parseInt(key, 10) - 1;
-          ref.current.goToSlide(slideNumber);
-          setCurrentSlide(slideNumber);
-          break;
-        }
-
-        default:
-          break;
+      if (key === 'ArrowLeft') {
+        ref.current.previous(1);
+      }
+      if (key === 'ArrowRight') {
+        ref.current.next(1);
+      }
+      if (keyIsValidNumber) {
+        ref.current.goToSlide(parsedKey - 1);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [maxSlides]);
 
   return { currentSlide, setCurrentSlide, ref };
 };

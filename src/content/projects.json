@@ -1,0 +1,74 @@
+{
+  "title": "Projects",
+  "preamble": "Throughout my coding journey, I've invested time in diverse personal projects, honing my skills across web applications, APIs, and more. These projects showcase my adaptability in various facets of software development.\nDriven by a passion for innovation, these endeavors underscore my commitment to staying ahead in tech trends and continually expanding my skill set.\nExplore the detailed portfolio of these projects to witness the outcomes of my efforts.",
+  "projects": [
+    {
+      "title": "Awesome Project",
+      "metaTitle": "A Cool Project Meta",
+      "metaDescription": "This is a fantastic project with amazing features.",
+      "date": "2024-01-21",
+      "githubURL": "https://github.com/awesome-project",
+      "liveURL": "https://awesome-project.com",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "stack": [
+        {
+          "text": "React",
+          "icon": "https://example.com/react-icon.png",
+          "link": "https://reactjs.org"
+        },
+        {
+          "text": "Node.js",
+          "icon": "https://example.com/nodejs-icon.png",
+          "link": "https://nodejs.org"
+        },
+        {
+          "text": "MongoDB",
+          "icon": "https://example.com/mongodb-icon.png",
+          "link": "https://mongodb.com"
+        }
+      ]
+    },
+    {
+      "title": "Super App",
+      "metaTitle": "The Ultimate Application",
+      "metaDescription": "An app that will change your life.",
+      "date": "2024-02-10",
+      "githubURL": "https://github.com/super-app",
+      "liveURL": "https://super-app.io",
+      "text": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "stack": [
+        {
+          "text": "Angular",
+          "icon": "https://example.com/angular-icon.png",
+          "link": "https://angular.io"
+        },
+        {
+          "text": "Express.js",
+          "icon": "https://example.com/expressjs-icon.png",
+          "link": "https://expressjs.com"
+        },
+        {
+          "text": "MySQL",
+          "icon": "https://example.com/mysql-icon.png",
+          "link": "https://mysql.com"
+        }
+      ]
+    },
+    {
+      "title": "Epic Website",
+      "metaTitle": "Revolutionizing Web Design",
+      "metaDescription": "A website that breaks all the norms.",
+      "date": "2024-03-05",
+      "githubURL": "https://github.com/epic-website",
+      "liveURL": "https://epic-website.net",
+      "text": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "stack": [
+        {
+          "text": "Vue.js",
+          "icon": "https://example.com/vuejs-icon.png",
+          "link": "https://vuejs.org"
+        }
+      ]
+    }
+  ]
+}

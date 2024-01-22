@@ -21,7 +21,7 @@ const useNavbar = () => {
 
   const pages: Page[] = [
     { slug: '/about', name: 'About' },
-    // { slug: '/projects', name: 'Projects' },
+    { slug: '/projects', name: 'Projects' },
     { slug: '/contact', name: 'Contact' },
     { slug: '/resume.pdf', name: 'Resume' },
   ];
@@ -54,7 +54,9 @@ const Navbar = () => {
                 >
                   <span
                     className={`text-lg uppercase ${
-                      currentURL === page.slug ? 'font-extrabold' : 'font-bold'
+                      currentURL === page.slug
+                        ? 'font-extrabold underline underline-offset-8'
+                        : 'font-bold'
                     } text-base-content`}
                   >
                     {page.name}
