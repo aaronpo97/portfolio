@@ -11,7 +11,7 @@ import AboutPageSection from '@/components/about-page/AboutPageSection';
 import { CustomLeftArrow, CustomRightArrow } from '@/components/about-page/CustomArrows';
 
 import useIsMobile from '@/hooks/useIsMobile';
-import useSlideControls from '@/hooks/aboutPageCarousel/useSlideControls';
+import useSlideControls from '@/hooks/carousel/useSlideControls';
 
 const AboutPage: NextPage<AboutPageProps> = ({ content, preamble, title }) => {
   const isMobile = useIsMobile();
