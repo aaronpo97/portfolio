@@ -1,22 +1,24 @@
 import type { GetStaticProps, NextPage } from 'next';
-
-import aboutInfo from '@/content/pages/about.json';
 import Head from 'next/head';
 
-import AboutPageHeader from '@/components/about-page/AboutPageHeader';
-
-import { AboutPageProps } from '@/components/about-page/types';
-import AboutPageSection from '@/components/about-page/AboutPageSection';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import useIsMobile from '@/hooks/useIsMobile';
+import ABOUT_CONTENT from '@/content/about.json';
+
+import AboutPageHeader from '@/components/about-page/AboutPageHeader';
+import { AboutPageProps } from '@/components/about-page/types';
+import AboutPageSection from '@/components/about-page/AboutPageSection';
 import { CustomLeftArrow, CustomRightArrow } from '@/components/about-page/CustomArrows';
+
+import useIsMobile from '@/hooks/useIsMobile';
 import useSlideControls from '@/hooks/aboutPageCarousel/useSlideControls';
 
 const AboutPage: NextPage<AboutPageProps> = ({ content, preamble, title }) => {
   const isMobile = useIsMobile();
 
-  const { currentSlide, setCurrentSlide, ref } = useSlideControls();
+  const { currentSlide, setCurrentSlide, ref } = useSlideControls({
+    maxSlides: content.length + 1,
+  });
   return (
     <>
       <Head>
@@ -62,9 +64,9 @@ export default AboutPage;
 export const getStaticProps: GetStaticProps<AboutPageProps> = async () => {
   return {
     props: {
-      title: aboutInfo.title,
-      preamble: aboutInfo.preamble,
-      content: aboutInfo.content.map((item) => {
+      title: ABOUT_CONTENT.title,
+      preamble: ABOUT_CONTENT.preamble,
+      content: ABOUT_CONTENT.content.map((item) => {
         return { ...item, id: crypto.randomUUID() };
       }),
     },
