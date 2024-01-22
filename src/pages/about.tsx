@@ -2,7 +2,6 @@ import type { GetStaticProps, NextPage } from 'next';
 
 import aboutInfo from '@/content/pages/about.json';
 import Head from 'next/head';
-import { ArrowProps } from 'react-multi-carousel/lib/types';
 
 import AboutPageHeader from '@/components/about-page/AboutPageHeader';
 
@@ -11,45 +10,22 @@ import AboutPageSection from '@/components/about-page/AboutPageSection';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import useIsMobile from '@/hooks/useIsMobile';
-import { useState } from 'react';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-
-const CustomLeftArrow = ({ onClick }: ArrowProps) => {
-  return (
-    <button
-      aria-label="Previous slide"
-      className="absolute left-0 top-1/2 -translate-y-1/2 transform"
-      onClick={onClick}
-    >
-      <FaChevronLeft className="text-5xl" />
-    </button>
-  );
-};
-
-const CustomRightArrow = ({ onClick }: ArrowProps) => {
-  return (
-    <button
-      aria-label="Next slide"
-      className="absolute right-0 top-1/2 -translate-y-1/2 transform"
-      onClick={onClick}
-    >
-      <FaChevronRight className="text-5xl" />
-    </button>
-  );
-};
+import { CustomLeftArrow, CustomRightArrow } from '@/components/about-page/CustomArrows';
+import useSlideControls from '@/hooks/aboutPageCarousel/useSlideControls';
 
 const AboutPage: NextPage<AboutPageProps> = ({ content, preamble, title }) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
   const isMobile = useIsMobile();
 
+  const { currentSlide, setCurrentSlide, ref } = useSlideControls();
   return (
     <>
       <Head>
         <title>{`${title} | ${process.env.NEXT_PUBLIC_SITE_NAME}`}</title>
         <meta name="description" content={preamble} />
       </Head>
-      <article className="relative flex h-full w-full items-center justify-center">
+      <article className="relative flex h-full w-full touch-pan-x touch-pan-y select-none items-center justify-center">
         <Carousel
+          ref={ref}
           containerClass="container"
           customLeftArrow={<CustomLeftArrow />}
           customRightArrow={<CustomRightArrow />}
@@ -89,10 +65,7 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async () => {
       title: aboutInfo.title,
       preamble: aboutInfo.preamble,
       content: aboutInfo.content.map((item) => {
-        return {
-          ...item,
-          id: crypto.randomUUID(),
-        };
+        return { ...item, id: crypto.randomUUID() };
       }),
     },
   };

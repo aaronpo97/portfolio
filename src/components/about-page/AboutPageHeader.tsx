@@ -35,15 +35,29 @@ const AboutPageHeader: FC<{
       </div>
 
       {/* bottom right corner */}
-      <div className="absolute bottom-0 right-0 p-5">
+      <div
+        className={classNames('absolute bottom-0 p-5 text-center', {
+          'animate-flip-up': doAnimation,
+          'opacity-0': !doAnimation,
+        })}
+      >
         {isMobile ? (
           <span className="text-xs italic">
             Swipe left to see more, or right to go back.
           </span>
         ) : (
-          <span className="text-sm italic">
-            Use the arrows to navigate, or swipe left/right.
-          </span>
+          <ul className="flex flex-col text-sm italic">
+            <li>
+              Navigate through the slides using the arrows, swiping, or by pressing the{' '}
+              <kbd className="kbd">←</kbd> and <kbd className="kbd">→</kbd> keys on your
+              keyboard.
+            </li>
+
+            <li>
+              Alternatively, jump to a specific slide by using keys{' '}
+              <kbd className="kbd">1</kbd> through <kbd className="kbd">6</kbd>.
+            </li>
+          </ul>
         )}
       </div>
     </header>
