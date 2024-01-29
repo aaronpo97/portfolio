@@ -1,14 +1,12 @@
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import { Nunito_Sans } from 'next/font/google';
-import Layout from '@/components/ui/Layout';
 
-const font = Nunito_Sans({
-  subsets: ['latin'],
-  weight: ['200', '300', '400', '600', '700', '800', '900', '1000'],
-});
+import Layout from '@/components/ui/Layout';
+import { NunitoSans } from '@/fonts';
+
 function MyApp({ Component, pageProps }: AppProps) {
+  const font = NunitoSans;
   return (
     <>
       <style jsx global>
