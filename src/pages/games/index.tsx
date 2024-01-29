@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { FC } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
+import Head from 'next/head';
 
 const GamesHeader: FC<{
   inView: boolean;
@@ -44,42 +45,48 @@ interface GamesProps {
 const Games: NextPage<GamesProps> = ({ games }) => {
   const [ref, inView] = useInView();
   return (
-    <main className="flex min-h-dvh flex-col items-center justify-center">
-      <article ref={ref} className="w-9/12 space-y-10">
-        <GamesHeader inView={inView} />
+    <>
+      <Head>
+        <title>{`Games | ${process.env.NEXT_PUBLIC_SITE_NAME}`}</title>
+        <meta name="description" content="Play games made by Aaron Po" />
+      </Head>
+      <main className="flex min-h-dvh flex-col items-center justify-center">
+        <article ref={ref} className="w-9/12 space-y-10">
+          <GamesHeader inView={inView} />
 
-        <div
-          className={classNames('grid grid-cols-2 gap-3', {
-            'animate-fade': inView,
-            'opacity-0': !inView,
-          })}
-        >
-          {games.map((game) => {
-            return (
-              <Link
-                key={game.id}
-                className="card select-none bg-base-300 hover:bg-base-200"
-                href={game.href}
-              >
-                <figure>
-                  <Image
-                    src={game.imageHref}
-                    height={4015}
-                    width={6035}
-                    alt={game.imageAlt}
-                    className="h-96 w-full object-cover"
-                  />
-                </figure>
-                <div className="card-body">
-                  <h2 className="card-title text-3xl font-bold">{game.name}</h2>
-                  <p>{game.description}</p>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
-      </article>
-    </main>
+          <div
+            className={classNames('grid grid-cols-2 gap-3', {
+              'animate-fade': inView,
+              'opacity-0': !inView,
+            })}
+          >
+            {games.map((game) => {
+              return (
+                <Link
+                  key={game.id}
+                  className="card select-none bg-base-300 hover:bg-base-200"
+                  href={game.href}
+                >
+                  <figure>
+                    <Image
+                      src={game.imageHref}
+                      height={4015}
+                      width={6035}
+                      alt={game.imageAlt}
+                      className="h-96 w-full object-cover"
+                    />
+                  </figure>
+                  <div className="card-body">
+                    <h2 className="card-title text-3xl font-bold">{game.name}</h2>
+                    <p>{game.description}</p>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </article>
+      </main>
+    </>
   );
 };
 
