@@ -12,18 +12,26 @@ const GamesHeader: FC<{
   return (
     <header className="w-full">
       <h1
-        className={classNames('mb-4 animate-fade text-9xl font-bold', {
-          'animate-fade-left': inView,
-          'opacity-0': !inView,
-        })}
+        className={classNames(
+          'mb-4 animate-fade text-9xl font-bold',
+          {
+            'animate-fade-left': inView,
+            'opacity-0': !inView,
+          },
+          'motion-reduce:animate-none',
+        )}
       >
         Games
       </h1>
       <h2
-        className={classNames('mb-4 animate-fade text-3xl font-bold', {
-          'animate-fade-right': inView,
-          'opacity-0': !inView,
-        })}
+        className={classNames(
+          'mb-4 animate-fade text-3xl font-bold',
+          {
+            'animate-fade-right': inView,
+            'opacity-0': !inView,
+          },
+          'motion-reduce:animate-none',
+        )}
       >
         Welcome to my *secret* games page!
       </h2>
@@ -55,10 +63,14 @@ const Games: NextPage<GamesProps> = ({ games }) => {
           <GamesHeader inView={inView} />
 
           <div
-            className={classNames('grid grid-cols-2 gap-3', {
-              'animate-fade': inView,
-              'opacity-0': !inView,
-            })}
+            className={classNames(
+              'grid grid-cols-2 gap-3',
+              {
+                'animate-fade': inView,
+                'opacity-0': !inView,
+              },
+              'motion-reduce:animate-none',
+            )}
           >
             {games.map((game) => {
               return (
@@ -73,12 +85,16 @@ const Games: NextPage<GamesProps> = ({ games }) => {
                       height={4015}
                       width={6035}
                       alt={game.imageAlt}
-                      className="h-96 w-full object-cover"
+                      className="h-52 w-full object-cover"
                     />
                   </figure>
                   <div className="card-body">
                     <h2 className="card-title text-3xl font-bold">{game.name}</h2>
-                    <p>{game.description}</p>
+                    {game.description.split('\n').map((line, index) => (
+                      <p key={index} className="text-base-content">
+                        {line}
+                      </p>
+                    ))}
                   </div>
                 </Link>
               );
@@ -100,7 +116,7 @@ export const getStaticProps: GetStaticProps<GamesProps> = async () => {
       imageHref: '/images/games/fruit-memory-match/preview.svg',
       imageAlt: 'Fruit Memory Match',
       description:
-        'Fruit Memory Match is a memory game where you match pairs of cards with the same fruit on them. The game ends when all pairs are matched.',
+        'Fruit Memory Match is a memory game where you match pairs of cards with the same fruit on them.\nThe game ends when all pairs are matched.',
     },
     {
       name: 'Asteroids',
@@ -108,7 +124,7 @@ export const getStaticProps: GetStaticProps<GamesProps> = async () => {
       imageHref: '/images/games/asteroids/preview.svg',
       imageAlt: 'Asteroids',
       description:
-        'Asteroids is a game where you control a spaceship and shoot asteroids. Inspired by the classic arcade game by Atari.',
+        'Asteroids is a game where you control a spaceship and shoot asteroids.\nInspired by the classic arcade game by Atari.',
     },
   ].map((game) => ({ ...game, id: crypto.randomUUID() }));
 

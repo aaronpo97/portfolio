@@ -19,18 +19,25 @@ const AboutPageSection: FC<{
     <section className="relative flex h-full w-full flex-col items-center justify-center text-white">
       <div className="w-9/12">
         <h2
-          className={classNames('my-3 text-2xl font-extrabold md:text-8xl', {
-            'animate-fade-left animate-duration-1000': doAnimation,
-            'opacity-0': !doAnimation,
-          })}
+          className={classNames(
+            'my-3 text-2xl font-extrabold md:text-8xl',
+            {
+              'animate-fade-left animate-duration-1000': doAnimation,
+              'opacity-0': !doAnimation,
+            },
+            'motion-reduce:animate-none',
+          )}
         >
           {item.heading}
         </h2>
         <div
-          className={classNames({
-            'animate-fade-right animate-duration-1000': doAnimation,
-            'opacity-0': !doAnimation,
-          })}
+          className={classNames(
+            {
+              'animate-fade-right animate-delay-75 animate-duration-1000': doAnimation,
+              'opacity-0': !doAnimation,
+            },
+            'motion-reduce:animate-none',
+          )}
         >
           <div className="space-y-4">
             {item.text.split('\n').map((line, i) => (

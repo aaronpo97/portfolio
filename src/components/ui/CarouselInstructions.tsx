@@ -9,10 +9,14 @@ const CarouselInstructions: FC<{
   const isMobile = useIsMobile();
   return (
     <div
-      className={classNames('absolute bottom-0 p-5 text-center', {
-        'animate-flip-up': doAnimation,
-        'opacity-0': !doAnimation,
-      })}
+      className={classNames(
+        'absolute bottom-0 p-5 text-center',
+        {
+          'animate-flip-up': doAnimation,
+          'opacity-0': !doAnimation,
+        },
+        'motion-reduce:animate-none',
+      )}
     >
       {isMobile ? (
         <span className="text-xs italic">
