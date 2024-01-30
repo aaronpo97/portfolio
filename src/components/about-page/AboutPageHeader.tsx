@@ -14,10 +14,7 @@ const AboutPageHeader: FC<{
         <h1
           className={classNames(
             'my-7 text-2xl font-extrabold md:my-10 md:text-8xl',
-            {
-              'animate-fade-left': doAnimation,
-              'opacity-0': !doAnimation,
-            },
+            { 'animate-fade-left': doAnimation, 'opacity-0': !doAnimation },
             'motion-reduce:animate-none',
           )}
         >
@@ -27,10 +24,7 @@ const AboutPageHeader: FC<{
         <div
           className={classNames(
             'space-y-4',
-            {
-              'animate-fade-right': doAnimation,
-              'opacity-0': !doAnimation,
-            },
+            { 'animate-fade-right': doAnimation, 'opacity-0': !doAnimation },
             'motion-reduce:animate-none',
           )}
         >

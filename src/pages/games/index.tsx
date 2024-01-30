@@ -3,7 +3,7 @@ import { GetStaticProps, NextPage } from 'next';
 import Link from 'next/link';
 import { FC } from 'react';
 import { useInView } from 'react-intersection-observer';
-import Image from 'next/image';
+// import Image from 'next/image';
 import Head from 'next/head';
 
 const GamesHeader: FC<{
@@ -13,11 +13,8 @@ const GamesHeader: FC<{
     <header className="w-full">
       <h1
         className={classNames(
-          'mb-4 animate-fade text-9xl font-bold',
-          {
-            'animate-fade-left': inView,
-            'opacity-0': !inView,
-          },
+          'mb-4 animate-fade text-7xl font-bold',
+          { 'animate-fade-left': inView, 'opacity-0': !inView },
           'motion-reduce:animate-none',
         )}
       >
@@ -26,10 +23,7 @@ const GamesHeader: FC<{
       <h2
         className={classNames(
           'mb-4 animate-fade text-3xl font-bold',
-          {
-            'animate-fade-right': inView,
-            'opacity-0': !inView,
-          },
+          { 'animate-fade-right': inView, 'opacity-0': !inView },
           'motion-reduce:animate-none',
         )}
       >
@@ -64,7 +58,7 @@ const Games: NextPage<GamesProps> = ({ games }) => {
 
           <div
             className={classNames(
-              'grid grid-cols-2 gap-3',
+              'grid grid-cols-1 gap-3 md:grid-cols-3',
               {
                 'animate-fade': inView,
                 'opacity-0': !inView,
@@ -79,15 +73,15 @@ const Games: NextPage<GamesProps> = ({ games }) => {
                   className="card select-none bg-base-300 hover:bg-base-200"
                   href={game.href}
                 >
-                  <figure>
+                  {/* <figure>
                     <Image
                       src={game.imageHref}
                       height={4015}
                       width={6035}
                       alt={game.imageAlt}
-                      className="h-52 w-full object-cover"
+                      className="h-64 w-full object-cover"
                     />
-                  </figure>
+                  </figure> */}
                   <div className="card-body">
                     <h2 className="card-title text-3xl font-bold">{game.name}</h2>
                     {game.description.split('\n').map((line, index) => (

@@ -14,10 +14,7 @@ const TechCard: FC<{
       href={stack.link}
       className={classNames(
         'card bg-primary hover:bg-[#292d3d]',
-        {
-          'animate-fade-up': inView,
-          'opacity-0': !inView,
-        },
+        { 'animate-fade-up': inView, 'opacity-0': !inView },
         'motion-reduce:animate-none',
       )}
       // open in new tab

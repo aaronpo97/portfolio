@@ -10,6 +10,7 @@ const CaptchaNotice: FC = () => {
           title="reCAPTCHA v3"
           rel="noreferrer"
           target="blank"
+          className="link-hover link"
         >
           reCAPTCHA v3.
         </a>

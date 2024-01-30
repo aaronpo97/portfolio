@@ -12,10 +12,7 @@ const Headings = () => {
       <h1
         className={classNames(
           'space-x-1 text-5xl font-extrabold md:text-8xl',
-          {
-            'animate-fade-left': inViewOne,
-            'opacity-0': !inViewOne,
-          },
+          { 'animate-fade-left': inViewOne, 'opacity-0': !inViewOne },
           'motion-reduce:animate-none',
         )}
       >
@@ -24,10 +21,7 @@ const Headings = () => {
       <h2
         className={classNames(
           'text-2xl font-bold md:text-5xl',
-          {
-            'animate-fade-right': inViewOne,
-            'opacity-0': !inViewOne,
-          },
+          { 'animate-fade-right': inViewOne, 'opacity-0': !inViewOne },
           'motion-reduce:animate-none',
         )}
       >

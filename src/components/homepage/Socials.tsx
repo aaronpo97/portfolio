@@ -9,10 +9,7 @@ const Socials = () => {
     <div
       className={classNames(
         'flex flex-row space-x-2',
-        {
-          'animate-fade-up': inView,
-          'opacity-0': !inView,
-        },
+        { 'animate-fade-up': inView, 'opacity-0': !inView },
         'motion-reduce:animate-none',
       )}
       ref={ref}

@@ -5,6 +5,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import { FaGamepad } from 'react-icons/fa';
 
 interface Page {
   slug: string;
@@ -35,10 +36,19 @@ const Navbar = () => {
   return (
     <nav className={`navbar fixed top-0 z-20 h-10 min-h-10 bg-transparent`}>
       <div className="flex-1">
-        {currentURL !== '/' && (
+        {currentURL !== '/' ? (
           <Link className="btn btn-ghost btn-xs text-3xl" href="/">
             <span className="cursor-pointer text-xl font-bold">Yerb</span>
           </Link>
+        ) : (
+          <div
+            className="tooltip tooltip-right"
+            data-tip="I have some games here. Click me!"
+          >
+            <Link href="/games" className="btn btn-circle btn-ghost btn-sm">
+              <FaGamepad className="text-lg" />
+            </Link>
+          </div>
         )}
       </div>
       <div className="hidden flex-none lg:block">
