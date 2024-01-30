@@ -1,30 +1,38 @@
-import useIsMobile from '@/hooks/useIsMobile';
 import classNames from 'classnames';
 import { FC } from 'react';
+import CarouselInstructions from '../ui/CarouselInstructions';
 
 const AboutPageHeader: FC<{
   currentSlide: number;
   preamble: string;
 }> = ({ currentSlide, preamble }) => {
   const doAnimation = currentSlide === 0;
-  const isMobile = useIsMobile();
+
   return (
     <header className="flex h-dvh flex-col items-center justify-center">
       <div className="w-9/12">
         <h1
-          className={classNames('my-7 text-2xl font-extrabold md:my-10 md:text-8xl', {
-            'animate-fade-left': doAnimation,
-            'opacity-0': !doAnimation,
-          })}
+          className={classNames(
+            'my-7 text-2xl font-extrabold md:my-10 md:text-8xl',
+            {
+              'animate-fade-left': doAnimation,
+              'opacity-0': !doAnimation,
+            },
+            'motion-reduce:animate-none',
+          )}
         >
           About Me
         </h1>
 
         <div
-          className={classNames('space-y-4', {
-            'animate-fade-right': doAnimation,
-            'opacity-0': !doAnimation,
-          })}
+          className={classNames(
+            'space-y-4',
+            {
+              'animate-fade-right': doAnimation,
+              'opacity-0': !doAnimation,
+            },
+            'motion-reduce:animate-none',
+          )}
         >
           {preamble.split('\n').map((line, index) => (
             <p className="md:text-2xl" key={index}>
@@ -34,18 +42,7 @@ const AboutPageHeader: FC<{
         </div>
       </div>
 
-      {/* bottom right corner */}
-      <div className="absolute bottom-0 right-0 p-5">
-        {isMobile ? (
-          <span className="text-xs italic">
-            Swipe left to see more, or right to go back.
-          </span>
-        ) : (
-          <span className="text-sm italic">
-            Use the arrows to navigate, or swipe left/right.
-          </span>
-        )}
-      </div>
+      <CarouselInstructions doAnimation={doAnimation} slideCount={6} />
     </header>
   );
 };

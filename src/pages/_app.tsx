@@ -1,14 +1,13 @@
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import { Nunito_Sans } from 'next/font/google';
-import Layout from '@/components/ui/Layout';
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 
-const font = Nunito_Sans({
-  subsets: ['latin'],
-  weight: ['200', '300', '400', '600', '700', '800', '900', '1000'],
-});
+import Layout from '@/components/ui/Layout';
+import { NunitoSans } from '@/fonts';
+
 function MyApp({ Component, pageProps }: AppProps) {
+  const font = NunitoSans;
   return (
     <>
       <style jsx global>
@@ -19,11 +18,16 @@ function MyApp({ Component, pageProps }: AppProps) {
         `}
       </style>
       <Head>
+        <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+        <link rel="icon" type="image/png" href="/favicon/favicon.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+
+      <GoogleReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY!}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </GoogleReCaptchaProvider>
     </>
   );
 }

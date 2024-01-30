@@ -6,18 +6,25 @@ import { Stack } from './types';
 
 const TechCard: FC<{
   stack: Stack;
-  index: number;
-  disableAnimation: boolean;
-}> = ({ stack, disableAnimation }) => {
+}> = ({ stack }) => {
   const [ref, inView] = useInView();
   return (
-    <div
+    <a
       ref={ref}
-      className={classNames('card card-compact bg-primary', {
-        'animate-fade': inView && !disableAnimation,
-      })}
+      href={stack.link}
+      className={classNames(
+        'card bg-primary hover:bg-[#292d3d]',
+        {
+          'animate-fade-up': inView,
+          'opacity-0': !inView,
+        },
+        'motion-reduce:animate-none',
+      )}
+      // open in new tab
+      target="_blank"
+      rel="noopener noreferrer"
     >
-      <div className="card-body h-full items-center justify-center">
+      <div className="card-body items-center justify-center">
         <div className="pointer-events-none flex h-12 w-12 items-center justify-center rounded-lg md:h-24 md:w-24">
           <Image
             src={stack.icon}
@@ -29,7 +36,7 @@ const TechCard: FC<{
         </div>
         <h4 className="font-semibold md:text-xl">{stack.text}</h4>
       </div>
-    </div>
+    </a>
   );
 };
 

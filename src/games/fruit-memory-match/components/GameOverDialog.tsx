@@ -3,6 +3,8 @@ import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import GameLeaderboardValidationSchema from '@/schema/GameLeaderboardValidationSchema';
+import CaptchaNotice from '@/components/CaptchaNotice';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 const GameOverDialog: FC<{
   gameOverRef: React.RefObject<HTMLDialogElement>;
@@ -18,6 +20,8 @@ const GameOverDialog: FC<{
   }>({
     resolver: zodResolver(GameLeaderboardValidationSchema),
   });
+
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   useEffect(() => {
     setValue('turns', turnCount);
@@ -68,52 +72,63 @@ const GameOverDialog: FC<{
         )}
 
         {showForm && (
-          <form
-            className="my-3"
-            onSubmit={handleSubmit(async (data) => {
-              const response = await fetch('/api/game/leaderboard', {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: { 'Content-Type': 'application/json' },
-              });
+          <>
+            <form
+              className="my-3"
+              onSubmit={handleSubmit(async (data) => {
+                if (!executeRecaptcha) {
+                  return;
+                }
 
-              if (!response.ok) {
-                throw new Error(response.statusText);
-              }
+                const token = await executeRecaptcha();
+                const response = await fetch('/api/game/leaderboard', {
+                  method: 'POST',
+                  body: JSON.stringify(data),
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'X-Captcha-Token': token,
+                  },
+                });
 
-              gameOverRef.current!.close();
-              shuffleCards();
-              setDisabled(false);
-              setShowForm(false);
-              reset();
-            })}
-          >
-            <h2 className="my-3 text-xl font-bold">
-              Save your score to the leaderboard!
-            </h2>
-            <FormSegment
-              errorMessage={formState.errors.name?.message}
-              formRegister={register('name')}
-              id="name"
-              label="Name"
-              placeholder="Your name"
-            />
+                if (!response.ok) {
+                  throw new Error(response.statusText);
+                }
 
-            <div className="modal-action grid grid-cols-2 gap-1">
-              <button formAction="submit" className="btn btn-primary btn-sm">
-                Save Score
-              </button>
-              <button
-                onClick={() => {
-                  setShowForm(false);
-                }}
-                type="button"
-                className="btn btn-primary btn-sm"
-              >
-                Cancel
-              </button>
-            </div>
-          </form>
+                gameOverRef.current!.close();
+                shuffleCards();
+                setDisabled(false);
+                setShowForm(false);
+                reset();
+              })}
+            >
+              <h2 className="my-3 text-xl font-bold">
+                Save your score to the leaderboard!
+              </h2>
+              <FormSegment
+                errorMessage={formState.errors.name?.message}
+                formRegister={register('name')}
+                id="name"
+                label="Name"
+                placeholder="Your name"
+              />
+
+              <div className="modal-action grid grid-cols-2 gap-1">
+                <button formAction="submit" className="btn btn-primary btn-sm">
+                  Save Score
+                </button>
+                <button
+                  onClick={() => {
+                    setShowForm(false);
+                  }}
+                  type="button"
+                  className="btn btn-primary btn-sm"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+            <CaptchaNotice />
+          </>
         )}
       </div>
     </dialog>

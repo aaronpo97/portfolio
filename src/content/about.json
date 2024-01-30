@@ -1,6 +1,6 @@
 {
   "title": "About",
-  "preamble": "I am a highly driven, self-taught developer located in London, ON.\nMy coding journey began at the onset of the COVID-19 pandemic following my graduation with a Bachelor of Music from Western University. During the pandemic I took the initiative to acquire new skills and independently learn the art of software development.",
+  "preamble": "I am a highly driven, self-taught developer located in London, ON.\nMy coding journey began at the onset of the COVID-19 pandemic following my graduation with a Bachelor of Music from Western University. During the pandemic, I took the initiative to acquire new skills and independently learn the art of software development.",
   "content": [
     {
       "heading": "Goals",
@@ -8,14 +8,14 @@
     },
     {
       "heading": "Skills",
-      "text": "Some of my key skills include:",
+      "text": "I am proficient in applying the following key skills:",
       "skills": [
-        "Quickly learns and applies new technologies and methodologies.",
-        "Efficiently manages time, prioritizes tasks, and meets deadlines.",
-        "Applies critical thinking skills to evaluate situations and make informed decisions.",
-        "Self-motivated and takes initiative for personal and professional growth.",
-        "Committed to continuous learning and staying updated with industry trends.",
-        "Adapts to changing project requirements and embraces new methodologies."
+        "Quickly learning and applying new technologies and methodologies",
+        "Efficiently managing time, prioritizing tasks, and meeting deadlines",
+        "Applying critical thinking skills to evaluate situations and make informed decisions",
+        "Being self-motivated and taking initiative for personal and professional growth",
+        "Remaining committed to continuously learning and staying updated with industry trends",
+        "Adapting to changing project requirements and embracing new methodologies"
       ]
     },
     {
@@ -181,7 +181,7 @@
     },
     {
       "heading": "Education",
-      "text": "I graduated from Western University in 2020 with Bachelor of Music, specializing in Music Theory and Composition, minoring in Philosophy.\n After graduation, I decided to pursue a career in software development and began my journey as a self-taught developer. I have since completed a number of online courses and continue to expand my knowledge through self-study and personal projects. \n Some of the courses I have completed include:",
+      "text": "I graduated from Western University in 2020 with Bachelor of Music, specializing in Music Theory and Composition, and minoring in Philosophy.\n After graduation, I decided to pursue a career in software development and began my journey as a self-taught developer. I have since completed a number of online courses and continue to expand my knowledge through self-study and personal projects. \n Some of the courses I have completed include:",
       "courses": [
         {
           "instructor": "Colt Steele",
