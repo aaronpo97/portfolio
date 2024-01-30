@@ -1,6 +1,7 @@
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 
 import Layout from '@/components/ui/Layout';
 import { NunitoSans } from '@/fonts';
@@ -21,9 +22,12 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="icon" type="image/png" href="/favicon/favicon.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+
+      <GoogleReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY!}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </GoogleReCaptchaProvider>
     </>
   );
 }

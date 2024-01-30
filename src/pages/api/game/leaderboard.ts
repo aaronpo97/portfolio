@@ -1,4 +1,5 @@
 import ServerError from '@/ServerError';
+import validateCaptcha from '@/middleware/validateCaptcha';
 import validateRequest from '@/middleware/validateRequest';
 import GameLeaderboardValidationSchema from '@/schema/GameLeaderboardValidationSchema';
 import { NextApiRequest, NextApiResponse } from 'next';
@@ -45,6 +46,7 @@ const getLeaderboard = async (req: NextApiRequest, res: NextApiResponse) => {
 router.get(getLeaderboard);
 router.post(
   validateRequest({ bodySchema: GameLeaderboardValidationSchema }),
+  validateCaptcha,
   postNewScore,
 );
 
