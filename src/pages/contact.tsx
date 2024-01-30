@@ -3,22 +3,34 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
 import FormSegment from '@/components/ui/FormSegment';
 
-import emailDataSchema from '@/schema/emailDataSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Head from 'next/head';
 
-type FormInputs = z.infer<typeof emailDataSchema>;
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
+import CaptchaNotice from '@/components/CaptchaNotice';
+import SendEmailRequestBodySchema from '@/schema/SendEmailRequestBodySchema';
+
+type FormInputs = z.infer<typeof SendEmailRequestBodySchema>;
 
 const Contact: NextPage = () => {
   const { register, handleSubmit, formState, reset } = useForm<FormInputs>({
-    resolver: zodResolver(emailDataSchema),
+    resolver: zodResolver(SendEmailRequestBodySchema),
   });
 
+  const { executeRecaptcha } = useGoogleReCaptcha();
+
   const onSubmit: SubmitHandler<FormInputs> = async (data) => {
+    if (!executeRecaptcha) {
+      return;
+    }
+    const captchaToken = await executeRecaptcha();
     await fetch('/api/email', {
       method: 'POST',
       body: JSON.stringify(data),
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Captcha-Token': captchaToken,
+      },
     });
     reset();
   };
@@ -80,6 +92,7 @@ const Contact: NextPage = () => {
               </button>
             </div>
           </form>
+          <CaptchaNotice />
         </div>
       </div>
     </>

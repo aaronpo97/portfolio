@@ -28,12 +28,12 @@ const Home: NextPage = () => {
             <Socials />
           </div>
         </div>
-        <div className="absolute bottom-5 right-5 flex flex-col justify-end">
+        <div className="absolute left-5 top-3 flex flex-col justify-end">
           <div
-            className="tooltip tooltip-left"
+            className="tooltip tooltip-right"
             data-tip="Oh hey, what's up. I have some games here. Click me!"
           >
-            <Link href="/games" className="btn btn-circle btn-ghost btn-xs text-xs">
+            <Link href="/games" className="btn btn-circle btn-ghost btn-md">
               <FaGamepad />
             </Link>
           </div>

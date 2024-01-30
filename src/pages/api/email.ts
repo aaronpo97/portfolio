@@ -1,10 +1,12 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { z } from 'zod';
 import ServerError from '@/ServerError';
-import emailDataSchema from '@/schema/emailDataSchema';
+
 import emailResponseSchema from '@/schema/emailResponseSchema';
 import validateRequest from '@/middleware/validateRequest';
 import { createRouter } from 'next-connect';
+import SendEmailRequestBodySchema from '@/schema/SendEmailRequestBodySchema';
+import validateCaptcha from '@/middleware/validateCaptcha';
 
 const token = process.env.SPARKPOST_API_KEY;
 const sender = process.env.HOST_EMAIL_ADDRESS;
@@ -15,7 +17,7 @@ if (!(recipient && token && sender)) {
 }
 
 interface IEmailRequest extends NextApiRequest {
-  body: z.infer<typeof emailDataSchema>;
+  body: z.infer<typeof SendEmailRequestBodySchema>;
 }
 
 const router = createRouter<NextApiRequest, NextApiResponse>();
@@ -60,8 +62,9 @@ const postEmail = async (req: IEmailRequest, res: NextApiResponse) => {
 
 router.post(
   validateRequest({
-    bodySchema: emailDataSchema,
+    bodySchema: SendEmailRequestBodySchema,
   }),
+  validateCaptcha,
   postEmail,
 );
 
