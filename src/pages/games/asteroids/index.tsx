@@ -3,6 +3,7 @@ import AsteroidsGameContainer from '@/games/asteroids/AsteroidsGameContainer';
 import useMediaQuery from '@/hooks/useMediaQuery';
 import { NextPage } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 
 const Asteroids: NextPage = () => {
   const isMobile = useMediaQuery('(max-width: 640px)');
@@ -14,13 +15,16 @@ const Asteroids: NextPage = () => {
         <meta name="description" content="Play Asteroids" />
       </Head>
       <div className={`flex min-h-dvh flex-col items-center justify-center`}>
-        <header className={`${Sixtyfour.className} my-3 text-center`}>
-          <h1 className="text-6xl font-bold uppercase">Asteroids</h1>
+        <header className={`${Sixtyfour.className} my-6 text-center`}>
+          <h1 className="text-xl font-bold uppercase md:text-6xl">Asteroids</h1>
         </header>
 
         {isMobile ? (
-          <div className="flex h-96 items-center justify-center text-center">
+          <div className="flex flex-col items-center justify-center text-center">
             This game is not optimized for mobile devices. Please play on a larger screen.
+            <Link href="/games" className="btn btn-primary my-3">
+              Go Back
+            </Link>
           </div>
         ) : (
           <>

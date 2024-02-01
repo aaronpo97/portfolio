@@ -18,7 +18,7 @@ const SocialIcon: FunctionComponent<SocialIconProps> = ({
     <div className={`tooltip tooltip-${tooltipPosition} h-full`} data-tip={socialName}>
       <a
         href={href}
-        className="text-3xl hover:text-gray-300"
+        className="text-xl hover:text-gray-300 lg:text-3xl"
         target="_blank"
         rel="noopener noreferrer"
       >

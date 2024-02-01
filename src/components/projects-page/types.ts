@@ -9,6 +9,7 @@ export interface Project {
   title: string;
   metaTitle: string;
   metaDescription: string;
+  socialImage: string;
   date: string;
   githubURL: string;
   liveURL: string;

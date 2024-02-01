@@ -13,7 +13,7 @@ const GamesHeader: FC<{
     <header className="w-full">
       <h1
         className={classNames(
-          'mb-4 animate-fade text-7xl font-bold',
+          'mb-3 text-3xl font-bold lg:text-8xl',
           { 'animate-fade-left': inView, 'opacity-0': !inView },
           'motion-reduce:animate-none',
         )}
@@ -22,7 +22,7 @@ const GamesHeader: FC<{
       </h1>
       <h2
         className={classNames(
-          'mb-4 animate-fade text-3xl font-bold',
+          'mb-4 text-xl font-bold lg:text-3xl',
           { 'animate-fade-right': inView, 'opacity-0': !inView },
           'motion-reduce:animate-none',
         )}
@@ -58,7 +58,7 @@ const Games: NextPage<GamesProps> = ({ games }) => {
 
           <div
             className={classNames(
-              'grid grid-cols-1 gap-3 md:grid-cols-3',
+              'grid grid-cols-1 gap-3 md:grid-cols-2',
               {
                 'animate-fade': inView,
                 'opacity-0': !inView,
@@ -70,7 +70,7 @@ const Games: NextPage<GamesProps> = ({ games }) => {
               return (
                 <Link
                   key={game.id}
-                  className="card select-none bg-base-300 hover:bg-base-200"
+                  className="card card-compact select-none bg-base-300 hover:bg-base-200"
                   href={game.href}
                 >
                   {/* <figure>
@@ -83,9 +83,11 @@ const Games: NextPage<GamesProps> = ({ games }) => {
                     />
                   </figure> */}
                   <div className="card-body">
-                    <h2 className="card-title text-3xl font-bold">{game.name}</h2>
+                    <h2 className="card-title text-xl font-bold lg:text-4xl">
+                      {game.name}
+                    </h2>
                     {game.description.split('\n').map((line, index) => (
-                      <p key={index} className="text-base-content">
+                      <p key={index} className="text-sm lg:text-lg">
                         {line}
                       </p>
                     ))}
