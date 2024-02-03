@@ -101,6 +101,11 @@
               "link": "https://www.postgresql.org/"
             },
             {
+              "text": "CockroachDB",
+              "icon": "./icons/databases/cockroachdb.svg",
+              "link": "https://www.cockroachlabs.com/"
+            },
+            {
               "text": "Redis",
               "icon": "./icons/databases/redis.svg",
               "link": "https://redis.io/"
@@ -139,6 +144,11 @@
               "text": "LaTeX",
               "icon": "./icons/other/latex.svg",
               "link": "https://www.latex-project.org/"
+            },
+            {
+              "text": "OpenAI",
+              "icon": "./icons/other/openai.svg",
+              "link": "https://openai.com/"
             }
           ]
         },

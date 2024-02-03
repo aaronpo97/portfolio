@@ -13,7 +13,8 @@ const AboutPageTechSection: FC<{ item: Content }> = ({ item }) => {
       additionalTransfrom={0}
       arrows={false}
       autoPlay
-      autoPlaySpeed={3000}
+      autoPlaySpeed={2000}
+      // infinite
       centerMode={false}
       draggable={false}
       focusOnSelect={false}

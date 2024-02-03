@@ -38,7 +38,7 @@ const Navbar = () => {
       <div className="flex-1">
         {currentURL !== '/' ? (
           <Link className="btn btn-ghost btn-xs text-3xl" href="/">
-            <span className="cursor-pointer text-xl font-bold">Yerb</span>
+            <span className="cursor-pointer text-xl font-bold">Aaron Po</span>
           </Link>
         ) : (
           <div

@@ -33,6 +33,65 @@
           "link": "https://postgresql.org"
         }
       ]
+    },
+    {
+      "title": "SpoonBot",
+      "metaTitle": "SpoonBot",
+      "metaDescription": "A web application powered by OpenAI's GPT-3 API showcasing its ability to generate restaurant names, detailed restaurant reviews, and enticing restaurant menus.",
+      "date": "2024-01-21",
+      "socialImage": "/images/projects/spoonbot.svg",
+      "githubURL": "https://github.com/aaronpo97/spoonbot",
+      "liveURL": "https://spoonbot.vercel.app",
+      "text": "SpoonBot is a web application powered by OpenAI's GPT-3 API, showcasing its ability to generate restaurant names, detailed restaurant reviews, and enticing restaurant menus based on a user's input.\nThis project is built with Next.js, Tailwind, and Node.js, and it demonstrates the potential of AI for generating human-like content.",
+      "stack": [
+        {
+          "text": "Next.js",
+          "icon": "/icons/frontend/nextjs.svg",
+          "link": "https://nextjs.org"
+        },
+        {
+          "text": "Tailwind",
+          "icon": "/icons/frontend/tailwind.svg",
+          "link": "https://tailwindcss.com"
+        },
+        {
+          "text": "Node.js",
+          "icon": "/icons/backend/nodejs.svg",
+          "link": "https://nodejs.org"
+        },
+        {
+          "text": "OpenAI",
+          "icon": "/icons/other/openai.svg",
+          "link": "https://openai.com"
+        },
+        {
+          "text": "MongoDB",
+          "icon": "/icons/databases/mongodb.svg",
+          "link": "https://postgresql.org"
+        }
+      ]
+    },
+    {
+      "title": "DoggoBot",
+      "metaTitle": "DoggoBot",
+      "metaDescription": "A Discord bot that uses the DogCEO api to send pictures of dogs.",
+      "date": "2024-01-21",
+      "socialImage": "/images/projects/doggobot.svg",
+      "githubURL": "https://github.com/aaronpo97/doggobot",
+      "liveURL": "https://discord.gg/wxD6AEbxFT",
+      "text": "The DoggoBot is a Discord bot built in TypeScript using the discord.js library. Its main functionality is to periodically send pictures of dogs to designated channels on Discord servers. \nThis project is built with Node.js and showcases the potential of Discord bots for automating tasks and providing entertainment.",
+      "stack": [
+        {
+          "text": "Node.js",
+          "icon": "/icons/backend/nodejs.svg",
+          "link": "https://nodejs.org"
+        },
+        {
+          "text": "CockroachDB",
+          "icon": "/icons/databases/cockroachdb.svg",
+          "link": "https://cockroachlabs.com"
+        }
+      ]
     }
   ]
 }

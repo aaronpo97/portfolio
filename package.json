@@ -14,7 +14,7 @@
     "@hookform/resolvers": "^3.3.1",
     "classnames": "^2.5.1",
     "gray-matter": "^4.0.3",
-    "next": "^14.0.4",
+    "next": "^13.4.0",
     "next-connect": "^1.0.0",
     "obscenity": "^0.2.0",
     "prop-types": "^15.8.1",

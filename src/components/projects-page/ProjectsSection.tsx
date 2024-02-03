@@ -60,7 +60,7 @@ const ProjectsSection: FC<{
 
           <div className="space-y-3">
             <p className="font-bold uppercase lg:text-2xl">Built with</p>
-            <div className="grid grid-cols-2 gap-2 md:grid-cols-5">
+            <div className="grid grid-cols-2 gap-2 md:grid-cols-8">
               {project.stack.map((tech, idx) => (
                 <TechCard stack={tech} key={idx} />
               ))}

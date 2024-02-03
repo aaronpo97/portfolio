@@ -16,7 +16,7 @@ const Headings = () => {
           'motion-reduce:animate-none',
         )}
       >
-        Hello, I&apos;m Yerb.
+        Hello, I&apos;m Aaron Po.
       </h1>
       <h2
         className={classNames(
