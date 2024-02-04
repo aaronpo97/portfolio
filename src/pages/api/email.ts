@@ -22,32 +22,59 @@ interface IEmailRequest extends NextApiRequest {
 
 const router = createRouter<NextApiRequest, NextApiResponse>();
 
-const postEmail = async (req: IEmailRequest, res: NextApiResponse) => {
-  const { email, message, name, subject } = req.body;
+const TRANSMISSIONS_ENDPOINT = 'https://api.sparkpost.com/api/v1/transmissions';
 
-  const text = `Name: ${name}\nEmail: ${email}\nMessage: ${message}`;
-  const html = `<p>Name: ${name}</p><p>Email: ${email}</p><p>Message: ${message}</p>`;
-
-  const data = {
-    recipients: [{ address: recipient }],
-    content: { from: sender, subject, text, html },
-  };
-
-  const transmissionsEndpoint = 'https://api.sparkpost.com/api/v1/transmissions';
-
-  const response = await fetch(transmissionsEndpoint, {
+const sendEmailToMe = ({ name, email, message, subject }: IEmailRequest['body']) => {
+  return fetch(TRANSMISSIONS_ENDPOINT, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
       Authorization: token,
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify({
+      recipients: [{ address: recipient }],
+      content: {
+        from: sender,
+        subject,
+        text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
+        html: `<p>Name: ${name}</p><p>Email: ${email}</p><p>${message}</p>`,
+      },
+    }),
   });
+};
 
-  if (response.status !== 200) {
+const sendEmailToSender = ({ email }: IEmailRequest['body']) => {
+  return fetch(TRANSMISSIONS_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: token,
+    },
+    body: JSON.stringify({
+      recipients: [{ address: email }],
+      content: {
+        from: sender,
+        subject: 'Thank you for your message',
+        text: 'Thank you for your message. I will get back to you as soon as possible.',
+        html: '<p>Thank you for your message. I will get back to you as soon as possible.</p>',
+      },
+    }),
+  });
+};
+
+const postEmail = async (req: IEmailRequest, res: NextApiResponse) => {
+  const { email, message, name, subject } = req.body;
+
+  const [emailToMeResponse, emailToSenderResponse] = await Promise.all([
+    sendEmailToMe({ email, message, name, subject }),
+    sendEmailToSender({ email, message, name, subject }),
+  ]);
+
+  if (!emailToMeResponse.ok || !emailToSenderResponse.ok) {
     throw new ServerError(
-      `Error sending email: ${response.status} ${response.statusText}`,
+      'Something went wrong and your email was not sent. Sorry for the inconvenience',
       500,
     );
   }
@@ -61,9 +88,7 @@ const postEmail = async (req: IEmailRequest, res: NextApiResponse) => {
 };
 
 router.post(
-  validateRequest({
-    bodySchema: SendEmailRequestBodySchema,
-  }),
+  validateRequest({ bodySchema: SendEmailRequestBodySchema }),
   validateCaptcha,
   postEmail,
 );

@@ -104,7 +104,7 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu-compact menu dropdown-content mt-3 w-48 rounded-box bg-base-100 p-2 shadow"
+            className="menu-compact menu dropdown-content mt-3 w-48 rounded-box bg-primary p-2 shadow"
           >
             {pages.map((page) => (
               <li key={page.slug}>

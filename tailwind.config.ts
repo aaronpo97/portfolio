@@ -20,11 +20,11 @@ const customThemes: Record<string, Theme> = {
   dark: {
     primary: 'hsl(227, 20%, 30%)',
     secondary: 'hsl(255, 9%, 69%)',
-    error: 'hsl(9, 52%, 57%)',
+    error: 'hsl(9, 30%, 60%)',
     accent: 'hsl(316, 96%, 60%)',
     neutral: 'hsl(240, 11%, 8%)',
     info: 'hsl(187, 11%, 60%)',
-    success: 'hsl(117, 25%, 80%)',
+    success: 'hsl(117, 10%, 60%)',
     warning: 'hsl(50, 98%, 50%)',
     'base-100': 'hsl(227, 15%, 13%)',
     'base-200': 'hsl(227, 15%, 10%)',
