@@ -17,7 +17,7 @@ const ProjectsSection: FC<{
       <div className="w-9/12 space-y-6">
         <header className="flex items-start justify-between">
           <h1
-            className={classNames('w-full text-2xl font-extrabold md:text-6xl', {
+            className={classNames('w-full text-xl font-extrabold md:text-6xl', {
               'animate-fade-left': doAnimation,
               'opacity-0': !doAnimation,
             })}
@@ -60,7 +60,7 @@ const ProjectsSection: FC<{
 
           <div className="space-y-3">
             <p className="font-bold uppercase lg:text-2xl">Built with</p>
-            <div className="grid grid-cols-2 gap-2 md:grid-cols-8">
+            <div className="grid grid-cols-3 gap-2 md:grid-cols-8">
               {project.stack.map((tech, idx) => (
                 <TechCard stack={tech} key={idx} />
               ))}

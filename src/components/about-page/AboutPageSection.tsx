@@ -1,9 +1,7 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import Image from 'next/image';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import classNames from 'classnames';
 import { FC } from 'react';
 
+import useMediaQuery from '@/hooks/useMediaQuery';
 import type { Content } from './types';
 import AboutPageTechSection from './AboutPageTechSection';
 import AboutPageSkillsSection from './AboutPageSkillsSection';
@@ -15,8 +13,20 @@ const AboutPageSection: FC<{
   currentSlide: number;
 }> = ({ item, index, currentSlide }) => {
   const doAnimation = currentSlide === index;
+  const isMobile = useMediaQuery('(max-width: 640px)');
+  const isInLandscape = useMediaQuery('(orientation: landscape)');
   return (
-    <section className="relative flex h-full w-full flex-col items-center justify-center text-white">
+    <section
+      className={classNames(
+        'relative mt-5 flex h-full w-full flex-col items-center justify-center text-white',
+
+        {
+          'mt-12': isMobile && isInLandscape,
+          'animate-fade-up': doAnimation,
+          'opacity-0': !doAnimation,
+        },
+      )}
+    >
       <div className="w-9/12">
         <h2
           className={classNames(
@@ -41,7 +51,7 @@ const AboutPageSection: FC<{
         >
           <div className="space-y-4">
             {item.text.split('\n').map((line, i) => (
-              <p key={i} className="md:text-2xl">
+              <p key={i} className="text-sm md:text-2xl">
                 {line}
               </p>
             ))}

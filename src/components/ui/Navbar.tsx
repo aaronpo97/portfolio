@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/label-has-for */
 
+import classNames from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -34,7 +35,12 @@ const Navbar = () => {
   const { pages, currentURL } = useNavbar();
 
   return (
-    <nav className={`navbar fixed top-0 z-20 h-10 min-h-10 bg-transparent`}>
+    <nav
+      className={classNames(`navbar fixed top-0 z-20 h-10 min-h-10`, {
+        'bg-transparent': currentURL === '/',
+        'bg-base-100': currentURL !== '/',
+      })}
+    >
       <div className="flex-1">
         {currentURL !== '/' ? (
           <Link className="btn btn-ghost btn-xs text-3xl" href="/">

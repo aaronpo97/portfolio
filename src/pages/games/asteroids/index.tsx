@@ -16,11 +16,11 @@ const Asteroids: NextPage = () => {
       </Head>
       <div className={`flex min-h-dvh flex-col items-center justify-center`}>
         <header className={`${Sixtyfour.className} my-6 text-center`}>
-          <h1 className="text-xl font-bold uppercase md:text-6xl">Asteroids</h1>
+          <h1 className="text-3xl font-bold uppercase md:text-6xl">Asteroids</h1>
         </header>
 
         {isMobile ? (
-          <div className="flex flex-col items-center justify-center text-center">
+          <div className="flex flex-col items-center justify-center px-2 text-center">
             This game is not optimized for mobile devices. Please play on a larger screen.
             <Link href="/games" className="btn btn-primary my-3">
               Go Back

@@ -2,19 +2,22 @@ import Image from 'next/image';
 import { FC } from 'react';
 import { useInView } from 'react-intersection-observer';
 import classNames from 'classnames';
+import useMediaQuery from '@/hooks/useMediaQuery';
 import { Stack } from './types';
 
 const TechCard: FC<{
   stack: Stack;
 }> = ({ stack }) => {
   const [ref, inView] = useInView();
+  const isMobile = useMediaQuery('(max-width: 640px)');
+
   return (
     <a
       ref={ref}
       href={stack.link}
       className={classNames(
         'card card-compact bg-primary hover:bg-[#292d3d]',
-        { 'animate-fade-up': inView, 'opacity-0': !inView },
+        { 'animate-fade-up': inView && !isMobile, 'opacity-0': !inView && !isMobile },
         'motion-reduce:animate-none',
       )}
       // open in new tab
@@ -27,6 +30,7 @@ const TechCard: FC<{
             src={stack.icon}
             alt={stack.text}
             width={96}
+            fetchPriority="high"
             height={96}
             className="h-full w-full"
           />
