@@ -14,14 +14,12 @@ const FormSubmissionReceipt: FC<FormSubmissionReceiptProps> = ({ name }) => (
       <Section>
         <Heading className="text-2xl font-bold">Hi there, {name}!</Heading>
 
-        <Text className="text-lg">
-          Thank you for reaching out to me. I will get back to you as soon as possible!
-        </Text>
+        <Text>Thank you so much for reaching out to me.</Text>
+        <Text>I will get back to you as soon as possible.</Text>
 
-        <Text className="text-lg">All the best, Aaron Po</Text>
-        <Button href="https://aaronwilliampo.com/">
-          <Text className="text-lg">Return to my website</Text>
-        </Button>
+        <Text>All the best,</Text>
+        <Text>Aaron Po</Text>
+        <Button href="https:/aaronwilliampo.com">Visit my website</Button>
       </Section>
     </Container>
   </Tailwind>
