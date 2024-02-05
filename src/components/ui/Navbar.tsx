@@ -5,8 +5,8 @@
 import classNames from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import { FaGamepad } from 'react-icons/fa';
+import { FC, useEffect, useRef, useState } from 'react';
+import { FaBars, FaGamepad } from 'react-icons/fa';
 
 interface Page {
   slug: string;
@@ -31,6 +31,84 @@ const useNavbar = () => {
   return { pages, currentURL };
 };
 
+const DesktopNavbar: FC<{
+  pages: Page[];
+  currentURL: string;
+}> = ({ currentURL, pages }) => {
+  return (
+    <div className="hidden flex-none lg:block">
+      <ul className="menu menu-horizontal p-0">
+        {pages.map((page) => {
+          return (
+            <li key={page.slug}>
+              <Link
+                tabIndex={0}
+                href={page.slug}
+                rel={page.slug === '/resume.pdf' ? 'noopener noreferrer' : ''}
+                target={page.slug === '/resume.pdf' ? '_blank' : ''}
+              >
+                <span
+                  className={`text-lg uppercase ${
+                    currentURL === page.slug
+                      ? 'font-extrabold underline underline-offset-8'
+                      : 'font-bold'
+                  } text-base-content`}
+                >
+                  {page.name}
+                </span>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+};
+
+const MobileNavbar: FC<{
+  pages: Page[];
+  currentURL: string;
+}> = ({ pages }) => {
+  const drawerRef = useRef<HTMLInputElement>(null);
+  return (
+    <div className="flex-none lg:hidden">
+      <div className="drawer drawer-end">
+        <input id="my-drawer" type="checkbox" className="drawer-toggle" ref={drawerRef} />
+        <div className="drawer-content">
+          <label htmlFor="my-drawer" className="btn btn-ghost drawer-button">
+            <FaBars />
+          </label>
+        </div>
+        <div className="drawer-side ">
+          <label
+            htmlFor="my-drawer"
+            aria-label="close sidebar"
+            className="drawer-overlay"
+          />
+          <ul className="menu min-h-full w-52 bg-primary p-4 text-base-content">
+            {pages.map((page) => {
+              return (
+                <li key={page.slug}>
+                  <Link
+                    href={page.slug}
+                    tabIndex={0}
+                    onClick={() => {
+                      if (!drawerRef.current) return;
+                      drawerRef.current.checked = false;
+                    }}
+                  >
+                    <span className="text-lg font-bold uppercase">{page.name}</span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Navbar = () => {
   const { pages, currentURL } = useNavbar();
 
@@ -44,7 +122,9 @@ const Navbar = () => {
       <div className="flex-1">
         {currentURL !== '/' ? (
           <Link className="btn btn-ghost btn-xs text-3xl" href="/">
-            <span className="cursor-pointer text-xl font-bold">Aaron Po</span>
+            <span className="cursor-pointer text-xl font-bold">
+              {process.env.NEXT_PUBLIC_SITE_NAME}
+            </span>
           </Link>
         ) : (
           <div
@@ -57,65 +137,8 @@ const Navbar = () => {
           </div>
         )}
       </div>
-      <div className="hidden flex-none lg:block">
-        <ul className="menu menu-horizontal p-0">
-          {pages.map((page) => {
-            return (
-              <li key={page.slug}>
-                <Link
-                  tabIndex={0}
-                  href={page.slug}
-                  rel={page.slug === '/resume.pdf' ? 'noopener noreferrer' : ''}
-                  target={page.slug === '/resume.pdf' ? '_blank' : ''}
-                >
-                  <span
-                    className={`text-lg uppercase ${
-                      currentURL === page.slug
-                        ? 'font-extrabold underline underline-offset-8'
-                        : 'font-bold'
-                    } text-base-content`}
-                  >
-                    {page.name}
-                  </span>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-      <div className="flex-none lg:hidden">
-        <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-circle btn-ghost">
-            <div className="w-10 rounded-full">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                className="inline-block h-5 w-5 stroke-white"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </div>
-          </label>
-          <ul
-            tabIndex={0}
-            className="menu-compact menu dropdown-content mt-3 w-48 rounded-box bg-primary p-2 shadow"
-          >
-            {pages.map((page) => (
-              <li key={page.slug}>
-                <Link href={page.slug}>
-                  <span className="select-none">{page.name}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      <DesktopNavbar currentURL={currentURL} pages={pages} />
+      <MobileNavbar currentURL={currentURL} pages={pages} />
     </nav>
   );
 };

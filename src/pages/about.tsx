@@ -10,12 +10,9 @@ import { AboutPageProps } from '@/components/about-page/types';
 import AboutPageSection from '@/components/about-page/AboutPageSection';
 import { CustomLeftArrow, CustomRightArrow } from '@/components/about-page/CustomArrows';
 
-import useIsMobile from '@/hooks/useIsMobile';
 import useSlideControls from '@/hooks/carousel/useSlideControls';
 
 const AboutPage: NextPage<AboutPageProps> = ({ content, preamble, title }) => {
-  const isMobile = useIsMobile();
-
   const { currentSlide, setCurrentSlide, ref } = useSlideControls({
     maxSlides: content.length + 1,
   });
@@ -35,7 +32,7 @@ const AboutPage: NextPage<AboutPageProps> = ({ content, preamble, title }) => {
           beforeChange={(nextSlide) => {
             setCurrentSlide(nextSlide);
           }}
-          arrows={!isMobile}
+          arrows
           responsive={{
             mobile: { items: 1, breakpoint: { max: 464, min: 0 } },
             tablet: { items: 1, breakpoint: { max: 1024, min: 464 } },

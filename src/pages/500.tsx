@@ -6,7 +6,7 @@ const Page404: NextPage = () => {
   return (
     <>
       <Head>
-        <title>404 Not Found</title>
+        <title>500: Internal Server Error</title>
         <meta name="description" content="That page doesn't exist." />
       </Head>
       <div className="flex h-dvh flex-col items-center justify-center">

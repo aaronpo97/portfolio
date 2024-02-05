@@ -16,9 +16,10 @@ const CarouselInstructions: FC<{
       )}
     >
       {isMobile ? (
-        <span className="text-xs italic">
-          Swipe left to see more, or right to go back.
-        </span>
+        <p className="text-xs italic">
+          Navigate through the slides by using the arrows or by swiping left or right on
+          your screen.
+        </p>
       ) : (
         <ul className="flex flex-col text-sm italic">
           <li>

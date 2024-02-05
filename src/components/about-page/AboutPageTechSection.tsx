@@ -13,8 +13,8 @@ const AboutPageTechSection: FC<{ item: Content }> = ({ item }) => {
       additionalTransfrom={0}
       arrows={false}
       autoPlay
-      autoPlaySpeed={2000}
-      // infinite
+      autoPlaySpeed={2500}
+      infinite
       centerMode={false}
       draggable={false}
       focusOnSelect={false}
@@ -42,7 +42,7 @@ const AboutPageTechSection: FC<{ item: Content }> = ({ item }) => {
             <h3 className="my-3 text-lg font-bold uppercase md:my-4 md:text-2xl">
               {t.category}
             </h3>
-            <div className="grid grid-cols-3 gap-2 xl:grid-cols-7">
+            <div className="mb-10 grid grid-cols-3 gap-2 md:mb-0 xl:grid-cols-7">
               {t.stack.map((stack) => (
                 <TechCard stack={stack} key={stack.link} />
               ))}

@@ -8,7 +8,7 @@ export const CustomLeftArrow = ({ onClick }: ArrowProps) => {
       className="absolute left-0 top-1/2 -translate-y-1/2 transform"
       onClick={onClick}
     >
-      <FaChevronLeft className="text-5xl" />
+      <FaChevronLeft className="text-2xl lg:text-5xl" />
     </button>
   );
 };
@@ -20,7 +20,7 @@ export const CustomRightArrow = ({ onClick }: ArrowProps) => {
       className="absolute right-0 top-1/2 -translate-y-1/2 transform"
       onClick={onClick}
     >
-      <FaChevronRight className="text-5xl" />
+      <FaChevronRight className="text-2xl lg:text-5xl" />
     </button>
   );
 };

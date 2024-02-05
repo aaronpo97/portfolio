@@ -18,7 +18,7 @@ type Theme = {
 
 const customThemes: Record<string, Theme> = {
   dark: {
-    primary: 'hsl(227, 20%, 30%)',
+    primary: 'hsl(227, 15%, 30%)',
     secondary: 'hsl(255, 9%, 69%)',
     error: 'hsl(9, 30%, 60%)',
     accent: 'hsl(316, 96%, 60%)',

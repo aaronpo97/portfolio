@@ -6,7 +6,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Head from 'next/head';
 import useSlideControls from '@/hooks/carousel/useSlideControls';
-import useIsMobile from '@/hooks/useIsMobile';
+
 import { CustomLeftArrow, CustomRightArrow } from '@/components/about-page/CustomArrows';
 
 import ProjectsSection from '@/components/projects-page/ProjectsSection';
@@ -16,7 +16,7 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ preamble, title, projects }
   const { currentSlide, ref, setCurrentSlide } = useSlideControls({
     maxSlides: projects.length + 1,
   });
-  const isMobile = useIsMobile();
+
   return (
     <>
       <Head>
@@ -33,7 +33,7 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ preamble, title, projects }
           beforeChange={(nextSlide) => {
             setCurrentSlide(nextSlide);
           }}
-          arrows={!isMobile}
+          arrows
           responsive={{
             mobile: { items: 1, breakpoint: { max: 464, min: 0 } },
             tablet: { items: 1, breakpoint: { max: 1024, min: 464 } },
