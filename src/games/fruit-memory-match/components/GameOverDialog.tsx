@@ -110,6 +110,7 @@ const GameOverDialog: FC<{
                 id="name"
                 label="Name"
                 placeholder="Your name"
+                disabled={formState.isSubmitting}
               />
 
               <div className="modal-action grid grid-cols-2 gap-1">
