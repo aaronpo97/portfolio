@@ -1,12 +1,16 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { z } from 'zod';
 import ServerError from '@/ServerError';
+import { render } from '@react-email/render';
 
 import emailResponseSchema from '@/schema/emailResponseSchema';
 import validateRequest from '@/middleware/validateRequest';
 import { createRouter } from 'next-connect';
 import SendEmailRequestBodySchema from '@/schema/SendEmailRequestBodySchema';
 import validateCaptcha from '@/middleware/validateCaptcha';
+import FormSubmissionEmail from '@/emails/FormSubmissionEmail';
+import { ReactElement } from 'react';
+import FormSubmissionReceipt from '@/emails/FormSubmissionReceipt';
 
 const token = process.env.SPARKPOST_API_KEY;
 const sender = process.env.HOST_EMAIL_ADDRESS;
@@ -25,6 +29,16 @@ const router = createRouter<NextApiRequest, NextApiResponse>();
 const TRANSMISSIONS_ENDPOINT = 'https://api.sparkpost.com/api/v1/transmissions';
 
 const sendEmailToMe = ({ name, email, message, subject }: IEmailRequest['body']) => {
+  const component = FormSubmissionEmail({
+    name,
+    message,
+    subject,
+    email,
+  }) as ReactElement<unknown, string>;
+
+  const html = render(component);
+  const text = render(component, { plainText: true });
+
   return fetch(TRANSMISSIONS_ENDPOINT, {
     method: 'POST',
     headers: {
@@ -35,16 +49,24 @@ const sendEmailToMe = ({ name, email, message, subject }: IEmailRequest['body'])
     body: JSON.stringify({
       recipients: [{ address: recipient }],
       content: {
+        html,
+        text,
         from: sender,
-        subject,
-        text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
-        html: `<p>Name: ${name}</p><p>Email: ${email}</p><p>${message}</p>`,
+        subject: `New Form Submission from ${name}`,
       },
     }),
   });
 };
 
-const sendEmailToSender = ({ email }: IEmailRequest['body']) => {
+const sendEmailToSender = ({ email, name }: IEmailRequest['body']) => {
+  const component = FormSubmissionReceipt({
+    email,
+    name,
+  }) as ReactElement<unknown, string>;
+
+  const html = render(component);
+  const text = render(component, { plainText: true });
+
   return fetch(TRANSMISSIONS_ENDPOINT, {
     method: 'POST',
     headers: {
@@ -55,10 +77,10 @@ const sendEmailToSender = ({ email }: IEmailRequest['body']) => {
     body: JSON.stringify({
       recipients: [{ address: email }],
       content: {
+        html,
+        text,
         from: sender,
-        subject: 'Thank you for your message',
-        text: 'Thank you for your message. I will get back to you as soon as possible.',
-        html: '<p>Thank you for your message. I will get back to you as soon as possible.</p>',
+        subject: 'Thank you for your message!',
       },
     }),
   });

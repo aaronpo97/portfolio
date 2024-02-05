@@ -61,6 +61,8 @@ const Contact: NextPage = () => {
     resolver: zodResolver(SendEmailRequestBodySchema),
   });
 
+  const { isSubmitting } = formState;
+
   const { executeRecaptcha } = useGoogleReCaptcha();
 
   const successDialogRef = useRef<HTMLDialogElement>(null);
@@ -120,6 +122,7 @@ const Contact: NextPage = () => {
               <div className="space-y-3">
                 <div className="flex flex-col space-y-3 lg:flex-row lg:space-x-3 lg:space-y-0">
                   <FormSegment
+                    disabled={isSubmitting}
                     errorMessage={errors.email?.message}
                     formRegister={register('email')}
                     id="email"
@@ -127,6 +130,7 @@ const Contact: NextPage = () => {
                     placeholder="Your email address"
                   />
                   <FormSegment
+                    disabled={isSubmitting}
                     errorMessage={errors.name?.message}
                     formRegister={register('name')}
                     id="name"
@@ -135,6 +139,7 @@ const Contact: NextPage = () => {
                   />
                 </div>
                 <FormSegment
+                  disabled={isSubmitting}
                   errorMessage={errors.subject?.message}
                   formRegister={register('subject')}
                   id="subject"
@@ -142,6 +147,7 @@ const Contact: NextPage = () => {
                   placeholder="Email subject"
                 />
                 <FormSegment
+                  disabled={isSubmitting}
                   errorMessage={errors.message?.message}
                   formRegister={register('message')}
                   id="message"
@@ -151,7 +157,11 @@ const Contact: NextPage = () => {
                 />
               </div>
 
-              <button type="submit" className="btn btn-primary rounded-xl">
+              <button
+                type="submit"
+                className="btn btn-primary rounded-xl"
+                disabled={isSubmitting}
+              >
                 Send Email
               </button>
             </div>
