@@ -42,7 +42,7 @@ const AboutPageTechSection: FC<{ item: Content }> = ({ item }) => {
             <h3 className="my-3 text-lg font-bold uppercase md:my-4 md:text-2xl">
               {t.category}
             </h3>
-            <div className="mb-10 grid grid-cols-3 gap-2 md:mb-0 xl:grid-cols-7">
+            <div className="mb-10 grid grid-cols-3 gap-2 md:grid-cols-5 lg:mb-0 lg:grid-cols-6 xl:grid-cols-7">
               {t.stack.map((stack) => (
                 <TechCard stack={stack} key={stack.link} />
               ))}

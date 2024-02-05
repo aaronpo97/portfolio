@@ -13,7 +13,6 @@ const AboutPageSection: FC<{
   currentSlide: number;
 }> = ({ item, index, currentSlide }) => {
   const doAnimation = currentSlide === index;
-  const isMobile = useMediaQuery('(max-width: 640px)');
   const isInLandscape = useMediaQuery('(orientation: landscape)');
   return (
     <section
@@ -21,7 +20,7 @@ const AboutPageSection: FC<{
         'relative mt-5 flex h-full w-full flex-col items-center justify-center text-white',
 
         {
-          'mt-12': isMobile && isInLandscape,
+          'my-32': isInLandscape,
           'animate-fade-up': doAnimation,
           'opacity-0': !doAnimation,
         },

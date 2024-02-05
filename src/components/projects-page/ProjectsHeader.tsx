@@ -1,14 +1,22 @@
 import classNames from 'classnames';
 import { FC } from 'react';
+import useMediaQuery from '@/hooks/useMediaQuery';
 import CarouselInstructions from '../ui/CarouselInstructions';
 
 const ProjectsHeader: FC<{
   currentSlide: number;
   preamble: string;
 }> = ({ currentSlide, preamble }) => {
+  const isInLandscape = useMediaQuery('(orientation: landscape)');
   return (
-    <header className="flex h-dvh flex-col items-center justify-center">
-      <div className="w-9/12 space-y-4">
+    <header
+      className={classNames('flex h-full flex-col items-center justify-center', {})}
+    >
+      <div
+        className={classNames('flex w-9/12 flex-col space-y-4', {
+          'my-32': isInLandscape,
+        })}
+      >
         <h1
           className={classNames(
             'w-full text-2xl font-extrabold md:text-8xl',

@@ -79,7 +79,7 @@ const MobileNavbar: FC<{
             <FaBars />
           </label>
         </div>
-        <div className="drawer-side ">
+        <div className="drawer-side">
           <label
             htmlFor="my-drawer"
             aria-label="close sidebar"

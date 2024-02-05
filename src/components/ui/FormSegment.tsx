@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 interface FormSegmentProps {
   id: string;
+  disabled: boolean;
   errorMessage: string | undefined;
   formRegister: UseFormRegisterReturn;
   label: string;
@@ -17,6 +18,7 @@ const FormSegment: FC<FormSegmentProps> = ({
   id,
   label,
   placeholder,
+  disabled,
   type = 'textInput',
 }) => {
   return (
@@ -32,6 +34,7 @@ const FormSegment: FC<FormSegmentProps> = ({
         <input
           type="text"
           placeholder={placeholder}
+          disabled={disabled}
           id={id}
           className={classNames('input input-bordered w-full', {
             'input-error': !!errorMessage,
@@ -42,6 +45,7 @@ const FormSegment: FC<FormSegmentProps> = ({
 
       {type === 'textArea' && (
         <textarea
+          disabled={disabled}
           className={classNames('textarea textarea-bordered h-64 w-full resize-none', {
             'textarea-error': !!errorMessage,
           })}
