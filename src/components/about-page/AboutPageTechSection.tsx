@@ -5,7 +5,7 @@ import { Content } from './types';
 import TechCard from './TechCard';
 import 'react-multi-carousel/lib/styles.css';
 
-const AboutPageTechSection: FC<{ item: Content }> = ({ item }) => {
+const AboutPageTechSection: FC<{ item: Content; doAnimation: boolean }> = ({ item }) => {
   const { tech } = item;
 
   return !tech ? null : (

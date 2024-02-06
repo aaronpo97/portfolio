@@ -7,8 +7,7 @@ export interface ProjectsPageProps {
 export interface Project {
   id: string;
   title: string;
-  metaTitle: string;
-  metaDescription: string;
+
   socialImage: string;
   date: string;
   githubURL: string;

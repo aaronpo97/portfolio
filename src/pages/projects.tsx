@@ -11,12 +11,14 @@ import { CustomLeftArrow, CustomRightArrow } from '@/components/about-page/Custo
 
 import ProjectsSection from '@/components/projects-page/ProjectsSection';
 import ProjectsHeader from '@/components/projects-page/ProjectsHeader';
+import useMediaQuery from '@/hooks/useMediaQuery';
 
 const ProjectsPage: NextPage<ProjectsPageProps> = ({ preamble, title, projects }) => {
   const { currentSlide, ref, setCurrentSlide } = useSlideControls({
     maxSlides: projects.length + 1,
   });
 
+  const prefersReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
   return (
     <>
       <Head>
@@ -29,7 +31,11 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ preamble, title, projects }
           containerClass="container"
           customLeftArrow={<CustomLeftArrow />}
           customRightArrow={<CustomRightArrow />}
-          customTransition="transform 1000ms cubic-bezier(0.22, 0.61, 0.36, 1.0)"
+          customTransition={
+            prefersReducedMotion
+              ? 'transform 0ms'
+              : 'transform 1000ms cubic-bezier(0.22, 0.61, 0.36, 1.0)'
+          }
           beforeChange={(nextSlide) => {
             setCurrentSlide(nextSlide);
           }}

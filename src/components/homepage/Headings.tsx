@@ -16,7 +16,7 @@ const Headings = () => {
           'motion-reduce:animate-none',
         )}
       >
-        Hello, I&apos;m Aaron Po.
+        Hello, I&apos;m {process.env.NEXT_PUBLIC_SITE_NAME}.
       </h1>
       <h2
         className={classNames(
