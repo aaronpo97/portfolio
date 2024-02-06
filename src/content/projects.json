@@ -4,13 +4,11 @@
   "projects": [
     {
       "title": "The Biergarten App",
-      "metaTitle": "The Biergarten App",
-      "metaDescription": "The Biergarten App is an app for beer lovers to share their favourite brews and breweries with like-minded people online.",
       "date": "2024-01-21",
       "socialImage": "/images/projects/biergarten.svg",
       "githubURL": "https://github.com/aaronpo97/the-biergarten-app",
       "liveURL": "https://thebiergarten.app",
-      "text": "The Biergarten App is an app for beer lovers to share their favourite brews and breweries with like-minded people online.\nThis project is a full-stack web application that allows users to create accounts, post reviews, and interact with other users.",
+      "text": "The Biergarten App is a full-stack web application for beer lovers to share their favourite brews and breweries with like-minded people online. Users can create an account, add their favourite beers and breweries, and interact with other users by liking and commenting on their posts.",
       "stack": [
         {
           "text": "Next.js",
@@ -36,13 +34,11 @@
     },
     {
       "title": "SpoonBot",
-      "metaTitle": "SpoonBot",
-      "metaDescription": "A web application powered by OpenAI's GPT-3 API showcasing its ability to generate restaurant names, detailed restaurant reviews, and enticing restaurant menus.",
       "date": "2024-01-21",
       "socialImage": "/images/projects/spoonbot.svg",
       "githubURL": "https://github.com/aaronpo97/spoonbot",
       "liveURL": "https://spoonbot.vercel.app",
-      "text": "SpoonBot is a web application powered by OpenAI's GPT-3 API, showcasing its ability to generate restaurant names, detailed restaurant reviews, and enticing restaurant menus based on a user's input.",
+      "text": "SpoonBot is a web application powered by OpenAI's GPT-3 API, showcasing its ability to generate restaurant names, detailed restaurant reviews, and enticing restaurant menus based on a user's input. \n This project demonstrates the potential of AI in the food and beverage industry, providing a glimpse into the possibly disruptive applications of AI in the future.",
       "stack": [
         {
           "text": "Next.js",
@@ -73,13 +69,11 @@
     },
     {
       "title": "DoggoBot",
-      "metaTitle": "DoggoBot",
-      "metaDescription": "A Discord bot that uses the DogCEO api to send pictures of dogs.",
       "date": "2024-01-21",
       "socialImage": "/images/projects/doggobot.svg",
       "githubURL": "https://github.com/aaronpo97/doggobot",
       "liveURL": "https://discord.gg/wxD6AEbxFT",
-      "text": "The DoggoBot is a Discord bot built in TypeScript using the discord.js library. Its main functionality is to periodically send pictures of dogs to designated channels on Discord servers. \nThis project showcases the potential of Discord bots for automating tasks and providing entertainment.",
+      "text": "The DoggoBot is a Discord bot built in TypeScript using the discord.js library. Its main functionality is to periodically send pictures of dogs to designated channels on Discord servers, showcasing the potential of Discord bots for automating tasks and providing entertainment.",
       "stack": [
         {
           "text": "Node.js",

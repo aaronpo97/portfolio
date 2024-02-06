@@ -1,19 +1,20 @@
 import { FC } from 'react';
 import classNames from 'classnames';
-import { useInView } from 'react-intersection-observer';
+
 import { Content } from './types';
 
-const AboutPageCoursesSection: FC<{ item: Content }> = ({ item }) => {
+const AboutPageCoursesSection: FC<{ item: Content; doAnimation: boolean }> = ({
+  item,
+  doAnimation,
+}) => {
   const { courses } = item;
 
-  const [ref, inView] = useInView();
   return (
     !!courses && (
       <ul
-        ref={ref}
         className={classNames(
           'mr-10 mt-3 list-inside list-disc space-y-1 text-sm md:text-xl',
-          { 'animate-fade-down': inView, 'opacity-0': !inView },
+          { 'animate-fade-down': doAnimation, 'opacity-0': !doAnimation },
           'motion-reduce:animate-none motion-reduce:opacity-100',
         )}
       >

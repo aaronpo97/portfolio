@@ -1,10 +1,5 @@
-import FormSegment from '@/components/ui/FormSegment';
-import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import GameLeaderboardValidationSchema from '@/schema/GameLeaderboardValidationSchema';
-import CaptchaNotice from '@/components/CaptchaNotice';
-import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
+import { Dispatch, FC, SetStateAction, useState } from 'react';
+import LeaderboardForm from './LeaderboardForm';
 
 const GameOverDialog: FC<{
   gameOverRef: React.RefObject<HTMLDialogElement>;
@@ -13,31 +8,12 @@ const GameOverDialog: FC<{
   setDisabled: Dispatch<SetStateAction<boolean>>;
 }> = ({ gameOverRef, turnCount, shuffleCards, setDisabled }) => {
   const [showForm, setShowForm] = useState(false);
-
-  const { register, handleSubmit, formState, reset, setValue } = useForm<{
-    name: string;
-    turns: number;
-  }>({
-    resolver: zodResolver(GameLeaderboardValidationSchema),
-  });
-
-  const { executeRecaptcha } = useGoogleReCaptcha();
-
-  useEffect(() => {
-    setValue('turns', turnCount);
-  }, [turnCount, setValue]);
   return (
     <dialog
       ref={gameOverRef}
       className="modal"
       onClose={() => {
         setDisabled(false);
-      }}
-      onClick={() => {
-        gameOverRef.current!.close();
-        setShowForm(false);
-        setDisabled(false);
-        shuffleCards();
       }}
     >
       <div className="modal-box" onClick={(e) => e.stopPropagation()}>
@@ -46,7 +22,8 @@ const GameOverDialog: FC<{
         <div className="modal-body">
           <p className="text-lg">You finished the game in {turnCount} turns!</p>
         </div>
-        {!showForm && (
+
+        {!showForm ? (
           <div className="modal-action grid grid-cols-2 justify-center gap-1">
             <button
               className="btn btn-primary btn-sm"
@@ -69,67 +46,14 @@ const GameOverDialog: FC<{
               Close and Play Again
             </button>
           </div>
-        )}
-
-        {showForm && (
-          <>
-            <form
-              className="my-3"
-              onSubmit={handleSubmit(async (data) => {
-                if (!executeRecaptcha) {
-                  return;
-                }
-
-                const token = await executeRecaptcha();
-                const response = await fetch('/api/game/leaderboard', {
-                  method: 'POST',
-                  body: JSON.stringify(data),
-                  headers: {
-                    'Content-Type': 'application/json',
-                    'X-Captcha-Token': token,
-                  },
-                });
-
-                if (!response.ok) {
-                  throw new Error(response.statusText);
-                }
-
-                gameOverRef.current!.close();
-                shuffleCards();
-                setDisabled(false);
-                setShowForm(false);
-                reset();
-              })}
-            >
-              <h2 className="my-3 text-xl font-bold">
-                Save your score to the leaderboard!
-              </h2>
-              <FormSegment
-                errorMessage={formState.errors.name?.message}
-                formRegister={register('name')}
-                id="name"
-                label="Name"
-                placeholder="Your name"
-                disabled={formState.isSubmitting}
-              />
-
-              <div className="modal-action grid grid-cols-2 gap-1">
-                <button formAction="submit" className="btn btn-primary btn-sm">
-                  Save Score
-                </button>
-                <button
-                  onClick={() => {
-                    setShowForm(false);
-                  }}
-                  type="button"
-                  className="btn btn-primary btn-sm"
-                >
-                  Cancel
-                </button>
-              </div>
-            </form>
-            <CaptchaNotice />
-          </>
+        ) : (
+          <LeaderboardForm
+            setShowForm={setShowForm}
+            turnCount={turnCount}
+            shuffleCards={shuffleCards}
+            setDisabled={setDisabled}
+            gameOverRef={gameOverRef}
+          />
         )}
       </div>
     </dialog>

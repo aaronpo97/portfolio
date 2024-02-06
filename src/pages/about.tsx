@@ -11,11 +11,14 @@ import AboutPageSection from '@/components/about-page/AboutPageSection';
 import { CustomLeftArrow, CustomRightArrow } from '@/components/about-page/CustomArrows';
 
 import useSlideControls from '@/hooks/carousel/useSlideControls';
+import useMediaQuery from '@/hooks/useMediaQuery';
 
 const AboutPage: NextPage<AboutPageProps> = ({ content, preamble, title }) => {
   const { currentSlide, setCurrentSlide, ref } = useSlideControls({
     maxSlides: content.length + 1,
   });
+
+  const prefersReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
   return (
     <>
       <Head>
@@ -28,7 +31,11 @@ const AboutPage: NextPage<AboutPageProps> = ({ content, preamble, title }) => {
           containerClass="container"
           customLeftArrow={<CustomLeftArrow />}
           customRightArrow={<CustomRightArrow />}
-          customTransition="transform 1000ms cubic-bezier(0.22, 0.61, 0.36, 1.0)"
+          customTransition={
+            prefersReducedMotion
+              ? 'transform 0ms'
+              : 'transform 1000ms cubic-bezier(0.22, 0.61, 0.36, 1.0)'
+          }
           beforeChange={(nextSlide) => {
             setCurrentSlide(nextSlide);
           }}
