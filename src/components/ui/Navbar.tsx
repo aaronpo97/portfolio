@@ -26,6 +26,7 @@ const useNavbar = () => {
     { slug: '/projects', name: 'Projects' },
     { slug: '/contact', name: 'Contact' },
     { slug: '/resume.pdf', name: 'Resume' },
+    { slug: '/art', name: 'Art' },
   ];
 
   return { pages, currentURL };
@@ -112,10 +113,12 @@ const MobileNavbar: FC<{
 const Navbar = () => {
   const { pages, currentURL } = useNavbar();
 
+  const showSiteName = !(currentURL === '/' || currentURL === '/art');
+
   return (
     <nav
-      className={classNames(`navbar fixed top-0 z-20 h-10 min-h-10`, {
-        'bg-transparent': currentURL === '/',
+      className={classNames(`navbar fixed top-0 z-20 h-11 min-h-10`, {
+        'bg-transparent': !showSiteName,
         'bg-base-100': currentURL !== '/',
       })}
     >

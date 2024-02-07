@@ -46,7 +46,7 @@ const FormSegment: FC<FormSegmentProps> = ({
       {type === 'textArea' && (
         <textarea
           disabled={disabled}
-          className={classNames('textarea textarea-bordered h-64 w-full resize-none', {
+          className={classNames('textarea textarea-bordered h-48 w-full resize-none', {
             'textarea-error': !!errorMessage,
           })}
           placeholder={placeholder}
