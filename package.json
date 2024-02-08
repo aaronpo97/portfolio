@@ -17,6 +17,7 @@
     "@react-email/tailwind": "^0.0.12",
     "classnames": "^2.5.1",
     "gray-matter": "^4.0.3",
+    "lodash": "^4.17.21",
     "next": "^13.4.0",
     "next-connect": "^1.0.0",
     "obscenity": "^0.2.0",
@@ -35,10 +36,12 @@
     "sharp": "^0.33.1",
     "swr": "^2.2.4",
     "three": "^0.161.0",
+    "lil-gui": "^0.18.2",
     "zod": "^3.22.4"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
+    "@types/lodash": "^4.14.202",
     "@types/node": "^20.10.6",
     "@types/react": "^18.2.47",
     "@types/react-dom": "^18.2.18",

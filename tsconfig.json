@@ -26,7 +26,7 @@
     "**/*.tsx",
     "**/*.js",
     "src/schema/SendEmailRequestBodySchemats",
-    "src/art/donuts/types/PositiveInteger.ts"
+    "src/threejs/donuts/types/PositiveInteger.ts"
   ],
   "exclude": ["node_modules"]
 }

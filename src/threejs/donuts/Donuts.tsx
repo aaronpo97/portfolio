@@ -13,12 +13,12 @@ import {
   createReplicatedGroup,
   calculateChildPositions,
   calculateChildRotation,
+  MAX_DISTANCE,
 } from './util';
 
 const Donuts: FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const MAX_DISTANCE = 50;
   const SIZES = useMemo(() => {
     if (typeof window === 'undefined') {
       return { width: 0, height: 0 };

@@ -26,7 +26,7 @@ const useNavbar = () => {
     { slug: '/projects', name: 'Projects' },
     { slug: '/contact', name: 'Contact' },
     { slug: '/resume.pdf', name: 'Resume' },
-    { slug: '/art', name: 'Art' },
+    { slug: '/threejs', name: 'Three.js' },
   ];
 
   return { pages, currentURL };
@@ -113,13 +113,14 @@ const MobileNavbar: FC<{
 const Navbar = () => {
   const { pages, currentURL } = useNavbar();
 
-  const showSiteName = !(currentURL === '/' || currentURL === '/art');
+  const showSiteName = currentURL !== '/';
 
   return (
     <nav
       className={classNames(`navbar fixed top-0 z-20 h-11 min-h-10`, {
         'bg-transparent': !showSiteName,
-        'bg-base-100': currentURL !== '/',
+        'bg-base-100': showSiteName,
+        'bg-opacity-90': currentURL === '/threejs',
       })}
     >
       <div className="flex-1">

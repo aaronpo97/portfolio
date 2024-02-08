@@ -1,6 +1,6 @@
 import { Vector3, Euler, Object3D, Group } from 'three';
 
-const MAX_DISTANCE = 50;
+export const MAX_DISTANCE = 50;
 const ROTATION_SPEED = 0.0005;
 const MOVEMENT_SPEED = 0.005;
 
@@ -15,15 +15,6 @@ interface CalculateChildCoordinateArgs {
   index: number;
 }
 
-/**
- * Calculates the value of a single coordinate of a child object based on its index and
- * the elapsed time.
- *
- * @param args The arguments for calculating the child position.
- * @param args.index - The index of the child object in the torus group.
- * @param args.elapsedTime - The elapsed time since the animation started.
- * @returns The calculated position of the child object.
- */
 const calculateChildPosition = ({ elapsedTime, index }: CalculateChildCoordinateArgs) =>
   index % 2 === 0
     ? Math.cos(elapsedTime) * MOVEMENT_SPEED
