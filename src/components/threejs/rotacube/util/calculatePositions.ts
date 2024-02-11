@@ -26,8 +26,7 @@ type CalculatePositionsArgs = {
  * @param args.elapsedTime - The time elapsed since the start of the animation.
  * @param args.rotationSpeed - The speed at which the object should rotate.
  * @param args.reverse - Whether or not the object should rotate in reverse.
- * @param args.angleIncrement - The angle increment to be used in the
- *   calculation.
+ * @param args.angleIncrement - The angle increment to be used in the calculation.
  * @param args.radius - The radius of the circle.
  * @param args.yFactor - The y factor to be used in the calculation.
  * @param args.index - The index of the object.

@@ -25,7 +25,7 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ preamble, title, projects }
         <title>{`${title} | ${process.env.NEXT_PUBLIC_SITE_NAME}`}</title>
         <meta name="description" content={preamble} />
       </Head>
-      <article className="relative flex min-h-dvh w-full touch-pan-x touch-pan-y select-none items-center justify-center">
+      <article className="relative flex min-h-dvh w-full items-center justify-center">
         <Carousel
           ref={ref}
           containerClass="container"

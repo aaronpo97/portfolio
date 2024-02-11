@@ -2,12 +2,10 @@ import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls
 import {
   Clock,
   Group,
-  LoadingManager,
-  NearestFilter,
+  MeshNormalMaterial,
   Object3D,
   PerspectiveCamera,
   Scene,
-  TextureLoader,
   WebGLRenderer,
 } from 'three';
 import { useEffect, useMemo, useRef } from 'react';
@@ -35,8 +33,7 @@ const Rotacube = () => {
     };
   }, [SIZES]);
 
-  const BASE_ROTATION_SPEED = 0.2;
-
+  const BASE_ROTATION_SPEED = 0.1;
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -66,87 +63,72 @@ const Rotacube = () => {
 
     const clock = new Clock();
 
-    const loadingManager = new LoadingManager();
-    const textureLoader = new TextureLoader(loadingManager);
-
-    const diamondTexture = textureLoader.load('/textures/diamond.png');
-    const emeraldTexture = textureLoader.load('/textures/emerald.png');
-    const goldTexture = textureLoader.load('/textures/gold.png');
-    const ironTexture = textureLoader.load('/textures/iron.png');
-    const lapisTexture = textureLoader.load('/textures/lapis.png');
-    const redstoneTexture = textureLoader.load('/textures/redstone.png');
-    const coalTexture = textureLoader.load('/textures/coal.png');
-    const copperTexture = textureLoader.load('/textures/copper.png');
-
-    copperTexture.magFilter = NearestFilter;
-    lapisTexture.magFilter = NearestFilter;
-    redstoneTexture.magFilter = NearestFilter;
-    coalTexture.magFilter = NearestFilter;
-    diamondTexture.magFilter = NearestFilter;
-    emeraldTexture.magFilter = NearestFilter;
-    goldTexture.magFilter = NearestFilter;
-    ironTexture.magFilter = NearestFilter;
-
-    const copperMesh = createBlockMesh(copperTexture);
-    const coalMesh = createBlockMesh(coalTexture);
-    const ironMesh = createBlockMesh(ironTexture);
-    const goldMesh = createBlockMesh(goldTexture);
-    const emeraldMesh = createBlockMesh(emeraldTexture);
-    const diamondMesh = createBlockMesh(diamondTexture);
-    const lapisMesh = createBlockMesh(lapisTexture);
-    const redstoneMesh = createBlockMesh(redstoneTexture);
-
+    const material = new MeshNormalMaterial();
     const primaryGroup = new Group()
-      .add(diamondMesh)
-      .add(emeraldMesh)
-      .add(goldMesh)
-      .add(ironMesh)
-      .add(lapisMesh)
-      .add(redstoneMesh)
-      .add(coalMesh)
-      .add(copperMesh);
+      .add(createBlockMesh(material))
+      .add(createBlockMesh(material))
+      .add(createBlockMesh(material))
+      .add(createBlockMesh(material))
+      .add(createBlockMesh(material))
+      .add(createBlockMesh(material))
+      .add(createBlockMesh(material))
+      .add(createBlockMesh(material));
 
-    const secondaryGroup = createReplicatedGroup(primaryGroup, 10);
+    const secondaryGroup = createReplicatedGroup(primaryGroup, 12);
     const tertiaryGroup = createReplicatedGroup(secondaryGroup, 10);
 
-    const PRIMARY_GROUP_RADIUS = 50;
-    const SECONDARY_GROUP_RADIUS = 200;
-    const TERTIARY_GROUP_RADIUS = 1000;
+    const GROUP_RADII = {
+      primary: 50,
+      secondary: 250,
+      tertiary: 1200,
+    };
 
-    const TERTIARY_Y_FACTOR = 100;
-    const SECONDARY_Y_FACTOR = 200;
-    const PRIMARY_Y_FACTOR = 100;
+    const ROTATION_SPEEDS = {
+      primary: BASE_ROTATION_SPEED * 1.5,
+      secondary: BASE_ROTATION_SPEED * 1.2,
+      tertiary: BASE_ROTATION_SPEED * 1,
+    };
 
-    const TERTIARY_GROUP_ANGLE_INCREMENT = (2 * Math.PI) / tertiaryGroup.children.length;
-    const SECONDARY_GROUP_ANGLE_INCREMENT =
-      (2 * Math.PI) / secondaryGroup.children.length;
-    const PRIMARY_GROUP_ANGLE_INCREMENT = (2 * Math.PI) / primaryGroup.children.length;
+    const Y_FACTORS = {
+      primary: 300,
+      secondary: 400,
+      tertiary: 100,
+    };
+
+    const ANGLE_INCREMENTS = {
+      primary: (2 * Math.PI) / primaryGroup.children.length,
+      secondary: (2 * Math.PI) / secondaryGroup.children.length,
+      tertiary: (2 * Math.PI) / tertiaryGroup.children.length,
+    };
 
     type UpdateGroupChildrenArgs = {
       child: Object3D;
       index: number;
-      rotationSpeed: number;
       reverse?: boolean;
     };
 
     const updatePrimaryGroupChildren = ({
       child,
       index,
-      rotationSpeed,
       reverse = false,
     }: UpdateGroupChildrenArgs) => {
       const elapsedTime = clock.getElapsedTime();
-      const angleIncrement = index * PRIMARY_GROUP_ANGLE_INCREMENT;
-      const PRIMARY_ROTATION_SPEED = rotationSpeed * 1.5;
+      const angleIncrement = index * ANGLE_INCREMENTS.primary;
+
+      const { radius, rotationSpeed, yFactor } = {
+        radius: GROUP_RADII.primary,
+        rotationSpeed: ROTATION_SPEEDS.primary,
+        yFactor: Y_FACTORS.primary,
+      };
 
       const { x, y, z } = calculatePositions({
         angleIncrement,
         elapsedTime,
         index,
         reverse,
-        radius: PRIMARY_GROUP_RADIUS,
-        rotationSpeed: PRIMARY_ROTATION_SPEED,
-        yFactor: PRIMARY_Y_FACTOR,
+        radius,
+        rotationSpeed,
+        yFactor,
       });
 
       child.position.set(x, y, z);
@@ -155,23 +137,26 @@ const Rotacube = () => {
     const updateSecondaryGroupChildren = ({
       child,
       index,
-      rotationSpeed,
       reverse = false,
     }: UpdateGroupChildrenArgs) => {
       const elapsedTime = clock.getElapsedTime();
 
-      const angleIncrement = index * SECONDARY_GROUP_ANGLE_INCREMENT;
+      const angleIncrement = index * ANGLE_INCREMENTS.secondary;
 
-      const SECONDARY_ROTATION_SPEED = rotationSpeed * 1.2;
+      const { radius, rotationSpeed, yFactor } = {
+        radius: GROUP_RADII.secondary,
+        rotationSpeed: ROTATION_SPEEDS.secondary,
+        yFactor: Y_FACTORS.secondary,
+      };
 
       const { x, y, z } = calculatePositions({
         angleIncrement,
         elapsedTime,
         reverse,
         index,
-        radius: SECONDARY_GROUP_RADIUS,
-        rotationSpeed: SECONDARY_ROTATION_SPEED,
-        yFactor: SECONDARY_Y_FACTOR,
+        radius,
+        rotationSpeed,
+        yFactor,
       });
 
       child.position.set(x, y, z);
@@ -181,7 +166,6 @@ const Rotacube = () => {
           child: c,
           index: i,
           reverse,
-          rotationSpeed,
         }),
       );
     };
@@ -189,22 +173,25 @@ const Rotacube = () => {
     const updateTertiaryGroupChildren = ({
       child,
       index,
-      rotationSpeed,
       reverse = false,
     }: UpdateGroupChildrenArgs) => {
       const elapsedTime = clock.getElapsedTime();
-      const angleIncrement = index * TERTIARY_GROUP_ANGLE_INCREMENT;
+      const angleIncrement = index * ANGLE_INCREMENTS.tertiary;
 
-      const TERTIARY_ROTATION_SPEED = rotationSpeed;
+      const { radius, rotationSpeed, yFactor } = {
+        radius: GROUP_RADII.tertiary,
+        rotationSpeed: ROTATION_SPEEDS.tertiary,
+        yFactor: Y_FACTORS.tertiary,
+      };
 
       const { x, y, z } = calculatePositions({
         angleIncrement,
         elapsedTime,
         reverse,
         index,
-        radius: TERTIARY_GROUP_RADIUS,
-        rotationSpeed: TERTIARY_ROTATION_SPEED,
-        yFactor: TERTIARY_Y_FACTOR,
+        radius,
+        rotationSpeed,
+        yFactor,
       });
 
       child.position.set(x, y, z);
@@ -213,32 +200,40 @@ const Rotacube = () => {
           child: c,
           index: i,
           reverse,
-          rotationSpeed,
         }),
       );
     };
 
-    const main = new Group().add(tertiaryGroup);
+    const clonedAndRotatedGroups = [
+      tertiaryGroup.clone().rotateX(Math.PI / 2),
+      tertiaryGroup.clone().rotateY(Math.PI / 2),
+      tertiaryGroup.clone().rotateZ(Math.PI / 2),
+      // tertiaryGroup.clone().rotateX(Math.PI / 4),
+      // tertiaryGroup.clone().rotateX(-(Math.PI / 4)),
+      // tertiaryGroup.clone().rotateY(Math.PI / 4),
+      // tertiaryGroup.clone().rotateY(-(Math.PI / 4)),
+      // tertiaryGroup.clone().rotateZ(Math.PI / 4),
+      // tertiaryGroup.clone().rotateZ(-(Math.PI / 4)),
+    ];
+
+    const main = new Group();
+    clonedAndRotatedGroups.forEach((group) => main.add(group));
+    main.translateY(1000).translateZ(1000);
+
+    scene.add(main);
 
     const animate = () => {
       main.children.forEach((group, i) => {
         group.children.forEach((child, index) => {
           const reverse = i % 2 === 0;
-          updateTertiaryGroupChildren({
-            child,
-            rotationSpeed: BASE_ROTATION_SPEED,
-            reverse,
-            index,
-          });
+          updateTertiaryGroupChildren({ child, reverse, index });
         });
       });
       renderer.render(scene, camera);
       controls.update();
-
       window.requestAnimationFrame(animate);
     };
 
-    scene.add(main);
     animate();
 
     window.addEventListener('resize', onResize);
@@ -246,9 +241,9 @@ const Rotacube = () => {
     return () => {
       window.removeEventListener('resize', onResize);
     };
-  }, [SIZES, CAMERA_SETTINGS, BASE_ROTATION_SPEED]);
+  }, [SIZES, CAMERA_SETTINGS]);
 
-  return <canvas ref={canvasRef}></canvas>;
+  return <canvas ref={canvasRef} />;
 };
 
 export default Rotacube;

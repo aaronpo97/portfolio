@@ -69,16 +69,7 @@ const Donuts: FC = () => {
       renderer.setSize(SIZES.width, SIZES.height);
     };
 
-    const onDoubleClick = (): void => {
-      if (!document.fullscreenElement) {
-        canvas.requestFullscreen();
-        return;
-      }
-      document.exitFullscreen();
-    };
-
     window.addEventListener('resize', onResize);
-    window.addEventListener('dblclick', onDoubleClick);
 
     const clock = new Clock();
     const controls = new OrbitControls(camera, canvas);
@@ -114,7 +105,6 @@ const Donuts: FC = () => {
     // eslint-disable-next-line consistent-return
     return () => {
       window.removeEventListener('resize', onResize);
-      window.removeEventListener('dblclick', onDoubleClick);
     };
   }, [CAMERA_SETTINGS, SIZES]);
 

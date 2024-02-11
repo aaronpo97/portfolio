@@ -86,7 +86,7 @@ const MobileNavbar: FC<{
             aria-label="close sidebar"
             className="drawer-overlay"
           />
-          <ul className="menu min-h-full w-52 bg-primary p-4 text-base-content">
+          <ul className="menu min-h-full bg-primary pr-16 text-base-content">
             {pages.map((page) => {
               return (
                 <li key={page.slug}>
@@ -120,7 +120,7 @@ const Navbar = () => {
       className={classNames(`navbar fixed top-0 z-20 h-11 min-h-10`, {
         'bg-transparent': !showSiteName,
         'bg-base-100': showSiteName,
-        'bg-opacity-90': currentURL === '/threejs',
+        'bg-opacity-70': currentURL === '/threejs',
       })}
     >
       <div className="flex-1">
