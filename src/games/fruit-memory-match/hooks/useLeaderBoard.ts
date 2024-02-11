@@ -12,7 +12,7 @@ const leaderboardEntry = z.array(
 
 const useLeaderboard = () => {
   const { data, error, isLoading, mutate } = useSWR(
-    '/api/game/leaderboard',
+    '/api/games/fruit-memory-match/leaderboard',
     async (url) => {
       const response = await fetch(url);
       const json = await response.json();

@@ -70,7 +70,7 @@ const Games: NextPage<GamesProps> = ({ games }) => {
               return (
                 <Link
                   key={game.id}
-                  className="card card-compact select-none bg-base-300 hover:bg-base-200"
+                  className="card card-compact bg-base-300 hover:bg-base-200"
                   href={game.href}
                 >
                   {/* <figure>

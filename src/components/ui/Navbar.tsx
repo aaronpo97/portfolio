@@ -26,6 +26,7 @@ const useNavbar = () => {
     { slug: '/projects', name: 'Projects' },
     { slug: '/contact', name: 'Contact' },
     { slug: '/resume.pdf', name: 'Resume' },
+    { slug: '/threejs', name: 'Three.js' },
   ];
 
   return { pages, currentURL };
@@ -85,7 +86,7 @@ const MobileNavbar: FC<{
             aria-label="close sidebar"
             className="drawer-overlay"
           />
-          <ul className="menu min-h-full w-52 bg-primary p-4 text-base-content">
+          <ul className="menu min-h-full bg-primary pr-16 text-base-content">
             {pages.map((page) => {
               return (
                 <li key={page.slug}>
@@ -112,11 +113,14 @@ const MobileNavbar: FC<{
 const Navbar = () => {
   const { pages, currentURL } = useNavbar();
 
+  const showSiteName = currentURL !== '/';
+
   return (
     <nav
-      className={classNames(`navbar fixed top-0 z-20 h-10 min-h-10`, {
-        'bg-transparent': currentURL === '/',
-        'bg-base-100': currentURL !== '/',
+      className={classNames(`navbar fixed top-0 z-20 h-11 min-h-10`, {
+        'bg-transparent': !showSiteName,
+        'bg-base-100': showSiteName,
+        'bg-opacity-70': currentURL === '/threejs',
       })}
     >
       <div className="flex-1">
