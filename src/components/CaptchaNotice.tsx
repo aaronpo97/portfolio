@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 const CaptchaNotice: FC = () => {
   return (
-    <div className="text-center">
+    <div className="space-y-2 text-center">
       <p className="text-sm italic">
         This site is protected by Google&apos;s{' '}
         <a

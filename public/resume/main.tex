@@ -1,0 +1,127 @@
+\documentclass[9pt,a4paper,withhyper]{altacv}
+
+\geometry{left=1.2cm,right=1.2cm,top=1.8cm,bottom=1.2cm,columnsep=1cm}
+
+% for columns
+\usepackage{paracol}
+
+% If using pdflatex:
+\usepackage{charter}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+
+% Change the colours if you want to
+\definecolor{VividPurple}{HTML}{000000}
+\definecolor{SlateGrey}{HTML}{2E2E2E}
+\definecolor{LightGrey}{HTML}{666666}
+% \colorlet{name}{black}
+\colorlet{tagline}{VividPurple}
+\colorlet{heading}{VividPurple}
+\colorlet{headingrule}{VividPurple}
+% \colorlet{subheading}{PastelRed}
+\colorlet{accent}{VividPurple}
+\colorlet{emphasis}{SlateGrey}
+\colorlet{body}{LightGrey}
+
+% Change some fonts, if necessary
+% \renewcommand{\namefont}{\Huge\rmfamily\bfseries}
+% \renewcommand{\personalinfofont}{\footnotesize}
+% \renewcommand{\cvsectionfont}{\LARGE\rmfamily\bfseries}
+% \renewcommand{\cvsubsectionfont}{\large\bfseries}
+
+% Change the bullets for itemize and rating marker
+% for \cvskill if you want to
+\renewcommand{\itemmarker}{{\small\textbullet}}
+\renewcommand{\ratingmarker}{\faCircle}
+%% sample.bib contains your publications
+\addbibresource{sample.bib}
+
+\begin{document}
+\name{Aaron William Po \\ \large{\vspace{-1em} full stack developer}}
+
+\personalinfo{%
+  \email{aaron\_po@msn.com}
+  \location{London, ON}
+  \github{github.com/aaronpo97}
+  \faDesktop\,\,
+  \url{aaronwilliampo.com}
+}
+\makecvheader
+\columnratio{0.55}
+
+\begin{paracol}{2}
+  \cvsection{About}
+  I am a developer specializing in Typescript/Javascript development with a passion for creating versatile applications for both client and server environments. Committed to continuous learning and innovation, I thrive in dynamic work environments that foster growth and encourage collaboration. I am eager to contribute my skills and expertise to a team's success while further expanding my knowledge in the field.
+
+  \cvsection{Projects}
+  \cvevent{The Biergarten App}{\faCode \,Next.js, Prisma, Postgres, Tailwind CSS}{\url{https://github.com/aaronpo97/the-biergarten-app}}{}
+  \begin{itemize}
+	\item An innovative web application designed for beer enthusiasts to connect and share their favorite brews and breweries online, that allows beer lovers to engage with like-minded individuals, discussing and discovering new beer experiences.
+    \item Leverages the power of \textbf{Next.js}, \textbf{Prisma}, and \textbf{Neon Postgres} to create a dynamic web application focused on fostering a passionate beer community.
+    \item Integrates APIs such as \textbf{Cloudinary}, \textbf{SparkPost}, and \textbf{Mapbox} to enrich the user experience by enabling functionalities like image uploading, email services, and geolocation features.
+    \item Uses \textbf{Tailwind CSS}, \textbf{Headless UI}, and \textbf{Daisy UI} to create a visually striking and user-friendly interface, enhancing the overall user experience.
+    \item Deployed with \textbf{Vercel} for its fast and seamless deployment process that integrates directly with \textbf{Next.js}.
+  \end{itemize}
+
+  \divider
+
+  \cvevent{SpoonBot}{\faCode \, Technologies: Next.js, Tailwind CSS, OpenAI}{\url{https://github.com/aaronpo97/spoonbot}}{}
+  \begin{itemize}
+    \item Spearheaded the development of SpoonBot, a cutting-edge web application powered by OpenAI's \textbf{GPT-3 API}, showcasing its ability to generate restaurant names, detailed restaurant reviews, and enticing restaurant menus.
+    \item Implemented robust content moderation features to ensure a safe and respectful user experience, leveraging advanced techniques to detect and prevent offensive or harmful language in user input.
+    \item Crafted a visually stunning and responsive user interface by harnessing the power of \textbf{Next.js}, a React-based framework, and seamlessly integrating it with the versatility of \textbf{Tailwind CSS}.
+    \item Deployed with \textbf{Vercel} for its fast and seamless deployment process that integrates directly with \textbf{Next.js}.
+  \end{itemize}
+
+  \switchcolumn
+
+  \cvsection{Education}
+  \cvevent{\faSchool \, University of Western Ontario}{London, Ontario, Canada}{2020}{}
+  \begin{itemize}
+    \item Bachelor of Music
+  \end{itemize}
+
+  \cvsection{Courses taken}
+  \cvevent{The Web Developer Bootcamp}{instructed by Colt Steele, udemy.com}{}{}
+
+  \begin{itemize}
+    \item Certificate of Completion
+  \end{itemize}
+  \cvsection{Skills}
+  \cvevent{\faCode \, Core Competencies}{}{}{}
+  \begin{itemize}
+    \item Quickly learns and applies new technologies and methodologies.
+    \item Efficiently manages time, prioritizes tasks, and meets deadlines.
+    \item Applies critical thinking skills to evaluate situations and make informed decisions.
+    \item Self-motivated and takes initiative for personal and professional growth.
+    \item Committed to continuous learning and staying updated with industry trends.
+    \item Adapts to changing project requirements and embraces new methodologies.
+  \end{itemize}
+  \divider
+  \cvevent{\faCode \, Web and Mobile Development}{}{}{}
+  \begin{itemize}
+    \item Proficient in \textbf{React} for client-side web applications and \textbf{React Native} for mobile app development.
+    \item Strong understanding of front-end principles: \textbf{responsive design}, \textbf{accessibility}, and \textbf{performance optimization}.
+    \item Skilled in \textbf{Next.js} and \textbf{Redux} for modern web development.
+    \item Experienced with UI component libraries (\textbf{Material-UI}, \textbf{Mantine}) and CSS frameworks (\textbf{Bootstrap}).
+    \item Proficient in \textbf{Tailwind CSS} for rapid UI development and customization.
+    \item Familiar with back-end concepts and tools \textbf{RESTful APIs}, \textbf{Node.js}, \textbf{Express}.
+    \item Strong problem-solving and debugging skills.
+    \item Proficient in \textbf{Git} for version control (\textbf{GitHub} collaboration).
+    \item Experienced with \textbf{Linux} (Bash scripting) and \textbf{Mac OS} development tools.
+  \end{itemize}
+
+\end{paracol}
+
+\end{document}
