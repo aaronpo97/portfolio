@@ -1,6 +1,6 @@
-\documentclass[9pt,a4paper,withhyper]{altacv}
+\documentclass[10pt,a4paper,withhyper]{altacv}
 
-\geometry{left=1.2cm,right=1.2cm,top=1.8cm,bottom=1.2cm,columnsep=1cm}
+\geometry{left=1.1cm,right=1.1cm,top=1.5cm,bottom=1cm,columnsep=0.6cm}
 
 % for columns
 \usepackage{paracol}
@@ -9,30 +9,15 @@
 \usepackage{charter}
 
 \usepackage{hyperref}
-\hypersetup{
-    colorlinks=true,
-    linkcolor=blue,
-    filecolor=magenta,      
-    urlcolor=cyan,
-    pdftitle={Overleaf Example},
-    pdfpagemode=FullScreen,
-    }
-
 \urlstyle{same}
 
-
-% Change the colours if you want to
-\definecolor{VividPurple}{HTML}{000000}
-\definecolor{SlateGrey}{HTML}{2E2E2E}
-\definecolor{LightGrey}{HTML}{666666}
-% \colorlet{name}{black}
-\colorlet{tagline}{VividPurple}
-\colorlet{heading}{VividPurple}
-\colorlet{headingrule}{VividPurple}
-% \colorlet{subheading}{PastelRed}
-\colorlet{accent}{VividPurple}
-\colorlet{emphasis}{SlateGrey}
-\colorlet{body}{LightGrey}
+\colorlet{tagline}{black}
+\colorlet{heading}{black}
+\colorlet{headingrule}{black}
+ \colorlet{subheading}{black}
+\colorlet{accent}{black}
+\colorlet{emphasis}{black}
+\colorlet{body}{black}
 
 % Change some fonts, if necessary
 % \renewcommand{\namefont}{\Huge\rmfamily\bfseries}
@@ -43,9 +28,6 @@
 % Change the bullets for itemize and rating marker
 % for \cvskill if you want to
 \renewcommand{\itemmarker}{{\small\textbullet}}
-\renewcommand{\ratingmarker}{\faCircle}
-%% sample.bib contains your publications
-\addbibresource{sample.bib}
 
 \begin{document}
 \name{Aaron William Po \\ \large{\vspace{-1em} full stack developer}}
@@ -58,7 +40,7 @@
   \url{aaronwilliampo.com}
 }
 \makecvheader
-\columnratio{0.55}
+\columnratio{0.5}
 
 \begin{paracol}{2}
   \cvsection{About}
@@ -87,13 +69,13 @@
   \switchcolumn
 
   \cvsection{Education}
-  \cvevent{\faSchool \, University of Western Ontario}{London, Ontario, Canada}{2020}{}
+  \cvevent{\faSchool\, University of Western Ontario}{London, Ontario, Canada}{2020}{}
   \begin{itemize}
     \item Bachelor of Music
   \end{itemize}
 
   \cvsection{Courses taken}
-  \cvevent{The Web Developer Bootcamp}{instructed by Colt Steele, udemy.com}{}{}
+  \cvevent{The Web Developer Bootcamp}{instructed by Colt Steele, udemy.com}{2022}{}
 
   \begin{itemize}
     \item Certificate of Completion
