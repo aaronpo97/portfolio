@@ -29,7 +29,7 @@ const AboutPageHeader: FC<{
           )}
         >
           {preamble.split('\n').map((line, index) => (
-            <p className="md:text-2xl" key={index}>
+            <p className="text-sm md:text-2xl" key={index}>
               {line}
             </p>
           ))}

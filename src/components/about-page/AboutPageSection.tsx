@@ -17,7 +17,7 @@ const AboutPageSection: FC<{
   return (
     <section
       className={classNames(
-        'my-0 flex min-h-dvh flex-col items-center justify-center',
+        'mb-0 mt-0 flex min-h-dvh flex-col items-center justify-center',
         { 'my-32': isInLandscape },
         'motion-reduce:animate-none',
       )}

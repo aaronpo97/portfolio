@@ -13,7 +13,7 @@ const TechCard: FC<{
       rel="noopener noreferrer"
     >
       <div className="card-body items-center justify-center">
-        <div className="pointer-events-none flex h-10 w-10 items-center justify-center rounded-lg md:h-20 md:w-20 lg:h-24 lg:w-24">
+        <div className="pointer-events-none flex h-8 w-8 items-center justify-center rounded-lg sm:h-10 sm:w-10 md:h-20 md:w-20 lg:h-24 lg:w-24">
           <Image
             src={stack.icon}
             alt={stack.text}
