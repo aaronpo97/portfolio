@@ -43,6 +43,7 @@ const config: Config = {
   theme: {
     extend: {
       screens: {
+        xs: '380px',
         tall: {
           raw: `only screen and (max-height: 960px) and (max-width: 480px)`,
         },

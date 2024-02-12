@@ -17,24 +17,26 @@ const AboutPageSection: FC<{
   return (
     <section
       className={classNames(
-        'my-20 flex min-h-dvh flex-col items-center justify-center sm:my-0',
+        'my-0 flex min-h-dvh flex-col items-center justify-center',
         { 'my-32': isInLandscape },
         'motion-reduce:animate-none',
       )}
     >
-      <div className="w-9/12">
-        <h2
-          className={classNames(
-            'my-3 text-2xl font-extrabold md:text-8xl',
-            {
-              'animate-fade animate-duration-1000': doAnimation,
-              'opacity-0': !doAnimation,
-            },
-            'motion-reduce:animate-none',
-          )}
-        >
-          {item.heading}
-        </h2>
+      <div className="w-9/12 space-y-3">
+        <header>
+          <h2
+            className={classNames(
+              'text-2xl font-extrabold md:text-8xl',
+              {
+                'animate-fade animate-duration-1000': doAnimation,
+                'opacity-0': !doAnimation,
+              },
+              'motion-reduce:animate-none',
+            )}
+          >
+            {item.heading}
+          </h2>
+        </header>
         <div
           className={classNames(
             {
@@ -46,7 +48,7 @@ const AboutPageSection: FC<{
         >
           <div className="space-y-4">
             {item.text.split('\n').map((line, i) => (
-              <p key={i} className="text-sm md:text-2xl">
+              <p key={i} className="text-sm sm:text-xl md:text-2xl">
                 {line}
               </p>
             ))}
