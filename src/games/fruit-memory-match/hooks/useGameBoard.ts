@@ -45,11 +45,13 @@ const useGameBoard = () => {
     [choices],
   );
 
-  const resetTurn = useCallback(() => {
-    setFunFact(funFacts[Math.floor(Math.random() * funFacts.length)]);
+  const resetTurn = useCallback(async () => {
     setChoices({ choiceOne: null, choiceTwo: null });
     setTurns((prevTurns) => prevTurns + 1);
     setDisabled(false);
+    return new Promise<void>((resolve) => {
+      setTimeout(() => resolve(), 250);
+    });
   }, []);
 
   const handleNoMatch = useCallback(async () => {
@@ -60,7 +62,8 @@ const useGameBoard = () => {
         resolve();
       }, 2000);
     });
-    resetTurn();
+    await resetTurn();
+    setFunFact(funFacts[Math.floor(Math.random() * funFacts.length)]);
   }, [resetTurn]);
 
   const handleCorrectMatch = useCallback(() => {

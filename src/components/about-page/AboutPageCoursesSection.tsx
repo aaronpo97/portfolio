@@ -13,7 +13,7 @@ const AboutPageCoursesSection: FC<{ item: Content; doAnimation: boolean }> = ({
     !!courses && (
       <ul
         className={classNames(
-          'mr-10 mt-3 list-inside list-disc space-y-1 text-sm md:text-xl',
+          'xs:text-sm mr-10 mt-3 list-inside list-disc space-y-1 text-xs md:text-xl',
           { 'animate-fade-down': doAnimation, 'opacity-0': !doAnimation },
           'motion-reduce:animate-none motion-reduce:opacity-100',
         )}
