@@ -23,7 +23,7 @@ const TechCard: FC<{
             className="h-full w-full"
           />
         </div>
-        <h4 className="font-semibold lg:text-xl">{stack.text}</h4>
+        <h4 className="font-semibold lg:text-lg">{stack.text}</h4>
       </div>
     </a>
   );

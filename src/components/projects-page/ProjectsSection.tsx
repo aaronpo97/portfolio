@@ -13,10 +13,11 @@ const ProjectsSection: FC<{
 }> = ({ currentSlide, project, index }) => {
   const doAnimation = currentSlide === index + 1;
   const isInLandscape = useMediaQuery('(orientation: landscape)');
+
   return (
     <section
       className={classNames(
-        'flex min-h-dvh flex-col items-center justify-center md:mt-0',
+        'my-20 flex min-h-dvh flex-col items-center justify-center sm:my-0',
         {
           'my-32': isInLandscape,
         },
@@ -77,7 +78,7 @@ const ProjectsSection: FC<{
 
           <div className="space-y-3">
             <p className="font-bold uppercase lg:text-2xl">Built with</p>
-            <div className="grid grid-cols-3 gap-2 sm:grid-cols-5 lg:grid-cols-8">
+            <div className="grid grid-cols-3 gap-2 sm:grid-cols-5 lg:grid-cols-6">
               {project.stack.map((tech, idx) => (
                 <TechCard stack={tech} key={idx} />
               ))}
