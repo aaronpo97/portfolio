@@ -16,9 +16,12 @@ const ProjectsSection: FC<{
 
   return (
     <section
-      className={classNames('my-0 flex min-h-dvh flex-col items-center justify-center', {
-        'my-32': isInLandscape,
-      })}
+      className={classNames(
+        'mb-0 mt-0 flex min-h-dvh flex-col items-center justify-center',
+        {
+          'my-32': isInLandscape,
+        },
+      )}
       key={project.id}
     >
       <div className="w-9/12 space-y-3">
