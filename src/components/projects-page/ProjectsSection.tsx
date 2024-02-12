@@ -17,14 +17,14 @@ const ProjectsSection: FC<{
   return (
     <section
       className={classNames(
-        'my-20 flex min-h-dvh flex-col items-center justify-center sm:my-0',
+        'mb-0 mt-0 flex min-h-dvh flex-col items-center justify-center',
         {
           'my-32': isInLandscape,
         },
       )}
       key={project.id}
     >
-      <div className="w-9/12 space-y-6">
+      <div className="w-9/12 space-y-3">
         <header className="flex items-start justify-between">
           <h1
             className={classNames(
@@ -41,7 +41,7 @@ const ProjectsSection: FC<{
 
           <div
             className={classNames(
-              'flex space-x-4 ',
+              'flex space-x-4',
               {
                 'animate-fade-right': doAnimation,
                 'opacity-0': !doAnimation,
@@ -71,14 +71,14 @@ const ProjectsSection: FC<{
           })}
         >
           {project.text.split('\n').map((line, idx) => (
-            <p className="text-sm md:text-xl" key={idx}>
+            <p className="text-xs sm:text-xl md:text-xl" key={idx}>
               {line}
             </p>
           ))}
 
           <div className="space-y-3">
             <p className="font-bold uppercase lg:text-2xl">Built with</p>
-            <div className="grid grid-cols-3 gap-2 sm:grid-cols-5 lg:grid-cols-6">
+            <div className="grid grid-cols-3 gap-1 sm:grid-cols-5 lg:grid-cols-6">
               {project.stack.map((tech, idx) => (
                 <TechCard stack={tech} key={idx} />
               ))}

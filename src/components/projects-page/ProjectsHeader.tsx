@@ -13,22 +13,24 @@ const ProjectsHeader: FC<{
       className={classNames('flex h-full flex-col items-center justify-center', {})}
     >
       <div
-        className={classNames('flex w-9/12 flex-col space-y-4', {
+        className={classNames('flex w-9/12 flex-col space-y-3', {
           'my-32': isInLandscape,
         })}
       >
-        <h1
-          className={classNames(
-            'w-full text-2xl font-extrabold md:text-8xl',
-            {
-              'animate-fade-left': currentSlide === 0,
-              'opacity-0': currentSlide !== 0,
-            },
-            'motion-reduce:animate-none',
-          )}
-        >
-          Projects
-        </h1>
+        <header>
+          <h1
+            className={classNames(
+              'w-full text-2xl font-extrabold md:text-8xl',
+              {
+                'animate-fade-left': currentSlide === 0,
+                'opacity-0': currentSlide !== 0,
+              },
+              'motion-reduce:animate-none',
+            )}
+          >
+            Projects
+          </h1>
+        </header>
         <div
           className={classNames(
             'space-y-4',
@@ -40,7 +42,7 @@ const ProjectsHeader: FC<{
           )}
         >
           {preamble.split('\n').map((line, index) => (
-            <p className="md:text-2xl" key={index}>
+            <p className="text-sm sm:text-xl md:text-xl" key={index}>
               {line}
             </p>
           ))}
