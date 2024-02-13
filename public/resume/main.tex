@@ -1,109 +1,149 @@
-\documentclass[10pt,a4paper,withhyper]{altacv}
-
+\documentclass[9pt,a4paper,withhyper]{altacv}
+\usepackage{bookmark}
 \geometry{left=1.1cm,right=1.1cm,top=1.5cm,bottom=1cm,columnsep=0.6cm}
 
-% for columns
 \usepackage{paracol}
-
-% If using pdflatex:
 \usepackage{charter}
-
 \usepackage{hyperref}
 \urlstyle{same}
-
 \colorlet{tagline}{black}
 \colorlet{heading}{black}
 \colorlet{headingrule}{black}
- \colorlet{subheading}{black}
+\colorlet{subheading}{black}
 \colorlet{accent}{black}
 \colorlet{emphasis}{black}
 \colorlet{body}{black}
 
-% Change some fonts, if necessary
-% \renewcommand{\namefont}{\Huge\rmfamily\bfseries}
-% \renewcommand{\personalinfofont}{\footnotesize}
-% \renewcommand{\cvsectionfont}{\LARGE\rmfamily\bfseries}
-% \renewcommand{\cvsubsectionfont}{\large\bfseries}
-
-% Change the bullets for itemize and rating marker
-% for \cvskill if you want to
 \renewcommand{\itemmarker}{{\small\textbullet}}
 
 \begin{document}
 \name{Aaron William Po \\ \large{\vspace{-1em} full stack developer}}
 
 \personalinfo{%
-  \email{aaron\_po@msn.com}
-  \location{London, ON}
-  \github{github.com/aaronpo97}
-  \faDesktop\,\,
-  \url{aaronwilliampo.com}
+	\email{aaron\_po@msn.com}
+	\location{London, ON}
+	\github{github.com/aaronpo97}
+	\faDesktop\,\,
+	\url{aaronwilliampo.com}
 }
 \makecvheader
-\columnratio{0.5}
+\columnratio{0.6}
 
 \begin{paracol}{2}
-  \cvsection{About}
-  I am a developer specializing in Typescript/Javascript development with a passion for creating versatile applications for both client and server environments. Committed to continuous learning and innovation, I thrive in dynamic work environments that foster growth and encourage collaboration. I am eager to contribute my skills and expertise to a team's success while further expanding my knowledge in the field.
-
-  \cvsection{Projects}
-  \cvevent{The Biergarten App}{\faCode \,Next.js, Prisma, Postgres, Tailwind CSS}{\url{https://github.com/aaronpo97/the-biergarten-app}}{}
-  \begin{itemize}
-	\item An innovative web application designed for beer enthusiasts to connect and share their favorite brews and breweries online, that allows beer lovers to engage with like-minded individuals, discussing and discovering new beer experiences.
-    \item Leverages the power of \textbf{Next.js}, \textbf{Prisma}, and \textbf{Neon Postgres} to create a dynamic web application focused on fostering a passionate beer community.
-    \item Integrates APIs such as \textbf{Cloudinary}, \textbf{SparkPost}, and \textbf{Mapbox} to enrich the user experience by enabling functionalities like image uploading, email services, and geolocation features.
-    \item Uses \textbf{Tailwind CSS}, \textbf{Headless UI}, and \textbf{Daisy UI} to create a visually striking and user-friendly interface, enhancing the overall user experience.
-    \item Deployed with \textbf{Vercel} for its fast and seamless deployment process that integrates directly with \textbf{Next.js}.
-  \end{itemize}
-
-  \divider
-
-  \cvevent{SpoonBot}{\faCode \, Technologies: Next.js, Tailwind CSS, OpenAI}{\url{https://github.com/aaronpo97/spoonbot}}{}
-  \begin{itemize}
-    \item Spearheaded the development of SpoonBot, a cutting-edge web application powered by OpenAI's \textbf{GPT-3 API}, showcasing its ability to generate restaurant names, detailed restaurant reviews, and enticing restaurant menus.
-    \item Implemented robust content moderation features to ensure a safe and respectful user experience, leveraging advanced techniques to detect and prevent offensive or harmful language in user input.
-    \item Crafted a visually stunning and responsive user interface by harnessing the power of \textbf{Next.js}, a React-based framework, and seamlessly integrating it with the versatility of \textbf{Tailwind CSS}.
-    \item Deployed with \textbf{Vercel} for its fast and seamless deployment process that integrates directly with \textbf{Next.js}.
-  \end{itemize}
-
-  \switchcolumn
-
-  \cvsection{Education}
-  \cvevent{\faSchool\, University of Western Ontario}{London, Ontario, Canada}{2020}{}
-  \begin{itemize}
-    \item Bachelor of Music
-  \end{itemize}
-
-  \cvsection{Courses taken}
-  \cvevent{The Web Developer Bootcamp}{instructed by Colt Steele, udemy.com}{2022}{}
-
-  \begin{itemize}
-    \item Certificate of Completion
-  \end{itemize}
-  \cvsection{Skills}
-  \cvevent{\faCode \, Core Competencies}{}{}{}
-  \begin{itemize}
-    \item Quickly learns and applies new technologies and methodologies.
-    \item Efficiently manages time, prioritizes tasks, and meets deadlines.
-    \item Applies critical thinking skills to evaluate situations and make informed decisions.
-    \item Self-motivated and takes initiative for personal and professional growth.
-    \item Committed to continuous learning and staying updated with industry trends.
-    \item Adapts to changing project requirements and embraces new methodologies.
-  \end{itemize}
-  \divider
-  \cvevent{\faCode \, Web and Mobile Development}{}{}{}
-  \begin{itemize}
-    \item Proficient in \textbf{React} for client-side web applications and \textbf{React Native} for mobile app development.
-    \item Strong understanding of front-end principles: \textbf{responsive design}, \textbf{accessibility}, and \textbf{performance optimization}.
-    \item Skilled in \textbf{Next.js} and \textbf{Redux} for modern web development.
-    \item Experienced with UI component libraries (\textbf{Material-UI}, \textbf{Mantine}) and CSS frameworks (\textbf{Bootstrap}).
-    \item Proficient in \textbf{Tailwind CSS} for rapid UI development and customization.
-    \item Familiar with back-end concepts and tools \textbf{RESTful APIs}, \textbf{Node.js}, \textbf{Express}.
-    \item Strong problem-solving and debugging skills.
-    \item Proficient in \textbf{Git} for version control (\textbf{GitHub} collaboration).
-    \item Experienced with \textbf{Linux} (Bash scripting) and \textbf{Mac OS} development tools.
-  \end{itemize}
-
+	\cvsection{About}
+	I am a full-stack developer looking to break into the tech industry specializing in Typescript/Javascript development with a passion for creating versatile applications for both client and server environments. 
+	\vspace{0.5em}\newline
+	Committed to continuous learning and innovation, I thrive in dynamic work environments that foster growth and encourage collaboration. I am eager to contribute my skills and expertise to a team's success while further expanding my knowledge in the field.
+		
+	\cvsection{Projects}
+	\cvsubsection{The Biergarten App}
+	\vspace{-0.25em}
+	{\small \faCode\,\,\,Next.js, Prisma, Postgres, Tailwind CSS}\newline
+	{\small \faDesktop\,\,\,\url{https://thebiergarten.app/}}
+			
+	\vspace{0.5em}
+	\begin{itemize}
+		\item An innovative web application designed for beer enthusiasts to connect and share their favorite brews and breweries online, that allows beer lovers to engage with like-minded individuals, discussing and discovering new beer experiences.
+		\item Leverages the power of \textbf{Next.js}, \textbf{Prisma}, and \textbf{Neon Postgres} to create a dynamic web application focused on fostering a passionate beer community.
+		\item Integrates APIs such as \textbf{Cloudinary}, \textbf{SparkPost}, and \textbf{Mapbox} to enrich the user experience by enabling functionalities like image uploading, email services, and geolocation features.
+		\item Uses \textbf{Tailwind CSS}, \textbf{Headless UI}, and \textbf{Daisy UI} to create a visually striking and user-friendly interface, enhancing the overall user experience.
+		\item Deployed with \textbf{Vercel} for its fast and seamless deployment process that integrates directly with \textbf{Next.js}.
+	\end{itemize}
+			  
+	\divider
+			
+	\cvsubsection{SpoonBot}
+	\vspace{-0.25em}
+	{\small \faCode\,\,\,Next.js, Tailwind CSS, OpenAI}\newline
+	{\small \faDesktop\,\,\,\url{https://spoonbot.vercel.app/}}
+	\vspace{.50em}
+	\begin{itemize}
+		\item Spearheaded the development of SpoonBot, a cutting-edge web application powered by OpenAI's \textbf{GPT-3 API}, showcasing its ability to generate restaurant names, detailed restaurant reviews, and enticing restaurant menus.
+		\item Implemented robust content moderation features to ensure a safe and respectful user experience, leveraging advanced techniques to detect and prevent offensive or harmful language in user input.
+		\item Crafted a visually stunning and responsive user interface by harnessing the power of \textbf{Next.js}, a React-based framework, and seamlessly integrating it with the versatility of \textbf{Tailwind CSS}.
+	\end{itemize}
+	\divider
+	\cvsubsection{DoggoBot}
+	\vspace{-0.25em}
+	{\small \faCode\,\,\,Node.js, Discord.js}\newline
+	{\small \faDesktop\,\,\,\url{https://discord.gg/x22H78aqpa}}
+	\vspace{.50em}
+	\begin{itemize}
+		\item Developed a Discord bot using \textbf{Node.js} and \textbf{Discord.js} to automate tasks and provide entertainment by sending pictures of dogs to designated channels on Discord servers.
+		\item Utilized the \textbf{Dog CEO API} to fetch random dog images and send them to Discord channels, showcasing the potential of Discord bots for automating tasks and providing entertainment.
+		\item Implemented a scheduling system to send dog images at regular intervals, providing a consistent and engaging user experience.
+	\end{itemize}
+	\switchcolumn
+			
+	\cvsection{Education}
+	\cvevent{Bachelor of Music}{University of Western Ontario}{2015-2020}{London, ON}
+			
+	\cvsection{Courses taken}
+	\cvevent{The Web Developer Bootcamp}{instructed by Colt Steele on Udemy.com}{Certificate of Completion, 2021}{}
+	\begin{itemize}
+		\item Covered a wide range of web development topics, including HTML, CSS, JavaScript, Node.js, Express, MongoDB, and RESTful APIs.
+	\end{itemize}
+	
+	\cvsection{Skills}
+	\cvsubsection{\faCode\, Core Competencies}
+	\begin{itemize}
+		\item Quickly learns and applies new technologies and methodologies.
+		\item Efficiently manages time, prioritizes tasks, and meets deadlines.
+		\item Applies critical thinking skills to evaluate situations and make informed decisions.
+		\item Self-motivated and takes initiative for personal and professional growth.
+		\item Committed to continuous learning and staying updated with industry trends.
+		\item Adapts to changing project requirements and embraces new methodologies.
+	\end{itemize}
+	
+	\divider
+		
+	\cvsubsection{\faCode\, Technical Skills}
+	\begin{itemize}
+		\item Proficient in \textbf{Git} for version control, using \textbf{GitHub} for collaboration and code management.
+		\item Proficient in \textbf{Next.js} and \textbf{React} for building dynamic and responsive web applications.
+		\item Proficient in \textbf{TypeScript} and \textbf{JavaScript} for front-end and back-end development.
+		\item Proficient in both SQL and NoSQL databases, including \textbf{PostgreSQL}, and \textbf{MongoDB}.
+		\item Proficient in \textbf{Tailwind CSS} for rapid UI development and customization.
+		\item Experienced with \textbf{Linux} and \textbf{Bash} scripting.
+		\item Experienced with UI component libraries (\textbf{Material-UI}, \textbf{Mantine}) and CSS frameworks (\textbf{Bootstrap}).
+		\item Familiar with \textbf{Docker} and \textbf{Kubernetes} for containerization and orchestration.
+		\item Strong problem-solving and debugging skills.
+		\item Strong understanding of back-end concepts \textbf{RESTful APIs}, \textbf{WebSockets}, and \textbf{GraphQL}.
+		\item Strong understanding of front-end principles: \textbf{responsive design}, \textbf{accessibility}, and \textbf{performance optimization}.
+	\end{itemize}
 \end{paracol}
+
+\newpage
+
+\cvsection{Employment History}
+
+\cvevent{Donation Attendant}{Goodwill Industries -- Ontario Great Lakes}{October 2022 -- present}{London, ON}
+\begin{itemize}
+	\item Provided exceptional customer service to donors and customers, ensuring a positive and respectful experience.
+	\item Maintained a clean and organized work environment, ensuring the safety and comfort of customers and staff.
+	\item Assisted in the collection and organization of donations, ensuring the efficient and effective processing of goods.
+	\item Collaborated with team members to achieve daily goals and maintain a high standard of service.
+\end{itemize}
+\divider
+
+\cvevent{Host, Expo and Beer Retail Sales}{Toboggan Brewing Company}{September 2021 -- September 2022}{London, ON}
+\begin{itemize}
+	\item Worked in a dynamic and fast changing atmosphere, providing exceptional customer service to guests.
+	\item Adapted to changing roles and responsibilities, accommodating the needs of the business and team members.
+	\item Managed takeout orders and their preparation at the expo stand, ensuring timely and accurate delivery of orders to customers.
+	\item Provided exceptional customer service through booking reservations and assisting in events booking.
+	\item Assisted in the retail sales of beer and merchandise, ensuring a positive and informative customer experience.
+	\item Collaborated with team members to maintain a high standard of service and a positive work environment.
+\end{itemize}
+\divider
+
+\cvevent{Deliveries and E-commerce Associate}{The Home Depot Canada}{March 2021 -- September 2021}{London ON}
+\begin{itemize}
+	\item Provided exceptional customer service to customers, ensuring a positive and respectful experience.
+	\item Managed the preparation and delivery of online orders, ensuring the accurate and timely delivery of goods.
+	\item Assisted in the organization and maintenance of the store, ensuring a clean and organized work environment.
+	\item Developed strong communication and teamwork skills, collaborating with team members to achieve daily goals.
+	\item Adapted to changing roles and responsibilities, accommodating the needs of the business and team members.
+\end{itemize}
 
 \end{document}
