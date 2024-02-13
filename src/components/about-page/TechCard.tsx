@@ -13,7 +13,7 @@ const TechCard: FC<{
       rel="noopener noreferrer"
     >
       <div className="card-body items-center justify-center">
-        <div className="pointer-events-none flex h-8 w-8 items-center justify-center rounded-lg sm:h-10 sm:w-10 md:h-20 md:w-20 lg:h-24 lg:w-24">
+        <div className="pointer-events-none flex h-9 w-9 items-center justify-center rounded-lg sm:h-10 sm:w-10 md:h-20 md:w-20 lg:h-24 lg:w-24">
           <Image
             src={stack.icon}
             alt={stack.text}
@@ -23,7 +23,7 @@ const TechCard: FC<{
             className="h-full w-full"
           />
         </div>
-        <h4 className="font-semibold sm:text-xs lg:text-lg">{stack.text}</h4>
+        <h4 className="text-xs font-semibold lg:text-lg">{stack.text}</h4>
       </div>
     </a>
   );

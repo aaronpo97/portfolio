@@ -101,11 +101,6 @@
               "link": "https://www.postgresql.org/"
             },
             {
-              "text": "CockroachDB",
-              "icon": "./icons/databases/cockroachdb.svg",
-              "link": "https://www.cockroachlabs.com/"
-            },
-            {
               "text": "Redis",
               "icon": "./icons/databases/redis.svg",
               "link": "https://redis.io/"

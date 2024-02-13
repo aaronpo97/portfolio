@@ -36,3 +36,10 @@ next-env.d.ts
 
 
 .texpadtmp
+public/resume/main.aux
+public/resume/main.fdb_latexmk
+public/resume/main.fls
+public/resume/main.log
+public/resume/main.out
+public/resume/main.synctex.gz
+public/resume/pdfa.xmpi
