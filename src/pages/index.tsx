@@ -11,7 +11,7 @@ const Home: NextPage = () => {
         <title>{process.env.NEXT_PUBLIC_SITE_NAME}</title>
         <meta name="description" content="Aaron Po's personal website" />
       </Head>
-      <div className="relative flex h-dvh w-full flex-col items-center justify-center bg-[radial-gradient(eclipse,_var(--tw-gradient-stops))] from-slate-900 via-slate-600 to-slate-500">
+      <div className="relative flex h-dvh w-full flex-col items-center justify-center">
         <Image
           alt=""
           src="/background.jpg"
