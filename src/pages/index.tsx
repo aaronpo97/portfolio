@@ -24,7 +24,7 @@ const Home: NextPage = () => {
     <>
       <Head>
         <title>{process.env.NEXT_PUBLIC_SITE_NAME}</title>
-        <meta name="description" content="Aaron Po's personal website" />
+        <meta name="description" content={metadata.description} />
         <meta name="keywords" content={metadata.keywords.join(', ')} />
         <meta name="author" content="Aaron Po" />
         <meta property="og:title" content={metadata.title} />
