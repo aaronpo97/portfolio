@@ -1,11 +1,9 @@
-\documentclass[9pt,a4paper,withhyper]{altacv}
-\usepackage{bookmark}
-\geometry{left=1.1cm,right=1.1cm,top=1.5cm,bottom=1cm,columnsep=0.6cm}
-
+\documentclass[9pt,a4paper,ragged2e,withhyper]{altacv}
+\geometry{left=1.5cm,right=1.5cm,top=2cm,bottom=1.5cm,columnsep=0.5cm}
 \usepackage{paracol}
 \usepackage{charter}
-\usepackage{hyperref}
-\urlstyle{same}
+
+\colorlet{name}{black}
 \colorlet{tagline}{black}
 \colorlet{heading}{black}
 \colorlet{headingrule}{black}
@@ -14,10 +12,21 @@
 \colorlet{emphasis}{black}
 \colorlet{body}{black}
 
-\renewcommand{\itemmarker}{{\small\textbullet}}
+\newcommand{\project}[4]{
+		\cvsubsection{#1}
+		\vspace{-0.25em}
+		{\small \faCode\,\,\,#2}\newline
+		{\small \faDesktop\,\,\,\url{#3}}
+		\vspace{0.5em}
+		\begin{itemize}
+			#4
+		\end{itemize}
+	}
+
 
 \begin{document}
-\name{Aaron William Po \\ \large{\vspace{-1em} web developer}}
+\name{Aaron William Po}
+\tagline{Full Stack Developer}
 
 \personalinfo{%
 	\email{aaron\_po@msn.com}
@@ -31,61 +40,54 @@
 
 \begin{paracol}{2}
 	\cvsection{About}
-	I am a developer looking to break into the tech industry specializing in Typescript/Javascript development with a passion for creating versatile applications for both client and server environments. 
+	I am a developer looking to break into the tech industry specializing in Typescript/Javascript development with a passion for creating versatile applications for both client and server environments.
 	\vspace{0.5em}\newline
 	Committed to continuous learning and innovation, I thrive in dynamic work environments that foster growth and encourage collaboration. I am eager to contribute my skills and expertise to a team's success while further expanding my knowledge in the field.
-		
+
 	\cvsection{Projects}
-	\cvsubsection{The Biergarten App}
-	\vspace{-0.25em}
-	{\small \faCode\,\,\,Next.js, Prisma, Postgres, Tailwind CSS}\newline
-	{\small \faDesktop\,\,\,\url{https://thebiergarten.app/}}
-			
-	\vspace{0.5em}
-	\begin{itemize}
+
+	\project{
+		The Biergarten App
+	}{Next.js, Prisma, Postgres, Tailwind CSS}{https://thebiergarten.app/}{
 		\item An innovative web application designed for beer enthusiasts to connect and share their favorite brews and breweries online, that allows beer lovers to engage with like-minded individuals, discussing and discovering new beer experiences.
 		\item Leverages the power of \textbf{Next.js}, \textbf{Prisma}, and \textbf{Neon Postgres} to create a dynamic web application focused on fostering a passionate beer community.
 		\item Integrates APIs such as \textbf{Cloudinary}, \textbf{SparkPost}, and \textbf{Mapbox} to enrich the user experience by enabling functionalities like image uploading, email services, and geolocation features.
 		\item Uses \textbf{Tailwind CSS}, \textbf{Headless UI}, and \textbf{Daisy UI} to create a visually striking and user-friendly interface, enhancing the overall user experience.
 		\item Deployed with \textbf{Vercel} for its fast and seamless deployment process that integrates directly with \textbf{Next.js}.
-	\end{itemize}
-			  
+	}
+
 	\divider
-			
-	\cvsubsection{SpoonBot}
-	\vspace{-0.25em}
-	{\small \faCode\,\,\,Next.js, Tailwind CSS, OpenAI}\newline
-	{\small \faDesktop\,\,\,\url{https://spoonbot.vercel.app/}}
-	\vspace{.50em}
-	\begin{itemize}
+
+	\project{
+		SpoonBot
+	}{Next.js, Tailwind CSS, OpenAI}{https://spoonbot.vercel.app/}{
 		\item Spearheaded the development of SpoonBot, a cutting-edge web application powered by OpenAI's \textbf{GPT-3 API}, showcasing its ability to generate restaurant names, detailed restaurant reviews, and enticing restaurant menus.
 		\item Implemented robust content moderation features to ensure a safe and respectful user experience, leveraging advanced techniques to detect and prevent offensive or harmful language in user input.
 		\item Crafted a visually stunning and responsive user interface by harnessing the power of \textbf{Next.js}, a React-based framework, and seamlessly integrating it with the versatility of \textbf{Tailwind CSS}.
-	\end{itemize}
+	}
+
 	\divider
-	\cvsubsection{DoggoBot}
-	\vspace{-0.25em}
-	{\small \faCode\,\,\,Node.js, Discord.js}\newline
-	{\small \faDesktop\,\,\,\url{https://discord.gg/x22H78aqpa}}
-	\vspace{.50em}
-	\begin{itemize}
+
+	\project{DoggoBot}{Node.js, Discord.js}{https://discord.gg/x22H78aqpa}{
 		\item Developed a Discord bot using \textbf{Node.js} and \textbf{Discord.js} to automate tasks and provide entertainment by sending pictures of dogs to designated channels on Discord servers.
 		\item Utilized the Dog CEO API to fetch random dog images and send them to Discord channels, showcasing the potential of Discord bots for automating tasks and providing entertainment.
 		\item Implemented a scheduling system to send dog images at regular intervals, providing a consistent and engaging user experience.
-	\end{itemize}
+	}
+
 	\switchcolumn
-			
+
 	\cvsection{Education}
 	\cvevent{Bachelor of Music}{University of Western Ontario}{2015-2020}{London, ON}
-			
+
 	\cvsection{Courses taken}
-	\cvevent{The Web Developer Bootcamp}{instructed by Colt Steele on Udemy.com}{Certificate of Completion, 2021}{}
+	\cvevent{The Web Developer Bootcamp}{instructed by Colt Steele on Udemy.com}{2021}{}
 	\begin{itemize}
-		\item Covered a wide range of web development topics, including HTML, CSS, JavaScript, Node.js, Express, MongoDB, and RESTful APIs.
+		\item Certificate of completion for a comprehensive course on full-stack web development, covering front-end and back-end technologies, including HTML, CSS, JavaScript, Node.js, and MongoDB.
 	\end{itemize}
-	
+
 	\cvsection{Skills}
-	\cvsubsection{\faCode\, Core Competencies}
+	\cvsubsection{Core Competencies}
+
 	\begin{itemize}
 		\item Quickly learns and applies new technologies and methodologies.
 		\item Efficiently manages time, prioritizes tasks, and meets deadlines.
@@ -94,17 +96,17 @@
 		\item Committed to continuous learning and staying updated with industry trends.
 		\item Adapts to changing project requirements and embraces new methodologies.
 	\end{itemize}
-	
+
+
 	\divider
-		
-	\cvsubsection{\faCode\, Technical Skills}
+
+	\cvsubsection{Technical Skills}
 	\begin{itemize}
 		\item Proficient in \textbf{Git} for version control, using \textbf{GitHub} for collaboration and code management.
 		\item Proficient in \textbf{Next.js} and \textbf{React} for building dynamic and responsive web applications.
 		\item Proficient in \textbf{TypeScript} and \textbf{JavaScript} for front-end and back-end development.
 		\item Proficient in both \textbf{SQL} and \textbf{NoSQL} databases, including \textbf{PostgreSQL}, and \textbf{MongoDB}.
 		\item Proficient in \textbf{Tailwind CSS} for rapid UI development and customization.
-		\item Experienced with UI component libraries (\textbf{Material-UI}, \textbf{Mantine}) and CSS frameworks (\textbf{Bootstrap}).
 		\item Familiar with Linux and the command line, using \textbf{Bash} for scripting and automation.
 		\item Familiar with \textbf{Docker} and \textbf{Kubernetes} for containerization and orchestration.
 		\item Strong problem-solving and debugging skills.
