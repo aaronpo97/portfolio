@@ -1,10 +1,23 @@
-import Donuts from '@/components/threejs/donuts/Donuts';
-import Rotacube from '@/components/threejs/rotacube/Rotacube';
 import { Tab } from '@headlessui/react';
 import { NextPage } from 'next';
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import { Dispatch, FC, SetStateAction, useState } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
+
+const Donuts = dynamic(
+  () => import('../components/threejs/donuts/Donuts').then((mod) => mod.default),
+  {
+    ssr: false,
+  },
+);
+
+const Rotacube = dynamic(
+  () => import('../components/threejs/rotacube/Rotacube').then((mod) => mod.default),
+  {
+    ssr: false,
+  },
+);
 
 const Info: FC<{
   setViewArt: Dispatch<SetStateAction<boolean>>;
@@ -39,6 +52,7 @@ const Info: FC<{
 
 const ThreeJs: NextPage = () => {
   const [viewArt, setViewArt] = useState(false);
+
   return (
     <>
       <Head>
