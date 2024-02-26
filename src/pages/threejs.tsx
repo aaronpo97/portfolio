@@ -6,14 +6,21 @@ import { Dispatch, FC, SetStateAction, useState } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
 
 const Donuts = dynamic(
-  () => import('../components/threejs/donuts/Donuts').then((mod) => mod.default),
+  () => import('../components/threejs/donuts').then((mod) => mod.default),
   {
     ssr: false,
   },
 );
 
 const Rotacube = dynamic(
-  () => import('../components/threejs/rotacube/Rotacube').then((mod) => mod.default),
+  () => import('../components/threejs/rotacube').then((mod) => mod.default),
+  {
+    ssr: false,
+  },
+);
+
+const Galaxy = dynamic(
+  () => import('../components/threejs/galaxy').then((mod) => mod.default),
   {
     ssr: false,
   },
@@ -77,12 +84,15 @@ const ThreeJs: NextPage = () => {
             </div>
           </div>
           <Tab.Group>
-            <Tab.List className="tabs-boxed tabs absolute bottom-5 w-11/12 grid-cols-2 lg:w-7/12">
+            <Tab.List className="tabs-boxed tabs absolute bottom-5 w-11/12 grid-cols-3 lg:w-7/12">
               <Tab className="tab text-xl font-semibold uppercase ui-selected:tab-active">
                 Donuts
               </Tab>
               <Tab className="tab text-xl font-semibold uppercase ui-selected:tab-active">
                 Rotacube
+              </Tab>
+              <Tab className="tab text-xl font-semibold uppercase ui-selected:tab-active">
+                Galaxy
               </Tab>
             </Tab.List>
             <Tab.Panels>
@@ -91,6 +101,9 @@ const ThreeJs: NextPage = () => {
               </Tab.Panel>
               <Tab.Panel>
                 <Rotacube />
+              </Tab.Panel>
+              <Tab.Panel>
+                <Galaxy />
               </Tab.Panel>
             </Tab.Panels>
           </Tab.Group>
