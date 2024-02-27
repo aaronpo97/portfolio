@@ -15,7 +15,6 @@ const Navbar = () => {
       className={classNames(`navbar fixed top-0 z-20 h-11 min-h-10`, {
         'bg-transparent': !showSiteName,
         'bg-base-100': showSiteName,
-        'bg-opacity-70': currentURL === '/threejs',
       })}
     >
       <div className="flex-1">
