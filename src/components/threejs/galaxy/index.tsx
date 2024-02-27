@@ -9,6 +9,7 @@ import {
   Points,
   PointsMaterial,
   Scene,
+  TextureLoader,
   WebGLRenderer,
 } from 'three';
 
@@ -21,23 +22,28 @@ const Galaxy: FC = () => {
 
   useEffect(() => {
     const gui = new GUI();
-    gui.domElement.style.marginTop = '2.75rem';
+
+    gui.domElement.style.cssText = `
+      margin-top: 2.75rem;
+      width: 25rem;
+    `;
+
     const canvas = canvasRef.current!;
     const scene = new Scene();
 
     const parameters = {
       count: 20000,
-      size: 0.001,
+      size: 0.01,
       radius: 5,
       branches: 3,
       spin: 1,
       tilt: 0,
       randomness: 0.2,
       randomnessPower: 3,
-      insideColor: '#b3d1ff',
-      outsideColor: '#1b3984',
+      insideColor: 0xb3d1ff,
+      outsideColor: 0x8cb3ff,
       rotationSpeed: 0.25,
-      centerRadius: 1,
+      centerRadius: 0.5,
     };
 
     let geometry: BufferGeometry | null = null;
@@ -52,7 +58,7 @@ const Galaxy: FC = () => {
       const colorOutside = new Color(parameters.outsideColor);
 
       for (let i = 0; i < parameters.count * 3; i += 1) {
-        const radius = Math.random() * parameters.radius;
+        const radius = Math.random() * parameters.radius + parameters.centerRadius;
         const spinAngle = radius * parameters.spin;
         const i3 = i * 3;
 
@@ -93,15 +99,14 @@ const Galaxy: FC = () => {
         depthWrite: false,
         blending: AdditiveBlending,
         vertexColors: true,
+        map: new TextureLoader().load('/threejs/textures/circle.png'),
       });
 
       points = new Points(geometry, material);
-
       scene.add(points);
     };
 
     generateGalaxy();
-
     const sizes = {
       width: window.innerWidth,
       height: window.innerHeight,
@@ -150,68 +155,132 @@ const Galaxy: FC = () => {
 
     animate();
 
-    gui
+    const galaxySection = gui.addFolder('Galaxy');
+    const cameraSection = gui.addFolder('Camera');
+
+    const resetCamera = () => {
+      camera.position.x = 3;
+      camera.position.y = 3;
+      camera.position.z = 3;
+      camera.lookAt(0, 0, 0);
+    };
+
+    galaxySection
       .add(parameters, 'count')
       .min(100)
       .max(100000)
       .step(100)
+      .name('Star Count')
       .onFinishChange(generateGalaxy);
 
-    gui
+    galaxySection
       .add(parameters, 'size')
       .min(0.0001)
       .max(0.1)
       .step(0.0001)
+      .name('Star Size')
       .onFinishChange(generateGalaxy);
 
-    gui
+    galaxySection
       .add(parameters, 'radius')
       .min(0.01)
       .max(20)
       .step(0.01)
+      .name('Galaxy Radius')
       .onFinishChange(generateGalaxy);
 
-    gui.add(parameters, 'branches').min(2).max(20).step(1).onFinishChange(generateGalaxy);
+    galaxySection
+      .add(parameters, 'branches')
+      .min(2)
+      .max(20)
+      .step(1)
+      .name('Galaxy Branches')
+      .onFinishChange(generateGalaxy);
 
-    gui.add(parameters, 'spin').min(-5).max(5).step(0.001).onFinishChange(generateGalaxy);
+    galaxySection
+      .add(parameters, 'spin')
+      .min(-5)
+      .max(5)
+      .step(0.001)
+      .name('Galaxy Spin')
+      .onFinishChange(generateGalaxy);
 
-    gui
+    galaxySection
       .add(parameters, 'randomness')
       .min(0)
       .max(2)
       .step(0.001)
+      .name('Galaxy Randomness')
       .onFinishChange(generateGalaxy);
 
-    gui
+    galaxySection
       .add(parameters, 'randomnessPower')
       .min(1)
       .max(10)
       .step(0.001)
+      .name('Galaxy Randomness Power')
       .onFinishChange(generateGalaxy);
 
-    gui
+    galaxySection
       .add(parameters, 'rotationSpeed')
       .min(0)
       .max(1)
       .step(0.001)
+      .name('Galaxy Rotation Speed')
       .onFinishChange(generateGalaxy);
 
-    gui
+    galaxySection
       .add(parameters, 'tilt')
       .min((Math.PI / 2) * -1)
       .max(Math.PI / 2)
       .step(0.001)
+      .name('Galaxy Tilt')
       .onFinishChange(generateGalaxy);
 
-    gui
+    galaxySection
+      .addColor(parameters, 'insideColor')
+      .name('Inside Color')
+      .onFinishChange(generateGalaxy);
+
+    galaxySection
+      .addColor(parameters, 'outsideColor')
+      .name('Outside Color')
+      .onFinishChange(generateGalaxy);
+
+    galaxySection
       .add(parameters, 'centerRadius')
       .min(0)
-      .max(10)
+      .max(1)
       .step(0.01)
+      .name('Center Radius')
       .onFinishChange(generateGalaxy);
 
-    gui.addColor(parameters, 'insideColor').onFinishChange(generateGalaxy);
-    gui.addColor(parameters, 'outsideColor').onFinishChange(generateGalaxy);
+    cameraSection
+      .add(camera.position, 'x')
+      .min(Math.PI * -4)
+      .max(Math.PI * 4)
+      .step(0.01)
+      .listen()
+      .name('Set Camera X');
+
+    cameraSection
+      .add(camera.position, 'y')
+      .min(Math.PI * -4)
+      .max(Math.PI * 4)
+      .step(0.01)
+      .listen()
+      .name('Set Camera Y');
+
+    cameraSection
+      .add(camera.position, 'z')
+      .min(Math.PI * -4)
+      .max(Math.PI * 4)
+      .step(0.01)
+      .listen()
+      .name('Set Camera Z');
+
+    // reset camera
+    cameraSection.add({ resetCamera }, 'resetCamera').name('Reset Camera');
 
     return () => {
       window.removeEventListener('resize', onResize);
