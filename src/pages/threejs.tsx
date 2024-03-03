@@ -84,14 +84,14 @@ const ThreeJs: NextPage = () => {
             </div>
           </div>
           <Tab.Group>
-            <Tab.List className="tabs-boxed tabs absolute bottom-5 w-11/12 grid-cols-3 lg:w-7/12">
-              <Tab className="tab text-xl font-semibold uppercase ui-selected:tab-active">
+            <Tab.List className="tabs-boxed tabs absolute bottom-5 w-11/12 grid-cols-3 sm:w-7/12">
+              <Tab className="tab text-sm font-semibold uppercase ui-selected:tab-active lg:text-xl">
                 Donuts
               </Tab>
-              <Tab className="tab text-xl font-semibold uppercase ui-selected:tab-active">
+              <Tab className="tab text-sm font-semibold uppercase ui-selected:tab-active lg:text-xl">
                 Rotacube
               </Tab>
-              <Tab className="tab text-xl font-semibold uppercase ui-selected:tab-active">
+              <Tab className="tab text-sm font-semibold uppercase ui-selected:tab-active lg:text-xl">
                 Galaxy
               </Tab>
             </Tab.List>

@@ -23,10 +23,7 @@ const Galaxy: FC = () => {
   useEffect(() => {
     const gui = new GUI();
 
-    gui.domElement.style.cssText = `
-      margin-top: 2.75rem;
-      width: 25rem;
-    `;
+    gui.domElement.style.cssText = `margin-top: 2.75rem; width: 20rem;`;
 
     const canvas = canvasRef.current!;
     const scene = new Scene();
@@ -218,7 +215,7 @@ const Galaxy: FC = () => {
       .min(1)
       .max(10)
       .step(0.001)
-      .name('Galaxy Randomness Power')
+      .name('Randomness Power')
       .onFinishChange(generateGalaxy);
 
     galaxySection
@@ -226,7 +223,7 @@ const Galaxy: FC = () => {
       .min(0)
       .max(1)
       .step(0.001)
-      .name('Galaxy Rotation Speed')
+      .name('Rotation Speed')
       .onFinishChange(generateGalaxy);
 
     galaxySection
@@ -255,6 +252,7 @@ const Galaxy: FC = () => {
       .name('Center Radius')
       .onFinishChange(generateGalaxy);
 
+    galaxySection.close();
     cameraSection
       .add(camera.position, 'x')
       .min(Math.PI * -4)
@@ -281,6 +279,8 @@ const Galaxy: FC = () => {
 
     // reset camera
     cameraSection.add({ resetCamera }, 'resetCamera').name('Reset Camera');
+
+    cameraSection.close();
 
     return () => {
       window.removeEventListener('resize', onResize);
