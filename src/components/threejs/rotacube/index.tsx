@@ -10,6 +10,7 @@ import {
 } from 'three';
 import { useEffect, useMemo, useRef } from 'react';
 
+import GUI from 'lil-gui';
 import { createBlockMesh, createReplicatedGroup } from './util/create';
 import calculatePositions from './util/calculatePositions';
 
@@ -38,6 +39,9 @@ const Rotacube = () => {
 
   useEffect(() => {
     const canvas = canvasRef.current!;
+
+    const gui = new GUI();
+    gui.domElement.style.cssText = `margin-top: 2.75rem; width: 20rem;`;
 
     const camera = new PerspectiveCamera(
       CAMERA_SETTINGS.fov,
@@ -94,6 +98,51 @@ const Rotacube = () => {
       secondary: 400,
       tertiary: 100,
     };
+
+    const rotationSpeedsFolder = gui.addFolder('Rotation Speeds');
+    rotationSpeedsFolder
+      .add(ROTATION_SPEEDS, 'primary')
+      .name('Primary')
+      .min(0)
+      .max(1)
+      .step(0.01);
+
+    rotationSpeedsFolder
+      .add(ROTATION_SPEEDS, 'secondary')
+      .name('Secondary')
+      .min(0)
+      .max(1)
+      .step(0.01);
+
+    rotationSpeedsFolder
+      .add(ROTATION_SPEEDS, 'tertiary')
+      .name('Tertiary')
+      .min(0)
+      .max(1)
+      .step(0.01);
+
+    const YFactorFolder = gui.addFolder('Y Factors');
+
+    YFactorFolder.add(Y_FACTORS, 'primary')
+      .name('Primary')
+      .min(0)
+      .max(1000)
+      .step(10)
+      .listen();
+
+    YFactorFolder.add(Y_FACTORS, 'secondary')
+      .name('Secondary')
+      .min(0)
+      .max(1000)
+      .step(10)
+      .listen();
+
+    YFactorFolder.add(Y_FACTORS, 'tertiary')
+      .name('Tertiary')
+      .min(0)
+      .max(1000)
+      .step(10)
+      .listen();
 
     const ANGLE_INCREMENTS = {
       primary: (2 * Math.PI) / primaryGroup.children.length,
@@ -208,17 +257,11 @@ const Rotacube = () => {
       tertiaryGroup.clone().rotateX(Math.PI / 2),
       tertiaryGroup.clone().rotateY(Math.PI / 2),
       tertiaryGroup.clone().rotateZ(Math.PI / 2),
-      // tertiaryGroup.clone().rotateX(Math.PI / 4),
-      // tertiaryGroup.clone().rotateX(-(Math.PI / 4)),
-      // tertiaryGroup.clone().rotateY(Math.PI / 4),
-      // tertiaryGroup.clone().rotateY(-(Math.PI / 4)),
-      // tertiaryGroup.clone().rotateZ(Math.PI / 4),
-      // tertiaryGroup.clone().rotateZ(-(Math.PI / 4)),
     ];
 
     const main = new Group();
     clonedAndRotatedGroups.forEach((group) => main.add(group));
-    main.translateY(1000).translateZ(1000);
+    main.translateY(0).translateX(0).translateZ(0);
 
     scene.add(main);
 
@@ -236,10 +279,45 @@ const Rotacube = () => {
 
     animate();
 
+    const cameraSection = gui.addFolder('Camera');
+    const cameraFns = {
+      resetCamera: () => {
+        camera.position.set(0, 0, 1000);
+        camera.lookAt(0, 0, 1000);
+      },
+    };
+
+    cameraSection
+      .add(camera.position, 'x')
+      .name('Camera X')
+      .min(-1000)
+      .max(1000)
+      .step(10)
+      .listen();
+
+    cameraSection
+      .add(camera.position, 'y')
+      .name('Camera Y')
+      .min(-1000)
+      .max(1000)
+      .step(10)
+      .listen();
+
+    cameraSection
+      .add(camera.position, 'z')
+      .name('Camera Z')
+      .min(-1000)
+      .max(1000)
+      .step(10)
+      .listen();
+
+    cameraSection.add(cameraFns, 'resetCamera').name('Reset Camera');
+
     window.addEventListener('resize', onResize);
 
     return () => {
       window.removeEventListener('resize', onResize);
+      gui.destroy();
     };
   }, [SIZES, CAMERA_SETTINGS]);
 
