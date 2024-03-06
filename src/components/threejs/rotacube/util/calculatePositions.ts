@@ -1,3 +1,5 @@
+import { Clock, Object3D } from 'three';
+
 type CalculatePositionsArgs = {
   elapsedTime: number;
   radius: number;
@@ -8,31 +10,7 @@ type CalculatePositionsArgs = {
   index: number;
 };
 
-/**
- * Calculates positions along a circle in 3D space using the provided arguments.
- *
- * @example
- *   const { x, y, z } = calculatePositions({
- *     angleIncrement,
- *     elapsedTime,
- *     index,
- *     reverse,
- *     radius: PRIMARY_GROUP_RADIUS,
- *     rotationSpeed: PRIMARY_ROTATION_SPEED,
- *     yFactor: PRIMARY_Y_FACTOR,
- *   });
- *
- * @param args - The arguments to be used in the calculation.
- * @param args.elapsedTime - The time elapsed since the start of the animation.
- * @param args.rotationSpeed - The speed at which the object should rotate.
- * @param args.reverse - Whether or not the object should rotate in reverse.
- * @param args.angleIncrement - The angle increment to be used in the calculation.
- * @param args.radius - The radius of the circle.
- * @param args.yFactor - The y factor to be used in the calculation.
- * @param args.index - The index of the object.
- * @returns The calculated positions.
- */
-const calculatePositions = ({
+export const calculatePositionsOnCircle = ({
   elapsedTime,
   radius,
   rotationSpeed,
@@ -57,4 +35,117 @@ const calculatePositions = ({
   return { x, y: !reverse ? y : y * -1, z };
 };
 
-export default calculatePositions;
+type UpdateGroupChildrenArgs = {
+  child: Object3D;
+  index: number;
+  reverse?: boolean;
+  params: any;
+  clock: Clock;
+};
+
+export const updatePrimaryGroupChildren = ({
+  child,
+  index,
+  reverse = false,
+  params,
+  clock,
+}: UpdateGroupChildrenArgs) => {
+  const elapsedTime = clock.getElapsedTime();
+  const angleIncrement = index * params.angleIncrements.primary;
+
+  const { radius, rotationSpeed, yFactor } = {
+    radius: params.groupRadii.primary,
+    rotationSpeed: params.rotationSpeeds.primary,
+    yFactor: params.yFactors.primary,
+  };
+
+  const { x, y, z } = calculatePositionsOnCircle({
+    angleIncrement,
+    elapsedTime,
+    index,
+    reverse,
+    radius,
+    rotationSpeed,
+    yFactor,
+  });
+
+  child.position.set(x, y, z);
+};
+
+export const updateSecondaryGroupChildren = ({
+  child,
+  index,
+  reverse = false,
+  params,
+  clock,
+}: UpdateGroupChildrenArgs) => {
+  const elapsedTime = clock.getElapsedTime();
+
+  const angleIncrement = index * params.angleIncrements.secondary;
+
+  const { radius, rotationSpeed, yFactor } = {
+    radius: params.groupRadii.secondary,
+    rotationSpeed: params.rotationSpeeds.secondary,
+    yFactor: params.yFactors.secondary,
+  };
+
+  const { x, y, z } = calculatePositionsOnCircle({
+    angleIncrement,
+    elapsedTime,
+    reverse,
+    index,
+    radius,
+    rotationSpeed,
+    yFactor,
+  });
+
+  child.position.set(x, y, z);
+
+  child.children.forEach((c, i) =>
+    updatePrimaryGroupChildren({
+      child: c,
+      index: i,
+      reverse,
+      params,
+      clock,
+    }),
+  );
+};
+
+export const updateTertiaryGroupChildren = ({
+  child,
+  index,
+  reverse = false,
+  params,
+  clock,
+}: UpdateGroupChildrenArgs) => {
+  const elapsedTime = clock.getElapsedTime();
+  const angleIncrement = index * params.angleIncrements.tertiary;
+
+  const { radius, rotationSpeed, yFactor } = {
+    radius: params.groupRadii.tertiary,
+    rotationSpeed: params.rotationSpeeds.tertiary,
+    yFactor: params.yFactors.tertiary,
+  };
+
+  const { x, y, z } = calculatePositionsOnCircle({
+    angleIncrement,
+    elapsedTime,
+    reverse,
+    index,
+    radius,
+    rotationSpeed,
+    yFactor,
+  });
+
+  child.position.set(x, y, z);
+  child.children.forEach((c, i) =>
+    updateSecondaryGroupChildren({
+      child: c,
+      index: i,
+      reverse,
+      params,
+      clock,
+    }),
+  );
+};

@@ -17,6 +17,7 @@
     "@react-email/tailwind": "^0.0.12",
     "classnames": "^2.5.1",
     "gray-matter": "^4.0.3",
+    "lil-gui": "^0.18.2",
     "lodash": "^4.17.21",
     "next": "^13.4.0",
     "next-connect": "^1.0.0",
@@ -34,9 +35,9 @@
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
     "sharp": "^0.33.1",
+    "stats.js": "^0.17.0",
     "swr": "^2.2.4",
     "three": "^0.161.0",
-    "lil-gui": "^0.18.2",
     "zod": "^3.22.4"
   },
   "devDependencies": {
