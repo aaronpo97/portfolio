@@ -1,20 +1,22 @@
 import { useEffect, useMemo, useRef } from 'react';
+
 import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls';
 import {
   Clock,
   Group,
   MeshNormalMaterial,
-  Object3D,
   PerspectiveCamera,
   Scene,
   WebGLRenderer,
 } from 'three';
+
 import GUI from 'lil-gui';
 import Stats from 'stats.js';
-import { createBlockMesh, createReplicatedGroup } from './util/create';
-import { calculatePositionsOnCircle } from './util/calculatePositions';
 
-const Rotacube = () => {
+import { createBlockMesh, createReplicatedGroup } from '../util/create';
+import { updateTertiaryGroupChildren } from '../util/calculatePositions';
+
+const useRotacube = () => {
   const SIZES = useMemo(() => {
     if (typeof window === 'undefined') {
       return { width: 0, height: 0 };
@@ -92,109 +94,6 @@ const Rotacube = () => {
     };
     const clock = new Clock();
 
-    type UpdateGroupChildrenArgs = {
-      child: Object3D;
-      index: number;
-      reverse?: boolean;
-    };
-
-    const updatePrimaryGroupChildren = ({
-      child,
-      index,
-      reverse = false,
-    }: UpdateGroupChildrenArgs) => {
-      const elapsedTime = clock.getElapsedTime();
-      const angleIncrement = index * params.angleIncrements.primary;
-
-      const { radius, rotationSpeed, yFactor } = {
-        radius: params.groupRadii.primary,
-        rotationSpeed: params.rotationSpeeds.primary,
-        yFactor: params.yFactors.primary,
-      };
-
-      const { x, y, z } = calculatePositionsOnCircle({
-        angleIncrement,
-        elapsedTime,
-        index,
-        reverse,
-        radius,
-        rotationSpeed,
-        yFactor,
-      });
-
-      child.position.set(x, y, z);
-    };
-
-    const updateSecondaryGroupChildren = ({
-      child,
-      index,
-      reverse = false,
-    }: UpdateGroupChildrenArgs) => {
-      const elapsedTime = clock.getElapsedTime();
-
-      const angleIncrement = index * params.angleIncrements.secondary;
-
-      const { radius, rotationSpeed, yFactor } = {
-        radius: params.groupRadii.secondary,
-        rotationSpeed: params.rotationSpeeds.secondary,
-        yFactor: params.yFactors.secondary,
-      };
-
-      const { x, y, z } = calculatePositionsOnCircle({
-        angleIncrement,
-        elapsedTime,
-        reverse,
-        index,
-        radius,
-        rotationSpeed,
-        yFactor,
-      });
-
-      child.position.set(x, y, z);
-
-      child.children.forEach((c, i) =>
-        updatePrimaryGroupChildren({
-          child: c,
-          index: i,
-          reverse,
-        }),
-      );
-    };
-
-    const updateTertiaryGroupChildren = ({
-      child,
-      index,
-      reverse = false,
-    }: UpdateGroupChildrenArgs) => {
-      const elapsedTime = clock.getElapsedTime();
-      const angleIncrement = index * params.angleIncrements.tertiary;
-
-      const { radius, rotationSpeed, yFactor } = {
-        radius: params.groupRadii.tertiary,
-        rotationSpeed: params.rotationSpeeds.tertiary,
-        yFactor: params.yFactors.tertiary,
-      };
-
-      const { x, y, z } = calculatePositionsOnCircle({
-        angleIncrement,
-        elapsedTime,
-        reverse,
-        index,
-        radius,
-        rotationSpeed,
-        yFactor,
-      });
-
-      child.position.set(x, y, z);
-      child.children.forEach((c, i) =>
-        updateSecondaryGroupChildren({
-          child: c,
-          index: i,
-          reverse,
-        }),
-      );
-    };
-
     const clonedAndRotatedGroups = [
       tertiaryGroup.clone().rotateX(Math.PI / 2),
       tertiaryGroup.clone().rotateY(Math.PI / 2),
@@ -217,7 +116,7 @@ const Rotacube = () => {
       main.children.forEach((group, i) => {
         group.children.forEach((child, index) => {
           const reverse = i % 2 === 0;
-          updateTertiaryGroupChildren({ child, reverse, index });
+          updateTertiaryGroupChildren({ child, reverse, index, clock, params });
         });
       });
       renderer.render(scene, camera);
@@ -403,12 +302,12 @@ const Rotacube = () => {
 
     return () => {
       window.removeEventListener('resize', onResize);
-      document.body.removeChild(stats.dom);
+      stats.dom.remove();
       gui.destroy();
     };
   }, [SIZES, CAMERA_SETTINGS]);
 
-  return <canvas ref={canvasRef} />;
+  return { canvasRef };
 };
 
-export default Rotacube;
+export default useRotacube;
