@@ -108,9 +108,14 @@ const useRotacube = () => {
 
     const stats = new Stats();
     stats.showPanel(0);
-    stats.dom.style.cssText = `position: absolute; bottom: 0; right: 0;`;
+    stats.dom.style.cssText = `
+      position: absolute;
+      top: 0;
+      right: 21.5em;
+    `;
     document.body.appendChild(stats.dom);
 
+    let animationId: number;
     const animate = () => {
       stats.begin();
       main.children.forEach((group, i) => {
@@ -122,7 +127,7 @@ const useRotacube = () => {
       renderer.render(scene, camera);
       controls.update();
 
-      window.requestAnimationFrame(animate);
+      animationId = window.requestAnimationFrame(animate);
 
       stats.end();
     };
@@ -135,7 +140,7 @@ const useRotacube = () => {
      * scene.
      */
     const gui = new GUI();
-    gui.domElement.style.cssText = `margin-top: 2.75rem; width: 20rem;`;
+    gui.domElement.style.cssText = `width: 20rem;`;
 
     /** Group Radii */
     const groupRadiiFolder = gui.addFolder('Group Radii');
@@ -303,6 +308,7 @@ const useRotacube = () => {
     return () => {
       window.removeEventListener('resize', onResize);
       stats.dom.remove();
+      window.cancelAnimationFrame(animationId);
       gui.destroy();
     };
   }, [SIZES, CAMERA_SETTINGS]);

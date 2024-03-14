@@ -9,8 +9,9 @@ const Navbar = () => {
   const { pages, currentURL } = useNavbar();
 
   const showSiteName = currentURL !== '/';
+  const showNavbar = !currentURL.startsWith('/threejs/view');
 
-  return (
+  return !showNavbar ? null : (
     <nav
       className={classNames(`navbar fixed top-0 z-20 h-11 min-h-10`, {
         'bg-transparent': !showSiteName,

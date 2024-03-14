@@ -25,7 +25,7 @@ const useGalaxy = () => {
   useEffect(() => {
     const gui = new GUI();
 
-    gui.domElement.style.cssText = `margin-top: 2.75rem; width: 20rem;`;
+    gui.domElement.style.cssText = `width: 20rem;`;
 
     const canvas = canvasRef.current!;
     const scene = new Scene();
@@ -131,9 +131,14 @@ const useGalaxy = () => {
 
     const stats = new Stats();
     stats.showPanel(0);
-    stats.dom.style.cssText = `position: absolute; bottom: 0; right: 0;`;
+    stats.dom.style.cssText = `
+      position: absolute;
+      top: 0;
+      right: 21.5em;
+    `;
     document.body.appendChild(stats.dom);
 
+    let animationId: number;
     const animate = () => {
       stats.begin();
       if (!points || !geometry || !material) return;
@@ -145,7 +150,7 @@ const useGalaxy = () => {
 
       controls.update();
       renderer.render(scene, camera);
-      window.requestAnimationFrame(animate);
+      animationId = window.requestAnimationFrame(animate);
       stats.end();
     };
 
@@ -297,6 +302,7 @@ const useGalaxy = () => {
     return () => {
       window.removeEventListener('resize', onResize);
       stats.dom.remove();
+      window.cancelAnimationFrame(animationId);
       gui.destroy();
     };
   });

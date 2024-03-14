@@ -55,7 +55,7 @@ const useDonuts = () => {
     camera.position.set(0, 0, 2);
 
     const gui = new GUI();
-    gui.domElement.style.cssText = `margin-top: 2.75rem; width: 20rem;`;
+    gui.domElement.style.cssText = `width: 20rem;`;
 
     const donutParams = { count: 600, donutRadius: 1, tubeRadius: 0.5 };
 
@@ -86,9 +86,14 @@ const useDonuts = () => {
 
     const stats = new Stats();
     stats.showPanel(0);
-    stats.dom.style.cssText = `position: absolute; bottom: 0; right: 0;`;
+    stats.dom.style.cssText = `
+      position: absolute;
+      top: 0;
+      right: 21.5em;
+    `;
     document.body.appendChild(stats.dom);
 
+    let animationId: number;
     function animate() {
       stats.begin();
       if (!torusGroup || !torusGeometry || !torusMaterial) {
@@ -111,7 +116,7 @@ const useDonuts = () => {
       renderer.render(scene, camera);
       controls.update();
 
-      requestAnimationFrame(animate);
+      animationId = requestAnimationFrame(animate);
       stats.end();
     }
 
@@ -198,6 +203,7 @@ const useDonuts = () => {
     window.addEventListener('resize', onResize);
     return () => {
       window.removeEventListener('resize', onResize);
+      window.cancelAnimationFrame(animationId);
       gui.destroy();
       stats.dom.remove();
     };
