@@ -303,6 +303,11 @@ const useRotacube = () => {
       renderer.setSize(SIZES.width, SIZES.height);
     };
 
+    cameraSection.close();
+    YFactorFolder.close();
+    rotationSpeedsFolder.close();
+    groupRadiiFolder.close();
+
     window.addEventListener('resize', onResize);
 
     return () => {
