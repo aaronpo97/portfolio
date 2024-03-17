@@ -5,3 +5,11 @@ npm-debug.log
 README.md
 .next
 .git
+.gitignore
+resume
+.DS_Store
+*.cert
+*.key
+*.log
+*.pem
+*.sh
