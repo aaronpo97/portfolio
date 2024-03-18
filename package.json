@@ -4,8 +4,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "prestart": "npm run build",
+    "start": "node .next/standalone/server.js",
     "format": "npx prettier --write ."
   },
   "dependencies": {
