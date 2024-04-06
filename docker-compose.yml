@@ -1,0 +1,20 @@
+version: '3.9'
+
+services: 
+  nextapp: 
+    container_name: portfolio
+    image: aaron/portfolio
+    build: .
+    ports: 
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      - SPARKPOST_API_KEY=${SPARKPOST_API_KEY}
+      - HOST_EMAIL_ADDRESS=${HOST_EMAIL_ADDRESS}
+      - MY_EMAIL_ADDRESS=${MY_EMAIL_ADDRESS}
+      - REDIS_URL=${REDIS_URL}
+      - NEXT_PUBLIC_SITE_NAME=${NEXT_PUBLIC_SITE_NAME}
+      - NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL}
+      - NEXT_PUBLIC_CAPTCHA_SITE_KEY=${NEXT_PUBLIC_CAPTCHA_SITE_KEY}
+      - CAPTCHA_SECRET_KEY=${CAPTCHA_SECRET_KEY}

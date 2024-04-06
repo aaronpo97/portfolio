@@ -4,8 +4,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "prestart": "npm run build",
+    "start": "node .next/standalone/server.js",
     "format": "npx prettier --write ."
   },
   "dependencies": {
@@ -19,7 +18,7 @@
     "gray-matter": "^4.0.3",
     "lil-gui": "^0.18.2",
     "lodash": "^4.17.21",
-    "next": "^13.4.0",
+    "next": "^14.1.4",
     "next-connect": "^1.0.0",
     "obscenity": "^0.2.0",
     "prop-types": "^15.8.1",
@@ -34,7 +33,7 @@
     "redis": "^4.6.12",
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
-    "sharp": "^0.33.1",
+    "sharp": "0.32.6",
     "stats.js": "^0.17.0",
     "swr": "^2.2.4",
     "three": "^0.161.0",
