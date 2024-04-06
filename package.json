@@ -18,7 +18,7 @@
     "gray-matter": "^4.0.3",
     "lil-gui": "^0.18.2",
     "lodash": "^4.17.21",
-    "next": "^13.4.0",
+    "next": "^14.1.4",
     "next-connect": "^1.0.0",
     "obscenity": "^0.2.0",
     "prop-types": "^15.8.1",
