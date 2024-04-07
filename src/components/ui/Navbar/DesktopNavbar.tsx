@@ -6,6 +6,7 @@ const DesktopNavbar: FC<{
   pages: Page[];
   currentURL: string;
 }> = ({ currentURL, pages }) => {
+  const pageIsResume = (page: Page) => page.slug === '/resume.pdf';
   return (
     <div className="hidden flex-none lg:block">
       <ul className="menu menu-horizontal p-0">
@@ -15,8 +16,8 @@ const DesktopNavbar: FC<{
               <Link
                 tabIndex={0}
                 href={page.slug}
-                rel={page.slug === '/resume/main.pdf' ? 'noopener noreferrer' : ''}
-                target={page.slug === '/resume/main.pdf' ? '_blank' : ''}
+                rel={pageIsResume(page) ? 'noopener noreferrer' : ''}
+                target={pageIsResume(page) ? '_blank' : ''}
               >
                 <span
                   className={`text-lg uppercase ${
