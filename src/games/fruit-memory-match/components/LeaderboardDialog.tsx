@@ -11,7 +11,7 @@ const LeaderboardDialog: FC<{
   setSize: ReturnType<typeof useLeaderboard>['setSize'];
   size: ReturnType<typeof useLeaderboard>['size'];
   isLoading: ReturnType<typeof useLeaderboard>['isLoading'];
-}> = ({ leaderboardRef, leaderboard, error, setDisabled, setSize, isLoading }) => {
+}> = ({ leaderboardRef, leaderboard, error, setDisabled, setSize }) => {
   const { ref } = useInView({
     onChange(visible) {
       if (!visible) {
