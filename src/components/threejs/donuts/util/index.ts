@@ -2,7 +2,7 @@ import { Vector3, Euler, Object3D, Group } from 'three';
 
 export const MAX_DISTANCE = 50;
 const ROTATION_SPEED = 0.0005;
-const MOVEMENT_SPEED = 0.005;
+const MOVEMENT_SPEED = 0.0005;
 
 interface CalculateChildPositionArgs {
   position: Vector3;
@@ -39,14 +39,11 @@ export const calculateChildRotation = (rotation: Euler) => {
   };
 };
 
-export const calculateRandomCoordinate = (factor: number) =>
-  Math.random() * factor - factor / 2;
-
 export const calculateRandomCoordinates = (factor: number) => {
   return {
-    x: calculateRandomCoordinate(factor),
-    y: calculateRandomCoordinate(factor),
-    z: calculateRandomCoordinate(factor),
+    x: Math.random() * factor - factor / 2,
+    y: Math.random() * factor - factor / 2,
+    z: Math.random() * factor - factor / 2,
   };
 };
 

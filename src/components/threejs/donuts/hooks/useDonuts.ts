@@ -1,9 +1,11 @@
 import { useEffect, useMemo, useRef } from 'react';
 import {
   Clock,
+  Color,
   Group,
+  Material,
   Mesh,
-  MeshNormalMaterial,
+  MeshMatcapMaterial,
   PerspectiveCamera,
   Scene,
   TorusGeometry,
@@ -41,8 +43,11 @@ const useDonuts = () => {
 
   useEffect(() => {
     const scene = new Scene();
+
+    scene.background = new Color(0xffffff);
     const canvas = canvasRef.current!;
     const renderer = new WebGLRenderer({ canvas });
+
     renderer.setSize(SIZES.width, SIZES.height);
 
     const camera = new PerspectiveCamera(
@@ -57,33 +62,74 @@ const useDonuts = () => {
     const gui = new GUI();
     gui.domElement.style.cssText = `width: 20rem;`;
 
-    const donutParams = { count: 600, donutRadius: 1, tubeRadius: 0.5 };
+    const [color1, color2, color3, color4, color5, color6, color7] = [
+      0xff0000, 0xffa500, 0xffff00, 0x008000, 0x0000ff, 0x4b0082, 0x9400d3,
+    ] as const;
+
+    const donutParams = {
+      countPerGroup: 400,
+      donutRadius: 0.5,
+      tubeRadius: 0.25,
+      groupCount: 7,
+      colors: {
+        color1,
+        color2,
+        color3,
+        color4,
+        color5,
+        color6,
+        color7,
+      },
+    };
 
     const clock = new Clock();
     const controls = new OrbitControls(camera, canvas);
 
-    let torusGeometry: TorusGeometry | null = null;
-    let torusMaterial: MeshNormalMaterial | null = null;
-    let torusGroup: Group | null = null;
+    const donutGroups: {
+      geometry: TorusGeometry;
+      material: Material;
+      group: Group;
+    }[] = [];
 
     const createDonuts = () => {
-      if (torusGroup && torusGeometry && torusMaterial) {
-        torusGeometry.dispose();
-        torusMaterial.dispose();
-        scene.remove(torusGroup);
+      if (donutGroups.length) {
+        donutGroups.forEach(({ geometry, material, group }) => {
+          geometry.dispose();
+          material.dispose();
+          scene.remove(group);
+        });
       }
 
-      torusGeometry = new TorusGeometry(donutParams.donutRadius, donutParams.tubeRadius);
-      torusMaterial = new MeshNormalMaterial({});
-      const torus = new Mesh(torusGeometry, torusMaterial);
-      torusGroup = createReplicatedGroup(torus, donutParams.count);
-      scene.add(torusGroup);
+      for (let i = 0; i < donutParams.groupCount; i += 1) {
+        const geometry = new TorusGeometry(
+          donutParams.donutRadius,
+          donutParams.tubeRadius,
+        );
+
+        const colorEntries = Object.entries(donutParams.colors);
+
+        const color = colorEntries[i][1];
+        const material = new MeshMatcapMaterial({ color });
+        const group = createReplicatedGroup(
+          new Mesh(geometry, material),
+          donutParams.countPerGroup,
+        );
+        scene.add(group);
+
+        donutGroups.push({ geometry, material, group });
+      }
     };
 
     createDonuts();
 
     controls.maxDistance = MAX_DISTANCE;
 
+    /**
+     * Stats
+     *
+     * Displays the frames per second (FPS) and the milliseconds it takes to render each
+     * frame using Stats.js.
+     */
     const stats = new Stats();
     stats.showPanel(0);
     stats.dom.style.cssText = `
@@ -93,24 +139,28 @@ const useDonuts = () => {
     `;
     document.body.appendChild(stats.dom);
 
+    /**
+     * Animation Loop
+     *
+     * Sets the position and rotation of each donut group.
+     */
     let animationId: number;
     function animate() {
       stats.begin();
-      if (!torusGroup || !torusGeometry || !torusMaterial) {
-        return;
-      }
+      if (donutGroups.length === 0) return;
 
-      torusGroup.children.forEach((child, index) => {
-        const elapsedTime = clock.getElapsedTime();
-        const position = calculateChildPositions({
-          position: child.position,
-          index,
-          elapsedTime,
+      donutGroups.forEach(({ group }) => {
+        group.children.forEach((child, index) => {
+          const elapsedTime = clock.getElapsedTime();
+          const position = calculateChildPositions({
+            position: child.position,
+            index,
+            elapsedTime,
+          });
+          const rotation = calculateChildRotation(child.rotation);
+          child.rotation.set(rotation.x, rotation.y, rotation.z);
+          child.position.set(position.x, position.y, position.z);
         });
-        const rotation = calculateChildRotation(child.rotation);
-
-        child.rotation.set(rotation.x, rotation.y, rotation.z);
-        child.position.set(position.x, position.y, position.z);
       });
 
       renderer.render(scene, camera);
@@ -122,11 +172,17 @@ const useDonuts = () => {
 
     animate();
 
+    /**
+     * GUI Controls
+     *
+     * Controls for donuts count, donut radius, tube radius, camera position, and colors.
+     */
+
     const donutsFolder = gui.addFolder('Donuts');
     donutsFolder.close();
 
     donutsFolder
-      .add(donutParams, 'count')
+      .add(donutParams, 'countPerGroup')
       .min(50)
       .max(1000)
       .step(50)
@@ -189,6 +245,44 @@ const useDonuts = () => {
         'resetCamera',
       )
       .name('Reset Camera');
+
+    const colorFolder = gui.addFolder('Colors');
+    colorFolder.close();
+
+    colorFolder
+      .addColor(donutParams.colors, 'color1')
+      .listen()
+      .onFinishChange(createDonuts);
+
+    colorFolder
+      .addColor(donutParams.colors, 'color2')
+      .listen()
+      .onFinishChange(createDonuts);
+
+    colorFolder
+      .addColor(donutParams.colors, 'color3')
+      .listen()
+      .onFinishChange(createDonuts);
+
+    colorFolder
+      .addColor(donutParams.colors, 'color4')
+      .listen()
+      .onFinishChange(createDonuts);
+
+    colorFolder
+      .addColor(donutParams.colors, 'color5')
+      .listen()
+      .onFinishChange(createDonuts);
+
+    colorFolder
+      .addColor(donutParams.colors, 'color6')
+      .listen()
+      .onFinishChange(createDonuts);
+
+    colorFolder
+      .addColor(donutParams.colors, 'color7')
+      .listen()
+      .onFinishChange(createDonuts);
 
     const onResize = (): void => {
       SIZES.width = window.innerWidth;
