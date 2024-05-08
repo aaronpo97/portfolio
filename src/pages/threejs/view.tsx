@@ -35,9 +35,9 @@ const useThreeJsNavigation = () => {
 
   useEffect(() => {
     const scenes: Record<string, number> = {
-      donuts: 0,
-      rotacube: 1,
-      galaxy: 2,
+      galaxy: 0,
+      donuts: 1,
+      rotacube: 2,
     };
     const queryStrings = Object.keys(query);
     if (queryStrings.length === 0 || !query.name) {
@@ -79,6 +79,14 @@ const View: FC = () => {
             <Tab
               className="tab text-sm font-semibold uppercase ui-selected:tab-active lg:text-xl"
               onClick={() => {
+                router.replace('/threejs/view?name=galaxy');
+              }}
+            >
+              Galaxy
+            </Tab>
+            <Tab
+              className="tab text-sm font-semibold uppercase ui-selected:tab-active lg:text-xl"
+              onClick={() => {
                 router.replace('/threejs/view?name=donuts');
               }}
             >
@@ -92,24 +100,16 @@ const View: FC = () => {
             >
               Rotacube
             </Tab>
-            <Tab
-              className="tab text-sm font-semibold uppercase ui-selected:tab-active lg:text-xl"
-              onClick={() => {
-                router.replace('/threejs/view?name=galaxy');
-              }}
-            >
-              Galaxy
-            </Tab>
           </Tab.List>
           <Tab.Panels>
+            <Tab.Panel>
+              <Galaxy />
+            </Tab.Panel>
             <Tab.Panel>
               <Donuts />
             </Tab.Panel>
             <Tab.Panel>
               <Rotacube />
-            </Tab.Panel>
-            <Tab.Panel>
-              <Galaxy />
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>

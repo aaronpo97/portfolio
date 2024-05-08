@@ -2,7 +2,4 @@
 module.exports = {
   output: 'standalone',
   reactStrictMode: true,
-  images: {
-    domains: ['example.com'],
-  },
 };
