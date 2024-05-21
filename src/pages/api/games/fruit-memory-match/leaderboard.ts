@@ -4,6 +4,7 @@ import validateCaptcha from '@/middleware/validateCaptcha';
 import validateRequest from '@/middleware/validateRequest';
 import GameLeaderboardValidationSchema from '@/schema/GameLeaderboardValidationSchema';
 import LeaderboardService from '@/services/games/fruit-memory/match/leaderboard.service';
+import ErrorResponseBuilder from '@/util/api/response-handling/builders/ErrorResponseBuilder';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { createRouter } from 'next-connect';
 import DBClient from 'prisma/DBClient';
@@ -18,7 +19,7 @@ router.get(
   validateRequest({
     querySchema: z.object({ page_num: z.coerce.number(), page_size: z.coerce.number() }),
   }),
-  // @ts-ignore
+
   (req, res) => controller.getLeaderboard(req, res),
 );
 
@@ -30,14 +31,23 @@ router.post(
 
 const handler = router.handler({
   onNoMatch(req, res) {
-    res.status(405).json({ message: 'Method not allowed' });
+    const response = new ErrorResponseBuilder()
+      .setError(new ServerError('Method not allowed', 405))
+      .create();
+
+    res.status(405).json(response);
   },
   onError(err, req, res) {
-    if (err instanceof ServerError) {
-      res.status(err.status).json({ message: err.message });
-    } else {
-      res.status(500).json({ message: 'Internal server error' });
+    if (!(err instanceof ServerError)) {
+      const response = new ErrorResponseBuilder()
+        .setError(new ServerError('Internal server error', 500))
+        .create();
+      res.status(500).json(response);
+      return;
     }
+
+    const response = new ErrorResponseBuilder().setError(err).create();
+    res.status(err.status).json(response);
   },
 });
 

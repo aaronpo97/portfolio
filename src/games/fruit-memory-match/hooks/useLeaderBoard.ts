@@ -21,13 +21,13 @@ const useLeaderboard = () => {
       const response = await fetch(url);
       const json = await response.json();
 
-      const parsed = leaderboardEntry.safeParse(json);
+      const parsedPayload = leaderboardEntry.safeParse(json);
 
-      if (!parsed.success) {
+      if (!parsedPayload.success) {
         throw new Error('Invalid response');
       }
 
-      return parsed.data;
+      return parsedPayload.data;
     },
   );
 
