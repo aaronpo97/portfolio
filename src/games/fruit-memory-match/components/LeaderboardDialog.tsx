@@ -1,5 +1,6 @@
 import { Dispatch, FC, SetStateAction } from 'react';
 
+import { useInView } from 'react-intersection-observer';
 import useLeaderboard from '../hooks/useLeaderBoard';
 
 const LeaderboardDialog: FC<{
@@ -7,7 +8,18 @@ const LeaderboardDialog: FC<{
   leaderboard: ReturnType<typeof useLeaderboard>['leaderboard'];
   error: ReturnType<typeof useLeaderboard>['error'];
   setDisabled: Dispatch<SetStateAction<boolean>>;
-}> = ({ leaderboardRef, leaderboard, error, setDisabled }) => {
+  setSize: ReturnType<typeof useLeaderboard>['setSize'];
+  size: ReturnType<typeof useLeaderboard>['size'];
+  isLoading: ReturnType<typeof useLeaderboard>['isLoading'];
+}> = ({ leaderboardRef, leaderboard, error, setDisabled, setSize }) => {
+  const { ref } = useInView({
+    onChange(visible) {
+      if (!visible) {
+        return;
+      }
+      setSize((size) => size + 1);
+    },
+  });
   return (
     <dialog
       ref={leaderboardRef}
@@ -31,13 +43,20 @@ const LeaderboardDialog: FC<{
                   No entries yet. You could be the first!
                 </p>
               )}
-              {leaderboard.map((entry) => (
-                <div key={entry.id} className="flex flex-col items-start justify-start">
-                  <p className="text-2xl font-bold">{entry.name}</p>
-                  <p className="">Turns: {entry.turns}</p>
-                  <p className="">Date: {entry.date.toLocaleDateString()}</p>
-                </div>
-              ))}
+              {leaderboard.map((entry, i) => {
+                const isLast = i === leaderboard.length - 1;
+                return (
+                  <div
+                    key={entry.id}
+                    className="flex flex-col items-start justify-start"
+                    ref={isLast ? ref : undefined}
+                  >
+                    <p className="text-2xl font-bold">{entry.name}</p>
+                    <p className="">Turns: {entry.turns}</p>
+                    <p className="">Date: {entry.date.toLocaleDateString()}</p>
+                  </div>
+                );
+              })}
             </div>
 
             <div className="modal-action m-5 justify-center">

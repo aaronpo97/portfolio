@@ -1,65 +1,53 @@
 import ServerError from '@/ServerError';
+import LeaderboardController from '@/controllers/games/fruit-memory-match/leaderboard.controller';
 import validateCaptcha from '@/middleware/validateCaptcha';
 import validateRequest from '@/middleware/validateRequest';
 import GameLeaderboardValidationSchema from '@/schema/GameLeaderboardValidationSchema';
+import LeaderboardService from '@/services/games/fruit-memory/match/leaderboard.service';
+import ErrorResponseBuilder from '@/util/api/response-handling/builders/ErrorResponseBuilder';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { createRouter } from 'next-connect';
-import { createClient } from 'redis';
+import DBClient from 'prisma/DBClient';
+import { z } from 'zod';
 
-const client = createClient({ url: process.env.REDIS_URL });
-
-client.on('error', (err) => {
-  throw err;
-});
 const router = createRouter<NextApiRequest, NextApiResponse>();
 
-interface ILeaderboardRequest extends NextApiRequest {
-  body: { name: string; turns: number };
-}
+const service = new LeaderboardService(DBClient);
+const controller = new LeaderboardController(service);
 
-const postNewScore = async (req: ILeaderboardRequest, res: NextApiResponse) => {
-  const { name, turns } = req.body;
-  const id = crypto.randomUUID();
-  await client.connect();
-  await client.set(id, JSON.stringify({ id, turns, name, date: new Date() }));
-  await client.disconnect();
-  const data = { name, turns };
+router.get(
+  validateRequest({
+    querySchema: z.object({ page_num: z.coerce.number(), page_size: z.coerce.number() }),
+  }),
 
-  res.status(200).json(data);
-};
+  (req, res) => controller.getLeaderboard(req, res),
+);
 
-const getLeaderboard = async (req: NextApiRequest, res: NextApiResponse) => {
-  await client.connect();
-  const keys = await client.keys('*');
-  const data = await Promise.all(
-    keys.map(async (key) => {
-      const value = await client.get(key);
-      return JSON.parse(value!);
-    }),
-  );
-  await client.disconnect();
-  const sortedData = data.sort((a, b) => a.turns - b.turns);
-
-  res.status(200).json(sortedData);
-};
-
-router.get(getLeaderboard);
 router.post(
   validateRequest({ bodySchema: GameLeaderboardValidationSchema }),
   validateCaptcha,
-  postNewScore,
+  (req, res) => controller.postNewScore(req, res),
 );
 
 const handler = router.handler({
   onNoMatch(req, res) {
-    res.status(405).json({ message: 'Method not allowed' });
+    const response = new ErrorResponseBuilder()
+      .setError(new ServerError('Method not allowed', 405))
+      .create();
+
+    res.status(405).json(response);
   },
   onError(err, req, res) {
-    if (err instanceof ServerError) {
-      res.status(err.status).json({ message: err.message });
-    } else {
-      res.status(500).json({ message: 'Internal server error' });
+    if (!(err instanceof ServerError)) {
+      const response = new ErrorResponseBuilder()
+        .setError(new ServerError('Internal server error', 500))
+        .create();
+      res.status(500).json(response);
+      return;
     }
+
+    const response = new ErrorResponseBuilder().setError(err).create();
+    res.status(err.status).json(response);
   },
 });
 

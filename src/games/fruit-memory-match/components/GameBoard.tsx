@@ -23,7 +23,14 @@ const GameBoard = (): JSX.Element => {
     dialogRefs: { instructionsRef, gameOverRef, leaderboardRef, mismatchRef },
   } = useGameBoard();
 
-  const { error, leaderboard, mutate: mutateLeaderboard } = useLeaderboard();
+  const {
+    error,
+    leaderboard,
+    mutate: mutateLeaderboard,
+    setSize,
+    isLoading,
+    size,
+  } = useLeaderboard();
 
   return (
     <>
@@ -37,9 +44,12 @@ const GameBoard = (): JSX.Element => {
       />
       <LeaderboardDialog
         leaderboardRef={leaderboardRef}
+        isLoading={isLoading}
         leaderboard={leaderboard}
         error={error}
         setDisabled={setDisabled}
+        setSize={setSize}
+        size={size}
       />
       <section className="flex flex-col items-center space-y-7">
         <GameHeader turns={turns} />
