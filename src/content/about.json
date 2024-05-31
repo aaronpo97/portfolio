@@ -23,17 +23,37 @@
       "text": "I have hands-on experience with a range of technologies, including but not limited to:",
       "tech": [
         {
+          "category": "Languages",
+          "stack": [
+            {
+              "text": "JavaScript",
+              "icon": "./icons/languages/javascript.svg",
+              "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+            },
+            {
+              "text": "TypeScript",
+              "icon": "./icons/languages/typescript.svg",
+              "link": "https://www.typescriptlang.org/"
+            },
+            {
+              "text": "C++",
+              "icon": "./icons/languages/cpp.svg",
+              "link": "https://isocpp.org/"
+            },
+            {
+              "text": "C#",
+              "icon": "./icons/languages/csharp.svg",
+              "link": "https://docs.microsoft.com/en-us/dotnet/csharp/"
+            }
+          ]
+        },
+        {
           "category": "Front-end",
           "stack": [
             {
               "text": "HTML",
               "icon": "./icons/frontend/html.svg",
               "link": "https://developer.mozilla.org/en-US/docs/Web/HTML"
-            },
-            {
-              "text": "Javascript",
-              "icon": "./icons/frontend/javascript.svg",
-              "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
             },
             {
               "text": "CSS",
@@ -44,11 +64,6 @@
               "text": "Sass",
               "icon": "./icons/frontend/sass.svg",
               "link": "https://sass-lang.com/"
-            },
-            {
-              "text": "Typescript",
-              "icon": "./icons/frontend/typescript.svg",
-              "link": "https://www.typescriptlang.org/"
             },
             {
               "text": "React",
@@ -91,14 +106,14 @@
           "category": "Databases",
           "stack": [
             {
-              "text": "MongoDB",
-              "icon": "./icons/databases/mongodb.svg",
-              "link": "https://www.mongodb.com/"
-            },
-            {
               "text": "Postgres",
               "icon": "./icons/databases/postgres.svg",
               "link": "https://www.postgresql.org/"
+            },
+            {
+              "text": "MongoDB",
+              "icon": "./icons/databases/mongodb.svg",
+              "link": "https://www.mongodb.com/"
             },
             {
               "text": "Redis",
@@ -114,6 +129,11 @@
               "text": "Git",
               "icon": "./icons/other/git.svg",
               "link": "https://git-scm.com/"
+            },
+            {
+              "text": "Docker",
+              "icon": "./icons/currently-learning/docker.svg",
+              "link": "https://www.docker.com/"
             },
             {
               "text": "GitHub",
@@ -161,11 +181,6 @@
               "link": "https://dotnet.microsoft.com/"
             },
             {
-              "text": "C#",
-              "icon": "./icons/currently-learning/csharp.svg",
-              "link": "https://docs.microsoft.com/en-us/dotnet/csharp/"
-            },
-            {
               "text": "Nest.js",
               "icon": "./icons/currently-learning/nestjs.svg",
               "link": "https://nestjs.com/"
@@ -176,9 +191,9 @@
               "link": "https://threejs.org/"
             },
             {
-              "text": "Docker",
-              "icon": "./icons/currently-learning/docker.svg",
-              "link": "https://www.docker.com/"
+              "text": "WASM",
+              "icon": "./icons/currently-learning/wasm.svg",
+              "link": "https://webassembly.org/"
             }
           ]
         }
