@@ -10,7 +10,7 @@ const MobileNavbar: FC<{
   const drawerRef = useRef<HTMLInputElement>(null);
   return (
     <div className="flex-none lg:hidden">
-      <div className="drawer drawer-end">
+      <div className="drawer">
         <input id="my-drawer" type="checkbox" className="drawer-toggle" ref={drawerRef} />
         <div className="drawer-content">
           <label htmlFor="my-drawer" className="btn btn-ghost drawer-button">
