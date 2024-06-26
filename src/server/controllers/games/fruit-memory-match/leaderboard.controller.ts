@@ -1,4 +1,4 @@
-import LeaderboardService from '@/services/games/fruit-memory/match/leaderboard.service';
+import LeaderboardService from '@/server/services/games/fruit-memory/match/leaderboard.service';
 import SuccessResponseBuilder from '@/util/api/response-handling/builders/SuccessResponseBuilder';
 import { NextApiRequest, NextApiResponse } from 'next';
 
