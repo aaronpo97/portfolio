@@ -1,9 +1,9 @@
 import ServerError from '@/ServerError';
-import LeaderboardController from '@/controllers/games/fruit-memory-match/leaderboard.controller';
+import LeaderboardController from '@/server/controllers/games/fruit-memory-match/leaderboard.controller';
 import validateCaptcha from '@/middleware/validateCaptcha';
 import validateRequest from '@/middleware/validateRequest';
 import GameLeaderboardValidationSchema from '@/schema/GameLeaderboardValidationSchema';
-import LeaderboardService from '@/services/games/fruit-memory/match/leaderboard.service';
+import LeaderboardService from '@/server/services/games/fruit-memory/match/leaderboard.service';
 import ErrorResponseBuilder from '@/util/api/response-handling/builders/ErrorResponseBuilder';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { createRouter } from 'next-connect';
