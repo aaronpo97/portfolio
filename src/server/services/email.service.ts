@@ -1,6 +1,6 @@
 // EmailService.ts
 import SendEmailRequestBodySchema from '@/schema/SendEmailRequestBodySchema';
-import EmailRepository from '@/server/respository/email.repository';
+import EmailRepository from '@/server/repository/email.repository';
 import { NextApiRequest } from 'next';
 import { z } from 'zod';
 
