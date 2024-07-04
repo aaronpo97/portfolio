@@ -15,6 +15,7 @@ const useNavbar = () => {
     { slug: '/projects', name: 'Projects' },
     { slug: '/contact', name: 'Contact' },
     { slug: '/resume.pdf', name: 'Resume' },
+    { slug: '/blog', name: 'Blog' },
     { slug: '/threejs', name: 'Three.js' },
   ];
 
