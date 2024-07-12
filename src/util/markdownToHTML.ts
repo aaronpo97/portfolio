@@ -1,14 +1,16 @@
-import { unified } from 'unified';
+import rehypeKatex from 'rehype-katex';
+import rehypeStringify from 'rehype-stringify';
+import remarkMath from 'remark-math';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
-import rehypeSanitize from 'rehype-sanitize';
-import rehypeStringify from 'rehype-stringify';
+import { unified } from 'unified';
 
 const markdownToHTML = async (markdown: string) => {
   const result = await unified()
     .use(remarkParse)
+    .use(remarkMath)
     .use(remarkRehype)
-    .use(rehypeSanitize)
+    .use(rehypeKatex)
     .use(rehypeStringify)
     .process(markdown);
 
