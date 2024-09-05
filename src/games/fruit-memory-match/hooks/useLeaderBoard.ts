@@ -28,15 +28,12 @@ const useLeaderboard = () => {
       .safeParse(json);
 
     if (!parsedPayload.success) {
-      console.log(json);
       throw new Error(parsedPayload.error.message);
     }
     const pageCount = Math.ceil(parseInt(count, 10) / pageSize);
 
-    return {
-      leaderboardEntries: parsedPayload.data.payload.leaderboardEntries,
-      pageCount,
-    };
+    const { leaderboardEntries } = parsedPayload.data.payload;
+    return { leaderboardEntries, pageCount };
   };
 
   const { data, error, isLoading, mutate, size, setSize } = useSWRInfinite(

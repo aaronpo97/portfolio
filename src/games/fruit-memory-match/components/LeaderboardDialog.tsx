@@ -50,9 +50,9 @@ const LeaderboardDialog: FC<{
           <>
             <h2 className="my-6 px-5 text-center text-5xl font-bold">Leaderboard</h2>
 
-            <div className="my-3 max-h-[20rem] w-full space-y-2 overflow-y-scroll px-5 lg:max-h-[30rem]">
+            <div className="my-3 max-h-[20rem] w-full space-y-2 overflow-y-scroll overscroll-none px-5 lg:max-h-[30rem]">
               {leaderboard.length === 0 && (
-                <p className="text-center text-lg">
+                <p className="animate-fade text-center text-lg">
                   No entries yet. You could be the first!
                 </p>
               )}
@@ -61,7 +61,7 @@ const LeaderboardDialog: FC<{
                 return (
                   <div
                     key={entry.id}
-                    className="flex flex-col items-start justify-start"
+                    className="animate flex animate-fade flex-col items-start justify-start"
                     ref={isLast ? ref : undefined}
                   >
                     <p className="text-2xl font-bold">{entry.name}</p>
@@ -71,7 +71,24 @@ const LeaderboardDialog: FC<{
                 );
               })}
 
-              {isLoadingMore && !isAtEnd && <Spinner size="md" />}
+              {isLoadingMore && !isAtEnd && (
+                <>
+                  {Array.from({ length: 3 }).map((_, i) => (
+                    <div className="animate my-3 animate-fade" key={i}>
+                      <div className="flex animate-pulse space-x-4">
+                        <div className="flex-1 space-y-4 py-1">
+                          <div className="h-3 w-3/12 rounded bg-base-100" />
+                          <div className="space-y-2">
+                            <div className="h-3 w-5/12 rounded bg-base-100" />
+                            <div className="h-3 w-4/12 rounded bg-base-100" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                  <Spinner size="xs" />
+                </>
+              )}
             </div>
 
             <div className="modal-action m-5 justify-center">
