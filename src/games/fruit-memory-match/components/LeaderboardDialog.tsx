@@ -1,6 +1,7 @@
 import { Dispatch, FC, SetStateAction } from 'react';
 
 import { useInView } from 'react-intersection-observer';
+import Spinner from '@/components/ui/Spinner';
 import useLeaderboard from '../hooks/useLeaderBoard';
 
 const LeaderboardDialog: FC<{
@@ -11,7 +12,18 @@ const LeaderboardDialog: FC<{
   setSize: ReturnType<typeof useLeaderboard>['setSize'];
   size: ReturnType<typeof useLeaderboard>['size'];
   isLoading: ReturnType<typeof useLeaderboard>['isLoading'];
-}> = ({ leaderboardRef, leaderboard, error, setDisabled, setSize }) => {
+  isLoadingMore: ReturnType<typeof useLeaderboard>['isLoadingMore'];
+  isAtEnd: ReturnType<typeof useLeaderboard>['isAtEnd'];
+}> = ({
+  leaderboardRef,
+  leaderboard,
+  error,
+  setDisabled,
+  setSize,
+  isLoading,
+  isLoadingMore,
+  isAtEnd,
+}) => {
   const { ref } = useInView({
     onChange(visible) {
       if (!visible) {
@@ -20,6 +32,7 @@ const LeaderboardDialog: FC<{
       setSize((size) => size + 1);
     },
   });
+
   return (
     <dialog
       ref={leaderboardRef}
@@ -33,7 +46,7 @@ const LeaderboardDialog: FC<{
       }}
     >
       <div className="modal-box bg-primary p-0" onClick={(e) => e.stopPropagation()}>
-        {leaderboard && !error && (
+        {leaderboard && !error && !isLoading && (
           <>
             <h2 className="my-6 px-5 text-center text-5xl font-bold">Leaderboard</h2>
 
@@ -57,6 +70,8 @@ const LeaderboardDialog: FC<{
                   </div>
                 );
               })}
+
+              {isLoadingMore && !isAtEnd && <Spinner size="md" />}
             </div>
 
             <div className="modal-action m-5 justify-center">
