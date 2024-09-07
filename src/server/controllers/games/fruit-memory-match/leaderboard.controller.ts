@@ -14,12 +14,14 @@ export default class LeaderboardController {
   async getLeaderboard(req: NextApiRequest, res: NextApiResponse) {
     const PAGE_NUM = parseInt(req.query.page_num as string, 10);
     const PAGE_SIZE = parseInt(req.query.page_size as string, 10);
+    const leaderboardEntries = await this.service.getLeaderboard({ PAGE_NUM, PAGE_SIZE });
+    const leaderboardCount = await this.service.getLeaderboardCount();
 
-    const leaderboardEntry = await this.service.getLeaderboard({ PAGE_NUM, PAGE_SIZE });
+    res.setHeader('X-Total-Count', leaderboardCount.toString());
 
     const responseBody = new SuccessResponseBuilder()
       .setMessage('Leaderboard fetched successfully')
-      .setPayload({ leaderboardEntry })
+      .setPayload({ leaderboardEntries })
       .setStatusCode(200)
       .create();
 

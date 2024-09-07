@@ -22,6 +22,10 @@ export default class LeaderboardService {
     });
   }
 
+  async getLeaderboardCount() {
+    return this.client.instance.gameLeaderboardEntry.count();
+  }
+
   async postNewScore({ name, turns }: PostRequestBody) {
     return this.client.instance.gameLeaderboardEntry.create({
       data: { name, turns },

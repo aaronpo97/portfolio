@@ -30,6 +30,8 @@ const GameBoard = (): JSX.Element => {
     setSize,
     isLoading,
     size,
+    isLoadingMore,
+    isAtEnd,
   } = useLeaderboard();
 
   return (
@@ -50,6 +52,8 @@ const GameBoard = (): JSX.Element => {
         setDisabled={setDisabled}
         setSize={setSize}
         size={size}
+        isLoadingMore={isLoadingMore}
+        isAtEnd={isAtEnd}
       />
       <section className="flex flex-col items-center space-y-7">
         <GameHeader turns={turns} />
