@@ -2,7 +2,7 @@ import useSWRInfinite from 'swr/infinite';
 import { z } from 'zod';
 
 const useLeaderboard = () => {
-  const pageSize = 10;
+  const PAGE_SIZE = 6;
 
   const fetcher = async <Url extends string>(url: Url) => {
     const response = await fetch(url);
@@ -30,7 +30,7 @@ const useLeaderboard = () => {
     if (!parsedPayload.success) {
       throw new Error(parsedPayload.error.message);
     }
-    const pageCount = Math.ceil(parseInt(count, 10) / pageSize);
+    const pageCount = Math.ceil(parseInt(count, 10) / PAGE_SIZE);
 
     const { leaderboardEntries } = parsedPayload.data.payload;
     return { leaderboardEntries, pageCount };
@@ -40,7 +40,7 @@ const useLeaderboard = () => {
     (index) =>
       `/api/games/fruit-memory-match/leaderboard?page_num=${
         index + 1
-      }&page_size=${pageSize}`,
+      }&page_size=${PAGE_SIZE}`,
     fetcher,
   );
 

@@ -70,6 +70,14 @@ const LeaderboardDialog: FC<{
                   </div>
                 );
               })}
+              {isAtEnd && (
+                <div className="flex items-center justify-center">
+                  <div className="animate-fade space-y-[0.5] text-center">
+                    <p>You&apos;ve reached the end.</p>
+                    <p>Thanks for playing, and feel free to submit your score!</p>
+                  </div>
+                </div>
+              )}
 
               {isLoadingMore && !isAtEnd && (
                 <>
