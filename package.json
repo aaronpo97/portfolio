@@ -16,6 +16,7 @@
     "@react-email/render": "^0.0.9",
     "@react-email/tailwind": "^0.0.12",
     "classnames": "^2.5.1",
+    "date-fns": "^3.6.0",
     "gray-matter": "^4.0.3",
     "lil-gui": "^0.18.2",
     "lodash": "^4.17.21",
