@@ -2,7 +2,7 @@ import useSWRInfinite from 'swr/infinite';
 import { z } from 'zod';
 
 const useLeaderboard = () => {
-  const PAGE_SIZE = 6;
+  const PAGE_SIZE = 5;
 
   const fetcher = async <Url extends string>(url: Url) => {
     const response = await fetch(url);

@@ -5,6 +5,26 @@ import Spinner from '@/components/ui/Spinner';
 import { format } from 'date-fns';
 import useLeaderboard from '../hooks/useLeaderBoard';
 
+const LeaderboardSkeleton: FC = () => {
+  return (
+    <>
+      {Array.from({ length: 5 }).map((_, i) => (
+        <tr className="animate my-3 animate-fade" key={i}>
+          <td className="animate-pulse">
+            <div className="bg-primary-loading h-3 w-11/12 rounded" />
+          </td>
+          <td className="animate-pulse">
+            <div className="bg-primary-loading h-3 w-6/12 rounded" />
+          </td>
+          <td className="animate-pulse">
+            <div className="bg-primary-loading h-3 w-9/12 rounded" />
+          </td>
+        </tr>
+      ))}
+    </>
+  );
+};
+
 const LeaderboardDialog: FC<{
   leaderboardRef: React.RefObject<HTMLDialogElement>;
   leaderboard: ReturnType<typeof useLeaderboard>['leaderboard'];
@@ -87,33 +107,7 @@ const LeaderboardDialog: FC<{
                     );
                   })}
 
-                  {isLoadingMore && !isAtEnd && (
-                    <>
-                      {Array.from({ length: 3 }).map((_, i) => (
-                        <tr className="animate my-3 animate-fade" key={i}>
-                          {/* <div className="flex animate-pulse space-x-4">
-                        <div className="flex-1 space-y-4 py-1">
-                          <div className="h-3 w-3/12 rounded bg-base-100" />
-                          <div className="space-y-2">
-                            <div className="h-3 w-5/12 rounded bg-base-100" />
-                            <div className="h-3 w-4/12 rounded bg-base-100" />
-                          </div>
-                        </div>
-                      </div> */}
-
-                          <td className="animate-pulse">
-                            <div className="h-5 w-10/12 rounded bg-base-100" />
-                          </td>
-                          <td className="animate-pulse">
-                            <div className="h-5 w-6/12 rounded bg-base-100" />
-                          </td>
-                          <td className="animate-pulse">
-                            <div className="h-5 w-9/12 rounded bg-base-100" />
-                          </td>
-                        </tr>
-                      ))}
-                    </>
-                  )}
+                  {isLoadingMore && !isAtEnd && <LeaderboardSkeleton />}
                 </tbody>
               </table>
               {isLoadingMore && !isAtEnd && <Spinner />}
