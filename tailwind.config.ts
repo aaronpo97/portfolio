@@ -41,6 +41,9 @@ const config: Config = {
     require('@headlessui/tailwindcss'),
   ],
   theme: {
+    colors: {
+      'primary-loading': 'hsl(227, 15%, 28%)',
+    },
     extend: {
       screens: {
         xs: '380px',

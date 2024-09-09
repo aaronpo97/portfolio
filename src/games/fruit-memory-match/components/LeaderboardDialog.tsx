@@ -2,7 +2,28 @@ import { Dispatch, FC, SetStateAction } from 'react';
 
 import { useInView } from 'react-intersection-observer';
 import Spinner from '@/components/ui/Spinner';
+import { format } from 'date-fns';
 import useLeaderboard from '../hooks/useLeaderBoard';
+
+const LeaderboardSkeleton: FC = () => {
+  return (
+    <>
+      {Array.from({ length: 5 }).map((_, i) => (
+        <tr className="animate my-3 animate-fade" key={i}>
+          <td className="animate-pulse">
+            <div className="bg-primary-loading h-3 w-11/12 rounded" />
+          </td>
+          <td className="animate-pulse">
+            <div className="bg-primary-loading h-3 w-6/12 rounded" />
+          </td>
+          <td className="animate-pulse">
+            <div className="bg-primary-loading h-3 w-9/12 rounded" />
+          </td>
+        </tr>
+      ))}
+    </>
+  );
+};
 
 const LeaderboardDialog: FC<{
   leaderboardRef: React.RefObject<HTMLDialogElement>;
@@ -45,7 +66,10 @@ const LeaderboardDialog: FC<{
         setDisabled(false);
       }}
     >
-      <div className="modal-box bg-primary p-0" onClick={(e) => e.stopPropagation()}>
+      <div
+        className="modal-box max-w-3xl bg-primary p-0"
+        onClick={(e) => e.stopPropagation()}
+      >
         {leaderboard && !error && !isLoading && (
           <>
             <h2 className="my-6 px-5 text-center text-5xl font-bold">Leaderboard</h2>
@@ -56,46 +80,44 @@ const LeaderboardDialog: FC<{
                   No entries yet. You could be the first!
                 </p>
               )}
-              {leaderboard.map((entry, i) => {
-                const isLast = i === leaderboard.length - 1;
-                return (
-                  <div
-                    key={entry.id}
-                    className="animate flex animate-fade flex-col items-start justify-start"
-                    ref={isLast ? ref : undefined}
-                  >
-                    <p className="text-2xl font-bold">{entry.name}</p>
-                    <p className="">Turns: {entry.turns}</p>
-                    <p className="">Date: {entry.date.toLocaleDateString()}</p>
-                  </div>
-                );
-              })}
+
+              <table className="table table-lg">
+                <thead>
+                  <tr className="text-2xl font-bold uppercase">
+                    <th>Name</th>
+                    <th>Turns</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody className="overflow-y-scroll">
+                  {leaderboard.map((entry, i) => {
+                    const isLast = i === leaderboard.length - 1;
+                    return (
+                      <tr
+                        key={entry.id}
+                        ref={isLast ? ref : undefined}
+                        className="animate hover animate-fade"
+                      >
+                        <td className="text-2xl font-bold">{entry.name}</td>
+                        <td className="text-xl font-bold">{entry.turns}</td>
+                        <td className="text-xl font-semibold">
+                          {format(entry.date, 'PP')}
+                        </td>
+                      </tr>
+                    );
+                  })}
+
+                  {isLoadingMore && !isAtEnd && <LeaderboardSkeleton />}
+                </tbody>
+              </table>
+              {isLoadingMore && !isAtEnd && <Spinner />}
               {isAtEnd && (
-                <div className="flex items-center justify-center">
+                <div className="flex items-center justify-center text-xl font-bold italic">
                   <div className="animate-fade space-y-[0.5] text-center">
                     <p>You&apos;ve reached the end.</p>
                     <p>Thanks for playing, and feel free to submit your score!</p>
                   </div>
                 </div>
-              )}
-
-              {isLoadingMore && !isAtEnd && (
-                <>
-                  {Array.from({ length: 3 }).map((_, i) => (
-                    <div className="animate my-3 animate-fade" key={i}>
-                      <div className="flex animate-pulse space-x-4">
-                        <div className="flex-1 space-y-4 py-1">
-                          <div className="h-3 w-3/12 rounded bg-base-100" />
-                          <div className="space-y-2">
-                            <div className="h-3 w-5/12 rounded bg-base-100" />
-                            <div className="h-3 w-4/12 rounded bg-base-100" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                  <Spinner size="xs" />
-                </>
               )}
             </div>
 
