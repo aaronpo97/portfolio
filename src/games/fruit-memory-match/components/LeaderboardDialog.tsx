@@ -41,7 +41,7 @@ const LeaderboardDialog: FC<{
   error,
   setDisabled,
   setSize,
-  isLoading,
+
   isLoadingMore,
   isAtEnd,
 }) => {
@@ -70,9 +70,11 @@ const LeaderboardDialog: FC<{
         className="modal-box max-w-3xl bg-primary p-0"
         onClick={(e) => e.stopPropagation()}
       >
-        {leaderboard && !error && !isLoading && (
+        {leaderboard && !error && (
           <>
-            <h2 className="my-6 px-5 text-center text-5xl font-bold">Leaderboard</h2>
+            <h2 className="my-4 px-5 text-center text-2xl font-bold lg:my-6 lg:text-5xl">
+              Leaderboard
+            </h2>
 
             <div className="my-3 max-h-[20rem] w-full space-y-2 overflow-y-scroll overscroll-none px-5 lg:max-h-[30rem]">
               {leaderboard.length === 0 && (
@@ -81,41 +83,43 @@ const LeaderboardDialog: FC<{
                 </p>
               )}
 
-              <table className="table table-lg">
-                <thead>
-                  <tr className="text-2xl font-bold uppercase">
-                    <th>Name</th>
-                    <th>Turns</th>
-                    <th>Date</th>
-                  </tr>
-                </thead>
-                <tbody className="overflow-y-scroll">
-                  {leaderboard.map((entry, i) => {
-                    const isLast = i === leaderboard.length - 1;
-                    return (
-                      <tr
-                        key={entry.id}
-                        ref={isLast ? ref : undefined}
-                        className="animate hover animate-fade"
-                      >
-                        <td className="text-2xl font-bold">{entry.name}</td>
-                        <td className="text-xl font-bold">{entry.turns}</td>
-                        <td className="text-xl font-semibold">
-                          {format(entry.date, 'PP')}
-                        </td>
-                      </tr>
-                    );
-                  })}
+              <div className="overflow-x-auto">
+                <table className="table table-xs sm:table-sm lg:table-lg">
+                  <thead>
+                    <tr className="text-sm font-bold uppercase lg:text-2xl">
+                      <th>Name</th>
+                      <th>Turns</th>
+                      <th>Date</th>
+                    </tr>
+                  </thead>
+                  <tbody className="overflow-y-scroll">
+                    {leaderboard.map((entry, i) => {
+                      const isLast = i === leaderboard.length - 1;
+                      return (
+                        <tr
+                          key={entry.id}
+                          ref={isLast ? ref : undefined}
+                          className="animate hover animate-fade"
+                        >
+                          <td className="text-xs font-bold lg:text-2xl">{entry.name}</td>
+                          <td className="text-xs font-bold lg:text-xl">{entry.turns}</td>
+                          <td className="text-xs font-semibold lg:text-xl">
+                            {format(new Date(entry.date), 'MM/dd/yyyy')}
+                          </td>
+                        </tr>
+                      );
+                    })}
 
-                  {isLoadingMore && !isAtEnd && <LeaderboardSkeleton />}
-                </tbody>
-              </table>
+                    {isLoadingMore && !isAtEnd && <LeaderboardSkeleton />}
+                  </tbody>
+                </table>
+              </div>
               {isLoadingMore && !isAtEnd && <Spinner />}
               {isAtEnd && (
-                <div className="flex items-center justify-center text-xl font-bold italic">
+                <div className="flex items-center justify-center font-bold italic lg:text-xl">
                   <div className="animate-fade space-y-[0.5] text-center">
                     <p>You&apos;ve reached the end.</p>
-                    <p>Thanks for playing, and feel free to submit your score!</p>
+                    <p>Thanks for playing!</p>
                   </div>
                 </div>
               )}
