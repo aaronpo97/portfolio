@@ -11,7 +11,10 @@ const CarouselInstructions: FC<{
     <div
       className={classNames(
         'absolute bottom-0 p-5 text-center',
-        { 'animate-flip-up': doAnimation, 'opacity-0': !doAnimation },
+        {
+          'animate-fade animate-duration-150': doAnimation,
+          'opacity-0': !doAnimation,
+        },
         'motion-reduce:animate-none',
       )}
     >
