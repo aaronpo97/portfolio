@@ -13,7 +13,7 @@ const AboutPageSkillsSection: FC<{ item: Content; doAnimation: boolean }> = ({
         className={classNames(
           'mt-3 list-inside list-disc space-y-1 text-xs sm:text-sm md:text-xl',
           {
-            'animate-fade-down animate-duration-150': doAnimation,
+            'animate-fade animate-duration-150': doAnimation,
             'opacity-0': !doAnimation,
           },
           'motion-reduce:animate-none motion-reduce:opacity-100',
