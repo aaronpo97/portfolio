@@ -21,6 +21,7 @@ const AboutPage: NextPage<AboutPageProps> = ({ content, preamble, title }) => {
   const prefersReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
   return (
     <>
+      {' '}
       <Head>
         <title>{`${title} | ${process.env.NEXT_PUBLIC_SITE_NAME}`}</title>
         <meta name="description" content={preamble} />
@@ -32,9 +33,7 @@ const AboutPage: NextPage<AboutPageProps> = ({ content, preamble, title }) => {
           customLeftArrow={<CustomLeftArrow />}
           customRightArrow={<CustomRightArrow />}
           customTransition={
-            prefersReducedMotion
-              ? 'transform 0ms'
-              : 'transform 1000ms cubic-bezier(0.22, 0.61, 0.36, 1.0)'
+            prefersReducedMotion ? 'transform 0ms' : 'transform 800ms ease'
           }
           beforeChange={(nextSlide) => {
             setCurrentSlide(nextSlide);
