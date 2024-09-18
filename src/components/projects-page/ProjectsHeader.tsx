@@ -22,7 +22,7 @@ const ProjectsHeader: FC<{
             className={classNames(
               'w-full text-2xl font-extrabold md:text-8xl',
               {
-                'animate-fade-left': currentSlide === 0,
+                'animate-fade animate-duration-300': currentSlide === 0,
                 'opacity-0': currentSlide !== 0,
               },
               'motion-reduce:animate-none',
@@ -35,7 +35,7 @@ const ProjectsHeader: FC<{
           className={classNames(
             'space-y-4',
             {
-              'animate-fade-right': currentSlide === 0,
+              'animate-fade animate-duration-300': currentSlide === 0,
               'opacity-0': currentSlide !== 0,
             },
             'motion-reduce:animate-none',
