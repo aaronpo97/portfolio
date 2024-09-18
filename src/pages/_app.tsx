@@ -24,10 +24,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <Script async src="http://www.googletagmanager.com/gtag/js?id=G-9X0NY3CM5X" />
+      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-9X0NY3CM5X" />
       <Script id="gtag">
         {`
-        console.log('hi');
           window.dataLayer = window.dataLayer || [];
           function gtag() {
             dataLayer.push(arguments);
