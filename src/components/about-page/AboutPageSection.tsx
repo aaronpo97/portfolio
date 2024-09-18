@@ -28,7 +28,7 @@ const AboutPageSection: FC<{
             className={classNames(
               'text-2xl font-extrabold md:text-8xl',
               {
-                'animate-fade animate-duration-150': doAnimation,
+                'animate-fade animate-duration-300': doAnimation,
                 'opacity-0': !doAnimation,
               },
               'motion-reduce:animate-none',
@@ -40,7 +40,7 @@ const AboutPageSection: FC<{
         <div
           className={classNames(
             {
-              'animate-fade animate-duration-150': doAnimation,
+              'animate-fade animate-duration-300': doAnimation,
               'opacity-0': !doAnimation,
             },
             'motion-reduce:animate-none',

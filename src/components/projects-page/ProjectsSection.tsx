@@ -30,7 +30,7 @@ const ProjectsSection: FC<{
             className={classNames(
               'w-full text-xl font-extrabold md:text-6xl',
               {
-                'animate-fade-left': doAnimation,
+                'animate-fade animate-duration-300': doAnimation,
                 'opacity-0': !doAnimation,
               },
               'motion-reduce:animate-none',
@@ -43,7 +43,7 @@ const ProjectsSection: FC<{
             className={classNames(
               'flex space-x-4',
               {
-                'animate-fade-right': doAnimation,
+                'animate-fade animate-duration-300': doAnimation,
                 'opacity-0': !doAnimation,
               },
               'motion-reduce:animate-none',
@@ -66,7 +66,7 @@ const ProjectsSection: FC<{
 
         <div
           className={classNames('col-span-2 space-y-4', {
-            'animate-fade-right': doAnimation,
+            'animate-fade animate-duration-300': doAnimation,
             'opacity-0': !doAnimation,
           })}
         >

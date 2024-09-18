@@ -15,7 +15,7 @@ const AboutPageCoursesSection: FC<{ item: Content; doAnimation: boolean }> = ({
         className={classNames(
           'mr-10 mt-3 list-inside list-disc space-y-1 text-xs sm:text-sm md:text-xl',
           {
-            'animate-fade animate-duration-150': doAnimation,
+            'animate-fade animate-duration-300': doAnimation,
             'opacity-0': !doAnimation,
           },
           'motion-reduce:animate-none motion-reduce:opacity-100',

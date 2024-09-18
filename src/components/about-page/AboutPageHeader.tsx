@@ -15,7 +15,7 @@ const AboutPageHeader: FC<{
           className={classNames(
             'my-7 text-2xl font-extrabold md:my-10 md:text-8xl',
             {
-              'animate-fade animate-duration-150': doAnimation,
+              'animate-fade animate-duration-300': doAnimation,
               'opacity-0': !doAnimation,
             },
             'motion-reduce:animate-none',
@@ -28,7 +28,7 @@ const AboutPageHeader: FC<{
           className={classNames(
             'space-y-4',
             {
-              'animate-fade animate-duration-150': doAnimation,
+              'animate-fade animate-duration-300': doAnimation,
               'opacity-0': !doAnimation,
             },
             'motion-reduce:animate-none',

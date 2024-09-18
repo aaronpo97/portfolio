@@ -12,7 +12,7 @@ const CarouselInstructions: FC<{
       className={classNames(
         'absolute bottom-0 p-5 text-center',
         {
-          'animate-fade animate-duration-150': doAnimation,
+          'animate-fade animate-duration-300': doAnimation,
           'opacity-0': !doAnimation,
         },
         'motion-reduce:animate-none',

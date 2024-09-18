@@ -14,7 +14,7 @@ const GamesHeader: FC<{
       <h1
         className={classNames(
           'mb-3 text-3xl font-bold lg:text-8xl',
-          { 'animate-fade-left': inView, 'opacity-0': !inView },
+          { 'animate-fade animate-duration-300': inView, 'opacity-0': !inView },
           'motion-reduce:animate-none',
         )}
       >
@@ -23,7 +23,7 @@ const GamesHeader: FC<{
       <h2
         className={classNames(
           'mb-4 text-xl font-bold lg:text-3xl',
-          { 'animate-fade-right': inView, 'opacity-0': !inView },
+          { 'animate-fade animate-duration-300': inView, 'opacity-0': !inView },
           'motion-reduce:animate-none',
         )}
       >
