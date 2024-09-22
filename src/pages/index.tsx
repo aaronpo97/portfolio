@@ -3,21 +3,7 @@ import Headings from '@/components/homepage/Headings';
 import Socials from '@/components/homepage/Socials';
 import Image from 'next/image';
 import Head from 'next/head';
-
-const metadata = {
-  title: process.env.NEXT_PUBLIC_SITE_NAME,
-  description: "Aaron Po's personal portfolio.",
-  keywords: [
-    'Aaron Po',
-    'personal portfolio',
-    'developers london ontario',
-    'web developers london ontario',
-    'web developers',
-    'web developers london',
-    'web developers ontario',
-    'web developers canada',
-  ],
-};
+import metadata from '@/metadata';
 
 const Home: NextPage = () => {
   return (
