@@ -1,0 +1,23 @@
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: OAI-SearchBot
+Disallow: /
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Googlebot
+Disallow: /resume.pdf
+
+User-agent: Googlebot-Image
+Disallow: /resume.pdf
+
+User-agent: Bingbot
+Disallow: /resume.pdf
+
+User-agent: DuckDuckBot
+Disallow: /resume.pdf
+
+User-agent: *
+Disallow: /

@@ -16,7 +16,7 @@
 % - https://github.com/stefanogermano Fixed bad boxes and undefined font shape (July 2018)
 % - https://github.com/foohyfooh Fixed blank spaces in \cvevent and bad link in README.md (June 2018)
 % - https://github.com/logological Remove redundant hyperref and typos (Apr 2021)
-
+% - https://github.com/aaronpo97 Added \project command for projects (September 2024)
 %%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{altacv}[2023/08/25 AltaCV v1.7.1, yet another alternative class for a resume/curriculum vitae.]
@@ -449,4 +449,16 @@
   \pagestyle{empty}
   \color{body}
   \raggedright
+}
+
+\newcommand{\project}[5]{
+  \cvsubsection{#1}
+  \vspace{-0.25em}
+  {\small \faCalendar[regular]\,\,\,#2}\newline
+  {\small \faCode\,\,\,#3} \hspace{1em}
+  {\small \faDesktop\,\,\,\url{#4}}
+  \vspace{0.5em}
+  \begin{itemize}
+    #5
+  \end{itemize}
 }
