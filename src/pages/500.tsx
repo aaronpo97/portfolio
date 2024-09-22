@@ -8,6 +8,7 @@ const Page404: NextPage = () => {
       <Head>
         <title>500: Internal Server Error</title>
         <meta name="description" content="That page doesn't exist." />
+        <meta name="robots" content="nosnippet" />
       </Head>
       <div className="flex h-dvh flex-col items-center justify-center">
         <main className="w-10/12 space-y-7">

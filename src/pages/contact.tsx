@@ -102,7 +102,11 @@ const Contact: NextPage = () => {
     <>
       <Head>
         <title>{`Contact Me | ${process.env.NEXT_PUBLIC_SITE_NAME}`}</title>
-        <meta name="description" content="Contact Me" />
+        <meta name="robots" content="nosnippet" />
+        <meta
+          name="description"
+          content="Want to get in touch? Use this form to send me an email."
+        />
       </Head>
       <div className="mt-20 flex min-h-dvh items-center justify-center md:mt-0">
         <SuccessDialog
@@ -110,7 +114,7 @@ const Contact: NextPage = () => {
           message="Your email was sent successfully!"
         />
         <ErrorDialog errorDialogRef={errorDialogRef} message={errorMessage} />
-        <div className="w-10/12 animate-fade space-y-8 motion-reduce:animate-none lg:w-8/12">
+        <div className="w-10/12 animate-fade space-y-8 animate-duration-300 motion-reduce:animate-none lg:w-8/12">
           <div className="space-y-1">
             <h1 className="text-4xl font-bold md:text-6xl lg:text-7xl">Contact Me</h1>
             <h2 className="font-semibold italic">

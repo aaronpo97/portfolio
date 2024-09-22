@@ -34,6 +34,7 @@ const Home: NextPage = () => {
         <meta property="og:url" content={process.env.NEXT_PUBLIC_SITE_URL} />
         <meta property="og:image" content="/background.jpg" />
         <meta property="og:image:alt" content={metadata.title} />
+        <meta name="robots" content="nosnippet" />
       </Head>
       <div className="relative flex h-dvh w-full flex-col items-center justify-center">
         <Image
@@ -43,7 +44,7 @@ const Home: NextPage = () => {
           width={6035}
           className="pointer-events-none absolute h-full w-full object-cover mix-blend-overlay"
         />
-        <div className="relative flex w-9/12 flex-col justify-center text-white">
+        <div className="text-white relative flex w-9/12 flex-col justify-center">
           <div className="flex flex-col space-y-10">
             <Headings />
             <Socials />

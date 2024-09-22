@@ -50,7 +50,8 @@ const Games: NextPage<GamesProps> = ({ games }) => {
     <>
       <Head>
         <title>{`Games | ${process.env.NEXT_PUBLIC_SITE_NAME}`}</title>
-        <meta name="description" content="Play games made by Aaron Po" />
+        <meta name="robots" content="nosnippet" />
+        <meta name="description" content="Play games made by Aaron Po!" />
       </Head>
       <main className="flex min-h-dvh flex-col items-center justify-center">
         <article ref={ref} className="w-9/12 space-y-10">
@@ -60,7 +61,7 @@ const Games: NextPage<GamesProps> = ({ games }) => {
             className={classNames(
               'grid grid-cols-1 gap-3 md:grid-cols-2',
               {
-                'animate-fade': inView,
+                'animate-fade animate-duration-300': inView,
                 'opacity-0': !inView,
               },
               'motion-reduce:animate-none',

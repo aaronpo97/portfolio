@@ -13,6 +13,7 @@ const Asteroids: NextPage = () => {
       <Head>
         <title>{`Asteroids | ${process.env.NEXT_PUBLIC_SITE_NAME}`}</title>
         <meta name="description" content="Play Asteroids" />
+        <meta name="robots" content="nosnippet" />
       </Head>
       <div className={`flex min-h-dvh flex-col items-center justify-center`}>
         <header className={`${Sixtyfour.className} my-6 text-center`}>

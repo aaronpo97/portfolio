@@ -23,7 +23,8 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ preamble, title, projects }
     <>
       <Head>
         <title>{`${title} | ${process.env.NEXT_PUBLIC_SITE_NAME}`}</title>
-        <meta name="description" content={preamble} />
+        <meta name="description" content={preamble.replace('\n', ' ')} />
+        <meta name="robots" content="nosnippet" />
       </Head>
       <article className="relative flex min-h-dvh w-full items-center justify-center">
         <Carousel
