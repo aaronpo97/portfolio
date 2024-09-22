@@ -8,6 +8,7 @@ const FruitMemoryMatch = () => {
       <Head>
         <title>{`Fruit Memory Match | ${process.env.NEXT_PUBLIC_SITE_NAME}`}</title>
         <meta name="description" content="Play Fruit Memory Match" />
+        <meta name="robots" content="nosnippet" />
       </Head>
       <div className="flex h-dvh w-full animate-fade touch-pan-x touch-pan-y flex-col items-center justify-center animate-duration-300 motion-reduce:animate-none">
         <GameBoard />

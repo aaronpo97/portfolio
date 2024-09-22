@@ -12,6 +12,7 @@ const ThreeJs: NextPage = () => {
           name="description"
           content="Here you can find some of the 3D scenes I've created using Three.js."
         />
+        <meta name="robots" content="nosnippet" />
       </Head>
 
       <div className="flex h-dvh justify-center">

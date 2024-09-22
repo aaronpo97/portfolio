@@ -65,6 +65,7 @@ const View: FC = () => {
           name="description"
           content="Here you can find some of the 3D scenes I've created using Three.js."
         />
+        <meta name="robots" content="nosnippet" />
       </Head>
       <div className="flex h-dvh select-none items-center justify-center">
         <div className="absolute left-3 top-1">

@@ -24,7 +24,8 @@ const AboutPage: NextPage<AboutPageProps> = ({ content, preamble, title }) => {
       {' '}
       <Head>
         <title>{`${title} | ${process.env.NEXT_PUBLIC_SITE_NAME}`}</title>
-        <meta name="description" content={preamble} />
+        <meta name="description" content={preamble.replace('\n', ' ')} />
+        <meta name="robots" content="nosnippet" />
       </Head>
       <article className="relative flex h-full w-full items-center justify-center">
         <Carousel
