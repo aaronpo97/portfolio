@@ -18,7 +18,10 @@ const Home: NextPage = () => {
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content={metadata.title} />
         <meta property="og:url" content={process.env.NEXT_PUBLIC_SITE_URL} />
-        <meta property="og:image" content="/background.jpg" />
+        <meta
+          property="og:image"
+          content={`${process.env.NEXT_PUBLIC_SITE_URL}/background.jpg`}
+        />
         <meta property="og:image:alt" content={metadata.title} />
         <meta name="robots" content="nosnippet" />
       </Head>
