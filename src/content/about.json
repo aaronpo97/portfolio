@@ -1,10 +1,10 @@
 {
   "title": "About",
-  "preamble": "I am a dedicated and enthusiastic software developer located in London, ON. I am currently pursuing an Advanced Diploma in Computer Programmer Analyst program at Fanshawe College, where I am honing my skills and deepening my understanding of industry-standard practices and technologies.",
+  "preamble": "I am a dedicated and enthusiastic software developer located in London, ON currently charting my path in the tech world as a student in the Computer Programmer Analyst program at Fanshawe College. ",
   "content": [
     {
       "heading": "Goals",
-      "text": "My ultimate goal is to gain experience as a Full Stack Developer. I am actively seeking opportunities that will allow me to apply my knowledge in a real-world setting and contribute to meaningful projects.\nI am open to collaborations, internships, or entry-level positions where I can further develop my skills and learn from experienced professionals."
+      "text": "My ultimate goal is establish myself as a full stack developer. I am actively seeking opportunities that will enable me to apply my knowledge in a real-world setting and contribute to meaningful projects.\n Whether through collaborations, internships, or entry-lvel positions, I am eager to learn from experienced professionals and contribute meaningfully to innovative projects."
     },
     {
       "heading": "Skills",
@@ -20,7 +20,7 @@
     },
     {
       "heading": "Technologies",
-      "text": "I have hands-on experience with a range of technologies, including but not limited to:",
+      "text": "My technical background spans a diverse range of programming languages, frameworks, and tools. I am proficient in the following technologies:",
       "tech": [
         {
           "category": "Languages",
@@ -39,11 +39,6 @@
               "text": "C++",
               "icon": "./icons/languages/cpp.svg",
               "link": "https://isocpp.org/"
-            },
-            {
-              "text": "C#",
-              "icon": "./icons/languages/csharp.svg",
-              "link": "https://docs.microsoft.com/en-us/dotnet/csharp/"
             }
           ]
         },
@@ -64,6 +59,11 @@
               "text": "Sass",
               "icon": "./icons/frontend/sass.svg",
               "link": "https://sass-lang.com/"
+            },
+            {
+              "text": "WASM",
+              "icon": "./icons/frontend/wasm.svg",
+              "link": "https://webassembly.org/"
             },
             {
               "text": "React",
@@ -176,11 +176,6 @@
               "link": "https://aws.amazon.com/"
             },
             {
-              "text": ".NET",
-              "icon": "./icons/currently-learning/dotnet.svg",
-              "link": "https://dotnet.microsoft.com/"
-            },
-            {
               "text": "Nest.js",
               "icon": "./icons/currently-learning/nestjs.svg",
               "link": "https://nestjs.com/"
@@ -189,11 +184,6 @@
               "text": "Three.js",
               "icon": "./icons/currently-learning/threejs.svg",
               "link": "https://threejs.org/"
-            },
-            {
-              "text": "WASM",
-              "icon": "./icons/currently-learning/wasm.svg",
-              "link": "https://webassembly.org/"
             }
           ]
         }
@@ -201,7 +191,7 @@
     },
     {
       "heading": "Education",
-      "text": "I graduated from Western University in 2020 with a Bachelor of Music, specializing in Music Theory and Composition, and a minor in Philosophy. I am currently enrolled in the Computer Programmer Analyst program at Fanshawe College, preparing for a career in software development.\nI have also completed various online courses and continue to expand my knowledge through self-study and personal projects. Courses completed include:",
+      "text": "My academic journey is rooted in the arts where I earned a Bachelor of Music in Composition from the University of Western Ontario. My passion for technology and software development led me to pursue a career in the tech industry.\nI am currently enrolled in the Computer Programmer Analyst program at Fanshawe College where I am honing my skills in software development and expanding my technical knowledge.\nI supplement my academic studies with online courses to stay updated with industry trends and emerging technologies.",
       "courses": [
         {
           "instructor": "Colt Steele",
