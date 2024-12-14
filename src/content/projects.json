@@ -3,6 +3,36 @@
   "preamble": "Throughout my coding journey, I've invested my time into various different projects,honing my skills across web applications, APIs, and more. These projects showcase my adaptability in various facets of software development.\nExplore my detailed portfolio of these projects to witness the outcomes of my efforts.",
   "projects": [
     {
+      "title": "Project Yerb",
+      "date": "2024-01-21",
+      "socialImage": "/images/projects/yerb.svg",
+      "githubURL": "https://github.com/aaronpo97/project-yerb",
+      "liveURL": "https://ayerble.com",
+      "text": "Project Yerb is a custom game/game engine designed with an Entity-Component-System (ECS) architecture using SDL2 and C++. Users can develop cross-platform games with a modular architecture and JSON-based configuration.",
+      "stack": [
+        {
+          "text": "C++",
+          "icon": "/icons/languages/cpp.svg",
+          "link": "https://isocpp.org"
+        },
+        {
+          "text": "SDL",
+          "icon": "/icons/game-dev/sdl.svg",
+          "link": "https://www.libsdl.org"
+        },
+        {
+          "text": "WASM",
+          "icon": "/icons/frontend/wasm.svg",
+          "link": "https://webassembly.org"
+        },
+        {
+          "text": "Emscripten",
+          "icon": "/icons/frontend/emscripten.svg",
+          "link": "https://emscripten.org"
+        }
+      ]
+    },
+    {
       "title": "The Biergarten App",
       "date": "2024-01-21",
       "socialImage": "/images/projects/biergarten.svg",
