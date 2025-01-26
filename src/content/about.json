@@ -4,7 +4,7 @@
   "content": [
     {
       "heading": "Goals",
-      "text": "My ultimate goal is establish myself as a full stack developer. I am actively seeking opportunities that will enable me to apply my knowledge in a real-world setting and contribute to meaningful projects.\n Whether through collaborations, internships, or entry-lvel positions, I am eager to learn from experienced professionals and contribute meaningfully to innovative projects."
+      "text": "My ultimate goal is establish myself as a full stack developer. I am actively seeking opportunities that will enable me to apply my knowledge in a real-world setting and contribute to meaningful projects.\nThrough internships and entry-level positions, I am eager to learn from experienced professionals and contribute meaningfully to innovative projects."
     },
     {
       "heading": "Skills",
@@ -191,7 +191,7 @@
     },
     {
       "heading": "Education",
-      "text": "My academic journey is rooted in the arts where I earned a Bachelor of Music in Composition from the University of Western Ontario. My passion for technology and software development led me to pursue a career in the tech industry.\nI am currently enrolled in the Computer Programmer Analyst program at Fanshawe College where I am honing my skills in software development and expanding my technical knowledge.\nI supplement my academic studies with online courses to stay updated with industry trends and emerging technologies.",
+      "text": "My academic journey is rooted in the arts where I earned a Bachelors degree in Music and Philosophy from the University of Western Ontario. My passion for technology and software development led me to pursue a career in the tech industry.\nI am currently enrolled in the Computer Programmer Analyst program at Fanshawe College where I am honing my skills in software development and expanding my technical knowledge.\nI am currently supplementing my academic studies with online courses to stay updated with industry trends and emerging technologies. I have completed or am currently enrolled in the following courses:",
       "courses": [
         {
           "instructor": "Colt Steele",
@@ -210,7 +210,7 @@
         },
         {
           "instructor": "Bruno Simon",
-          "title": "Three.js Journey",
+          "title": "Three.js Journey (in progress)",
           "link": "https://threejs-journey.com/"
         }
       ]

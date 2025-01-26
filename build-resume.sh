@@ -3,7 +3,6 @@
 cd ./resume
 RESUME_TEX="resume.tex"
 
-
 if [ ! -f "$RESUME_TEX" ]; then
     echo "The resume.tex file does not exist."
     exit 1
@@ -18,7 +17,12 @@ pdflatex "$RESUME_TEX"
 cp resume.pdf ../public
 
 if [ $? -eq 0 ]; then
-    echo "Resume built successfully."
+    # if cowsay is installed, display a message using cowsay
+    if [ -x "$(command -v cowsay)" ]; then
+        cowsay "Resume built successfully."
+    else
+        echo "Resume built successfully."
+    fi
 else
     echo "Failed to build the resume."
 fi
