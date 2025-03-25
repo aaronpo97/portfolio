@@ -42,3 +42,4 @@ next-env.d.ts
 *.out
 *.synctex.gz
 *.xmpi
+.env*.local
