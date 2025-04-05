@@ -1,10 +1,10 @@
 {
   "title": "About",
-  "preamble": "I am a dedicated and enthusiastic software developer located in London, ON currently charting my path in the tech world as a student in the Computer Programmer Analyst program at Fanshawe College. ",
+  "preamble": "I'm a software developer based in London ON with vast array of skills and interests. I'm currently enrolled at Fanshawe College studying Computer Programming and Analysis, and I am a graduate of Western University having studied Music and Philosophy. ",
   "content": [
     {
       "heading": "Goals",
-      "text": "My ultimate goal is establish myself as a full stack developer. I am actively seeking opportunities that will enable me to apply my knowledge in a real-world setting and contribute to meaningful projects.\nThrough internships and entry-level positions, I am eager to learn from experienced professionals and contribute meaningfully to innovative projects."
+      "text": "I am actively seeking opportunities that will enable me to apply my knowledge in a real-world setting and contribute to meaningful projects.\nI am eager to learn from experienced professionals and contribute meaningfully to innovative projects."
     },
     {
       "heading": "Skills",
@@ -39,6 +39,11 @@
               "text": "C++",
               "icon": "./icons/languages/cpp.svg",
               "link": "https://isocpp.org/"
+            },
+            {
+              "text": "Java",
+              "icon": "./icons/languages/java.svg",
+              "link": "https://www.oracle.com/java/technologies/javase-jdk11-downloads.html"
             }
           ]
         },
@@ -191,7 +196,7 @@
     },
     {
       "heading": "Education",
-      "text": "My academic journey is rooted in the arts where I earned a Bachelors degree in Music and Philosophy from the University of Western Ontario. My passion for technology and software development led me to pursue a career in the tech industry.\nI am currently enrolled in the Computer Programmer Analyst program at Fanshawe College where I am honing my skills in software development and expanding my technical knowledge.\nI am currently supplementing my academic studies with online courses to stay updated with industry trends and emerging technologies. I have completed or am currently enrolled in the following courses:",
+      "text": "I started my academic journey with a Bachelor's degree in Music and Philosophy from the University of Western Ontario. Over time, my interest in technology and software development grew, which led me to shift my focus to the tech.\nRight now, I'm studying Computer Programming and Analysis at Fanshawe College, where I'm working on improving my software development skills and learning more about the industry. To keep up with the latest trends and technologies, I supplement my education with online courses. Here are some of the courses I've completed or am currently working on:",
       "courses": [
         {
           "instructor": "Colt Steele",
@@ -217,7 +222,7 @@
     },
     {
       "heading": "Interests",
-      "text": "I have a strong enthusiasm for staying ahead of industry trends and emerging technologies.\nMy passion lies in crafting user-friendly and visually captivating applications. I seamlessly integrate my arts background into problem-solving, relishing the creative process of transforming ideas into functional software.\nBeyond software development, my interests extend to cooking, eating, gardening, biking, indulging in professional wrestling, binge-watching King of the Hill, and immersing myself in a diverse range of music."
+      "text": "I’m deeply passionate about keeping up with industry trends and exploring new technologies. I enjoy creating user-friendly and visually engaging applications, often drawing on my arts background to transform ideas into functional software.\nBeyond coding, I have a variety of interests, including cooking, gardening, biking, watching professional wrestling, and exploring a diverse array of music. I also have a strong interest in analytic philosophy, particularly in its intersection with computer science. I admire the works of Gottlob Frege, Bertrand Russell, and Ludwig Wittgenstein with their contributions to the philosophy of language and logic, and their influence on the field of computer science."
     }
   ]
 }
