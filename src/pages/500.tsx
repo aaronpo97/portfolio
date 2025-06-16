@@ -2,7 +2,7 @@ import React from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
-const Page404: NextPage = () => {
+const Page500: NextPage = () => {
   return (
     <>
       <Head>
@@ -19,7 +19,7 @@ const Page404: NextPage = () => {
             <p>Something went wrong. I have been notified of the error.</p>
             <p>
               Please try again later. If the problem persists, please{' '}
-              <a href="mailto:email@example.com" className="link-hover link">
+              <a href="mailto:aaron.po97@gmail.com" className="link-hover link">
                 contact me
               </a>{' '}
               explaining what happened.
@@ -31,4 +31,4 @@ const Page404: NextPage = () => {
   );
 };
 
-export default Page404;
+export default Page500;

@@ -116,12 +116,20 @@ export const getStaticProps: GetStaticProps<GamesProps> = async () => {
         'Fruit Memory Match is a memory game where you match pairs of cards with the same fruit on them.\nThe game ends when all pairs are matched.',
     },
     {
-      name: 'Asteroids',
-      href: '/games/asteroids',
-      imageHref: '/images/games/asteroids/preview.svg',
-      imageAlt: 'Asteroids',
+      href: 'https://ayerble.com',
+      name: 'Project Yerb',
+      imageHref: '/images/games/project-yerb/preview.svg',
+      imageAlt: 'Project Yerb',
       description:
-        'Asteroids is a game where you control a spaceship and shoot asteroids.\nInspired by the classic arcade game by Atari.',
+        'Project Yerb is my custom game engine I built using SDL2, C++ and Emscripten.\nCurrently a work in progress, aims to be a versatile game engine for 2D games.',
+    },
+    {
+      name: 'Flappy Gary',
+      href: 'https://ayerble.itch.io/flappy-gary',
+      imageHref: '/images/games/flappy-gary/preview.svg',
+      imageAlt: 'Flappy Gary',
+      description:
+        'Gary brought you a video game. Say thank you to Gary.\nTotally not a rip-off of Flappy Bird. Tap to navigate Gary the cat through obstacles and avoid hitting them.',
     },
   ].map((game) => ({ ...game, id: crypto.randomUUID() }));
 
