@@ -196,7 +196,7 @@
     },
     {
       "heading": "Education",
-      "text": "I started my academic journey with a Bachelor's degree in Music and Philosophy from the University of Western Ontario. Over time, my interest in technology and software development grew, which led me to shift my focus to the tech.\nRight now, I'm studying Computer Programming and Analysis at Fanshawe College, where I'm working on improving my software development skills and learning more about the industry. To keep up with the latest trends and technologies, I supplement my education with online courses. Here are some of the courses I've completed or am currently working on:",
+      "text": "I started my academic journey with a Bachelor's degree in Music and Philosophy from the University of Western Ontario. Over time, my interest in technology and software development grew, which led me to shift my focus to tech.\nRight now, I'm studying Computer Programming and Analysis at Fanshawe College, where I'm working on improving my software development skills while learning more about the industry. I also try to supplement my education with online courses. Here are some of the courses I've completed or am currently working on:",
       "courses": [
         {
           "instructor": "Colt Steele",
@@ -222,7 +222,7 @@
     },
     {
       "heading": "Interests",
-      "text": "I’m deeply passionate about keeping up with industry trends and exploring new technologies. I enjoy creating user-friendly and visually engaging applications, often drawing on my arts background to transform ideas into functional software.\nBeyond coding, I have a variety of interests, including cooking, gardening, biking, watching professional wrestling, and exploring a diverse array of music. I also have a strong interest in analytic philosophy, particularly in its intersection with computer science. I admire the works of Gottlob Frege, Bertrand Russell, and Ludwig Wittgenstein with their contributions to the philosophy of language and logic, and their influence on the field of computer science."
+      "text": "I’m deeply passionate about keeping up with industry trends and exploring new technologies. I enjoy creating user-friendly and visually engaging applications, often drawing on my arts background to inform my approach to developing software.\nBeyond coding, I have a variety of interests, including cooking, gardening, biking, watching professional wrestling, and exploring a diverse array of music. I also have a strong interest in analytic philosophy, particularly in its intersection with computer science. I admire the works of Gottlob Frege, Bertrand Russell, and Ludwig Wittgenstein with their contributions to the philosophy of language and logic, and their influence on the field of computer science."
     }
   ]
 }
